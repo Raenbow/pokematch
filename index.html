@@ -3,10 +3,49 @@
     <head>
             <title>Memory Match Game!</title>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src"http://learning-fuze.github.io/memory_match/v0.1/script.js"></script>
             <script src="main.js"></script>
             <link rel="stylesheet" href="style.css">
     </head>
     <body>
+
+        <div class=headerContainer>
+            <div class=gameTitle>Pokemans</div>
+            <div>Settings Link</div>
+            <div>About Link</div>
+        </div>
+        <div class=statsContainer>
+            <div gamesPlayed>
+                <div class=label>Games Played</div>
+                <div class=value></div>
+            </div>
+            <div class=attempts>
+                <div class=label>Attempts</div>
+                <div class=value></div>
+            </div>
+            <div class=accuracy>
+                <div class=label>Accuracy</div>
+                <div class=value></div>
+            </div>
+            <button type="button" class=reset>Reset Game</button>
+        </div>
+        <div id=gameArea>
+            <div class=container>
+                <div class=card>
+                    <div class=cardBottom></div>
+                    <div class=cardTop>
+                        <img src="images/stillbush.gif" class=bushStill>
+                    </div>
+                </div>
+            </div>
+            <div class=container>
+                <div class=card>
+                    <div class=cardBottom></div>
+                    <div class=cardTop><img src="images/stillbush.gif" class=bushStill></div>
+                </div>
+            </div>
+        </div>
+        
 
     </body>
 </html>

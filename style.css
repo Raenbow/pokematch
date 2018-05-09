@@ -1,0 +1,49 @@
+
+body{
+    background-image: url("images/background.jpg");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-attachment: fixed;
+}
+.gameArea{
+    height: 100%;
+    width: 100%;
+    display:inline-block;
+}
+.container {
+    float: left;
+}
+.card{
+    position: relative;
+    display: inline-block;
+    height: 200px;
+    width: 125px;
+}
+.cardBottom, .cardTop{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 220px 220px;
+    height: 80%;
+    width: 80%;
+    position: absolute;
+}
+.cardBottom{
+    background-image: url("images/cardfront.jpg"); 
+}
+.cardTop {
+    background-image: url("images/greenbackground2.jpg");
+    display: flex;
+    align-items: center;
+}
+.bushStill{
+    display: block;
+    margin: auto;
+    height: 48%;
+    width: 90%
+}
+.cardClick {
+    background-image: none;
+}
+.hiddenBush {
+    opacity: 0;
+}
