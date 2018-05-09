@@ -5,10 +5,32 @@ body{
     background-position: bottom;
     background-attachment: fixed;
 }
+/* --------------------------------------------------------------- */
+.headerContainer {
+    border: 3px solid white;
+}
+.logo{
+    background-image: url("images/logo.png");
+    background-repeat: no-repeat;
+    background-size: 150px 150px;
+    height:150px;
+    width:150px;
+    position: relative;
+    display: inline-block;
+}
+/* --------------------------------------------------------------- */
+.statsContainer {
+    border: 3px solid white;
+    position: relative;
+    display: inline-block;
+}
+/* --------------------------------------------------------------- */
 .gameArea{
     height: 100%;
     width: 100%;
+    position: relative;
     display:inline-block;
+    border: 3px solid white;
 }
 .container {
     float: left;
@@ -19,31 +41,23 @@ body{
     height: 200px;
     width: 125px;
 }
-.cardBottom, .cardTop{
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 220px 220px;
+.cardBottom img, .cardTop img{
     height: 80%;
     width: 80%;
     position: absolute;
 }
-.cardBottom{
-    background-image: url("images/cardfront.jpg"); 
-}
-.cardTop {
-    background-image: url("images/greenbackground2.jpg");
+
+.cardBottom, .cardTop {
     display: flex;
     align-items: center;
 }
-.bushStill{
+
+/* .bushStill{
     display: block;
-    margin: auto;
+    margin: 50px 0 0 5px;
     height: 48%;
     width: 90%
 }
-.cardClick {
-    background-image: none;
-}
 .hiddenBush {
     opacity: 0;
-}
+} */
