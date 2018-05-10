@@ -4,6 +4,8 @@ body{
     background-repeat: no-repeat;
     background-position: bottom;
     background-attachment: fixed;
+    height: 100vh;
+    width: 100vw;
 }
 /* --------------------------------------------------------------- */
 .headerContainer {
@@ -12,23 +14,34 @@ body{
 .logo{
     background-image: url("images/logo.png");
     background-repeat: no-repeat;
-    background-size: 150px 150px;
-    height:150px;
-    width:150px;
+    background-size: 8vw 9vw;
+    height:9vw;
+    width:10vw;
     position: relative;
     display: inline-block;
 }
 /* --------------------------------------------------------------- */
+.sideBar {
+    height: 80%;
+    display: inline-block;
+    width: 19%;
+    margin-right: 10%;
+}
 .statsContainer {
     border: 3px solid white;
-    position: relative;
-    display: inline-block;
+    height: 50%;
+    width: 100%;
+}
+.team {
+    border: 3px solid white;
+    height: 25%;
+    width: 100%;
 }
 /* --------------------------------------------------------------- */
-.gameArea{
-    height: 100%;
-    width: 100%;
-    position: relative;
+#gameArea{
+    vertical-align: top;
+    height: 60%;
+    width: 70%;
     display:inline-block;
     border: 3px solid white;
 }
@@ -47,12 +60,12 @@ body{
     position: absolute;
 }
 
-.cardBottom, .cardTop {
+/*.cardBottom, .cardTop {
     display: flex;
     align-items: center;
 }
 
-/* .bushStill{
+ .bushStill{
     display: block;
     margin: 50px 0 0 5px;
     height: 48%;
@@ -61,3 +74,4 @@ body{
 .hiddenBush {
     opacity: 0;
 } */
+/* --------------------------------------------------------------- */
