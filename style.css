@@ -1,4 +1,12 @@
 
+@font-face{
+    font-family: "pokemonSolid";
+    src: url("fonts/pokemonSolid.ttf");
+}
+@font-face{
+    font-family: "pokemonHollow";
+    src: url("fonts/pokemonHollow.ttf");
+}
 body{
     background-image: url("images/background.jpg");
     background-repeat: no-repeat;
@@ -10,14 +18,26 @@ body{
 /* --------------------------------------------------------------- */
 .headerContainer {
     border: 3px solid white;
+    text-align: center;
+}
+.gameTitle {
+    font-family: "pokemonHollow";
+    position: absolute;
+    display: inline-block;
+    text-align: center;
 }
 .logo{
-    background-image: url("images/logo.png");
+    background-image: url("images/logo1.png");
     background-repeat: no-repeat;
-    background-size: 8vw 9vw;
-    height:9vw;
-    width:10vw;
+    background-size: 20vw 14vw;
+    height: 10vw;
+    width: 20vw;
     position: relative;
+    display: inline-block;
+    right: 30vw;
+}
+.links {
+    font-family: "pokemonSolid";
     display: inline-block;
 }
 /* --------------------------------------------------------------- */
@@ -43,7 +63,6 @@ body{
     height: 60%;
     width: 70%;
     display:inline-block;
-    border: 3px solid white;
 }
 .container {
     float: left;
@@ -55,7 +74,8 @@ body{
     width: 125px;
 }
 .cardBottom img, .cardTop img{
-    height: 80%;
+    border: 3px solid white;
+    height: 71%;
     width: 80%;
     position: absolute;
 }

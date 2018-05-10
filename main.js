@@ -16,31 +16,37 @@ var thisCard1 = null;
 var thisCard2 = null;
 
 function initializeGame(){
-   attachClickHandler()
+   attachClickHandler();
 //    bushToggle();
 }
 
 function attachClickHandler(){
-    $(".card").on("click", cardClicks)
+    $(".card").on("click", cardClicks);
+    $(".reset").on("click", resetButton);
 }
 
 function resetButton(){
-    gamesPlayed = gamesPlayed++;
+    gamesPlayed++;
     resetStats();
-    displayStats();
+    $('.cardTop img').css("opacity","1");
     return gamesPlayed;
-}
-function displayStats(gamesPlayed, attempts, accuracy){
-    $(".gamesPlayed .value").text(gamesPlayed);
-    $(".attempts .value").text(attempts);
-    accuracy = (attempts - matches) / attempts * 100;
-    $(".accuracy .value").text(accuracy + "%")
 }
 function resetStats(){
     accuracy = 0;
-    matches = 0;
+    matchCounter = 0;
     attempts = 0;
     displayStats();
+}
+function displayStats(){
+    $(".gamesPlayed .value").text(gamesPlayed);
+    $(".attempts .value").text(attempts);
+    if(attempts >= 1){
+        accuracy = matchCounter/attempts*100;
+    }else {
+        attempts = 0;
+    }
+    $(".accuracy .value").text(Math.floor(accuracy) + "%");
+    return;
 }
 function cardClicks(){
     if (firstCardClicked === null){
@@ -51,13 +57,15 @@ function cardClicks(){
         secondCardClicked = $(this).find('.cardBottom img').attr('src');
         thisCard2 = $(this);
         $(this).find('.cardTop img').css("opacity", "0");
+        attempts++;
         if (firstCardClicked === secondCardClicked){
             matchCounter++;
             firstCardClicked = null;
             secondCardClicked = null;
         } else {
+            //halt clicks here
+            $(".card").off("click");
             setTimeout(function(){
-                console.log($("img").css("opacity") );
                 if (thisCard1.find('.cardTop img').css("opacity") === "0" ){
                     thisCard1.find('.cardTop img').css("opacity", "1");
                 }
@@ -66,13 +74,15 @@ function cardClicks(){
                 }
                 firstCardClicked = null;
                 secondCardClicked = null;
-            }, 2000);
+                $(".card").on("click", cardClicks);
+            }, 1500);
         }
     if(matchCounter === totalPossibleMatches){
         console.log("Win!");
     } else {
         ;
     }
+    displayStats();
         // if( $(this).hasClass("cardClick")){
         //     $(this).removeClass("cardClick");
         //     $(this).find(".bushStill").removeClass("hiddenBush");
