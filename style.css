@@ -64,6 +64,11 @@ body{
     width: 70%;
     display:inline-block;
 }
+.row{
+    position: relative;
+    height: 205px;
+    width: 750px;
+}
 .container {
     float: left;
 }
