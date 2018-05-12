@@ -9,14 +9,13 @@
     </head>
     <body>
 
-        <div class=headerContainer>
-            <div class=logo></div>
-            <h1 class=gameTitle>Match Adventure!</h1>
-            <div class=links>Settings Link</div>
-            <div class=links>About Link</div>
-        </div>
         <div class=sideBar>
              <div class=statsContainer>
+                <div class=logo></div>
+                <h1 class=gameTitle>Match Adventure!</h1>
+                <div class=links>Settings</div>
+                <!-- <div class="links reset">Reset</div> -->
+                <div class=links>About</div>
                 <div class=gamesPlayed>
                     <div class=label>Games Played</div>
                     <div class=value>0</div>
@@ -29,10 +28,12 @@
                     <div class=label>Accuracy</div>
                     <div class=value>0%</div>
                 </div>
-                <button type="button" class=reset>Reset Game</button>
+                <!-- <button type="button" class=reset>Reset Game</button> -->
+                <div class="resetButton reset"></div>
             </div>
-            <div class=team></div>
+            <!-- <div class=team></div> -->
          </div>
+
         <div id=gameArea>
             <div class=row>
                 <div class=container>
@@ -221,6 +222,11 @@
                 </div>
             </div>
         </div>
-
+        <div class='winModal'>
+            <div class="winBox">
+                <div class="winText">Way to go!</div>
+                <img src="images/winning.gif" class='winImg'>
+            </div>
+        </div>
     </body>
 </html>

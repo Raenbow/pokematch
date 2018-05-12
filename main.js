@@ -9,7 +9,7 @@ var gamesPlayed = 0;
 
 var firstCardClicked = null;
 var secondCardClicked = null;
-var totalPossibleMatches = 3;
+var totalPossibleMatches = 9;
 var matchCounter = 0;
 
 var thisCard1 = null;
@@ -28,6 +28,7 @@ function initializeGame(){
 function attachClickHandler(){
     $(".card").on("click", cardClicks);
     $(".reset").on("click", resetButton);
+    $(".winModal").on("click", winModalClose);
 }
 
 function resetButton(){
@@ -54,47 +55,53 @@ function displayStats(){
     $(".accuracy .value").text(Math.floor(accuracy) + "%");
     return;
 }
+function winModalClose(){
+    $(".winModal").css("display", "none");
+}
 function cardClicks(){
-    if (firstCardClicked === null){
-        firstCardClicked = $(this).find('.cardBottom img').attr('src');
-        thisCard1 = $(this);
-        $(this).find('.cardTop img').css("opacity", "0");
-    } else {
-        secondCardClicked = $(this).find('.cardBottom img').attr('src');
-        thisCard2 = $(this);
-        $(this).find('.cardTop img').css("opacity", "0");
-        attempts++;
-        if (firstCardClicked === secondCardClicked){
-            matchCounter++;
-            firstCardClicked = null;
-            secondCardClicked = null;
+    if ($(this).find('.cardTop img').css("opacity") === "1"){
+        if (firstCardClicked === null){
+            firstCardClicked = $(this).find('.cardBottom img').attr('src');
+            thisCard1 = $(this);
+            $(this).find('.cardTop img').css("opacity", "0");
         } else {
-            //halt clicks here
-            $(".card").off("click");
-            setTimeout(function(){
-                if (thisCard1.find('.cardTop img').css("opacity") === "0" ){
-                    thisCard1.find('.cardTop img').css("opacity", "1");
-                }
-                if (thisCard2.find('.cardTop img').css("opacity") === "0" ){
-                    thisCard2.find('.cardTop img').css("opacity", "1");
-                }
+            secondCardClicked = $(this).find('.cardBottom img').attr('src');
+            thisCard2 = $(this);
+            $(this).find('.cardTop img').css("opacity", "0");
+            attempts++;
+            if (firstCardClicked === secondCardClicked){
+                matchCounter++;
                 firstCardClicked = null;
                 secondCardClicked = null;
-                $(".card").on("click", cardClicks);
-            }, 1500);
+            } else {
+                $(".card").off("click");
+                setTimeout(function(){
+                    if (thisCard1.find('.cardTop img').css("opacity") === "0" ){
+                        thisCard1.find('.cardTop img').css("opacity", "1");
+                    }
+                    if (thisCard2.find('.cardTop img').css("opacity") === "0" ){
+                        thisCard2.find('.cardTop img').css("opacity", "1");
+                    }
+                    firstCardClicked = null;
+                    secondCardClicked = null;
+                    $(".card").on("click", cardClicks);
+                }, 2000);
+            }
+        if(matchCounter === totalPossibleMatches){
+            $(".winModal").css("display", "block");
+            console.log("Win!");
         }
-    if(matchCounter === totalPossibleMatches){
-        console.log("Win!");
+        displayStats();
+            // if( $(this).hasClass("cardClick")){
+            //     $(this).removeClass("cardClick");
+            //     $(this).find(".bushStill").removeClass("hiddenBush");
+            // } else {
+                // $(this).addClass("cardClick");
+            //     $(this).find(".bushStill").addClass("hiddenBush");
+            // }
+        } 
     }
-    displayStats();
-        // if( $(this).hasClass("cardClick")){
-        //     $(this).removeClass("cardClick");
-        //     $(this).find(".bushStill").removeClass("hiddenBush");
-        // } else {
-            // $(this).addClass("cardClick");
-        //     $(this).find(".bushStill").addClass("hiddenBush");
-        // }
-    }
+    
 }
 function shuffle(array){
     var pokemonArrayx18 = pokemonArray1.concat(pokemonArray2);

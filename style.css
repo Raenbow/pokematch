@@ -13,56 +13,86 @@ body{
     background-position: bottom;
     background-attachment: fixed;
     height: 100vh;
-    width: 100vw;
+    margin: 0;
+    font-size: 0;
+}
+body>* {
+    font-size: initial;
 }
 /* --------------------------------------------------------------- */
-.headerContainer {
-    border: 3px solid white;
-    text-align: center;
-}
-.gameTitle {
-    font-family: "pokemonHollow";
-    position: absolute;
+.sideBar {
+    height: 100vh;
     display: inline-block;
-    text-align: center;
+    width: 49%;
+}
+.statsContainer {
+    background-image: url("images/pokedex.png");
+    background-repeat: no-repeat;
+    background-size: 50vh 98vh;
+    height: 98vh;
+    width: 50vh;
+    top: 1vh;
+    position: absolute;
 }
 .logo{
     background-image: url("images/logo1.png");
     background-repeat: no-repeat;
-    background-size: 20vw 14vw;
-    height: 10vw;
-    width: 20vw;
+    background-size: 20vh 14vh;
+    height: 10vh;
+    width: 20vh;
     position: relative;
     display: inline-block;
-    right: 30vw;
+    left: 15vh;
+    top: 25vh;
+}
+.gameTitle {
+    font-family: "pokemonHollow";
+    color: cadetblue;
+    position: relative;
+    text-align: center;
+    top: 22vh;
+}
+.gamesPlayed, .attempts, .accuracy {
+    font-family: "pokemonSolid";
+    font-size: 2vh;
+    color: cadetblue;
+    position: relative;
+    text-align: center;
+    top: 22vh;
 }
 .links {
     font-family: "pokemonSolid";
+    font-size: 2vh;
     display: inline-block;
+    position: relative;
+    top: 50vh;
+    left: 9vh;
+    color: cadetblue;
+    margin: 0 4vh;
 }
-/* --------------------------------------------------------------- */
-.sideBar {
-    height: 80%;
+.resetButton {
+    background-image: url("images/resetbutton.png");
+    background-repeat: no-repeat;
+    background-size: 6vh;
+    height: 6vh;
+    width: 6vh;
+    position: relative;
     display: inline-block;
-    width: 19%;
-    margin-right: 10%;
+    top: 34vh;
+    left: 22vh;
 }
-.statsContainer {
-    border: 3px solid white;
-    height: 50%;
-    width: 100%;
-}
-.team {
+/* .team {
     border: 3px solid white;
     height: 25%;
     width: 100%;
-}
+} */
 /* --------------------------------------------------------------- */
 #gameArea{
     vertical-align: top;
-    height: 60%;
-    width: 70%;
-    display:inline-block;
+    height: 80vh;
+    transform: translate(-18%, 24%);
+    width: 50%;
+    display: inline-block;
 }
 .row{
     position: relative;
@@ -70,7 +100,7 @@ body{
     width: 750px;
 }
 .container {
-    float: left;
+    float: right;
 }
 .card{
     position: relative;
@@ -100,3 +130,38 @@ body{
     opacity: 0;
 } */
 /* --------------------------------------------------------------- */
+.winModal{
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+.winBox {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    bottom: 0;
+    right: 0;
+    display: block;
+}
+.winText {
+    font-family: "pokemonSolid";
+    font-size: 10vw;
+    color: deepskyblue;
+    margin-top: 10vh;
+    margin-top: 10vh;
+    position: absolute;
+    top: 0;
+    left: 25vw;
+    z-index: 1;
+}
+.winImg{
+    display: block;
+    height: 100vh;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+}
