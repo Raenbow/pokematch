@@ -2,7 +2,6 @@
 $(document).ready(initializeGame);
 
 
-var matches = 0;
 var attempts = 0;
 var accuracy = 0;
 var gamesPlayed = 0;
@@ -16,21 +15,42 @@ var thisCard1 = null;
 var thisCard2 = null;
 
 var cardArray = [".cardImg1-1", ".cardImg1-2", ".cardImg1-3", ".cardImg1-4", ".cardImg1-5", ".cardImg1-6", ".cardImg2-1", ".cardImg2-2", ".cardImg2-3", ".cardImg2-4", ".cardImg2-5", ".cardImg2-6", ".cardImg3-1", ".cardImg3-2", ".cardImg3-3", ".cardImg3-4", ".cardImg3-5", ".cardImg3-6"];
-var pokemonArray1 = ["images/poke1-1.png", "images/poke2-1.png", "images/poke3-1.png", "images/poke4-1.png", "images/poke5-1.png", "images/poke6-1.png", "images/poke7-1.png", "images/poke8-1.png", "images/poke9-1.png"];
-var pokemonArray2 = ["images/poke1-1.png", "images/poke2-1.png", "images/poke3-1.png", "images/poke4-1.png", "images/poke5-1.png", "images/poke6-1.png", "images/poke7-1.png", "images/poke8-1.png", "images/poke9-1.png"];
+var pokemonArray1 = ["images/pmans1.jpg", "images/pmans2.jpg", "images/pmans3.jpg", "images/pmans4.jpg", "images/pmans5.jpg", "images/pmans6.jpg", "images/pmans7.jpg", "images/pmans8.jpg", "images/pmans9.jpg"];
+var pokemonArray2 = ["images/pmans1.jpg", "images/pmans2.jpg", "images/pmans3.jpg", "images/pmans4.jpg", "images/pmans5.jpg", "images/pmans6.jpg", "images/pmans7.jpg", "images/pmans8.jpg", "images/pmans9.jpg"];
+
+var backgroundMusic = document.createElement("audio");
+backgroundMusic.src = "sounds/pallettetown.mp3";
+backgroundMusic.loop = true;
+backgroundMusic.onplaying = function(){ 
+    playing = true;
+} 
+backgroundMusic.onpause = function(){
+    playing = false;
+}
+
+var mewTimeout = setTimeout(showMew, 5000);
 
 function initializeGame(){
    attachClickHandler();
+   backgroundMusic.play();
    shuffle();
-//    bushToggle();
+   mewMouse();
 }
 
 function attachClickHandler(){
     $(".card").on("click", cardClicks);
     $(".reset").on("click", resetButton);
     $(".winModal").on("click", winModalClose);
+    $(".muteButton").on("click", toggleMute);
 }
 
+function toggleMute(){
+    if(playing){
+       backgroundMusic.pause(); 
+    } else {
+        backgroundMusic.play();
+    }  
+}
 function resetButton(){
     gamesPlayed++;
     shuffle();
@@ -89,16 +109,8 @@ function cardClicks(){
             }
         if(matchCounter === totalPossibleMatches){
             $(".winModal").css("display", "block");
-            console.log("Win!");
         }
         displayStats();
-            // if( $(this).hasClass("cardClick")){
-            //     $(this).removeClass("cardClick");
-            //     $(this).find(".bushStill").removeClass("hiddenBush");
-            // } else {
-                // $(this).addClass("cardClick");
-            //     $(this).find(".bushStill").addClass("hiddenBush");
-            // }
         } 
     }
     
@@ -115,13 +127,16 @@ function shuffle(array){
         $(cardArray[i]).attr('src', randomPokemon[i]);
     }
 }
-// function bushToggle(){
-//     $(".bushStill").mouseenter(shakeyBush);
-//     $(".bushStill").mouseout(stillBush);
-// }
-// function shakeyBush(){
-//     $(this).attr("src", "images/shakeybush.gif");
-// }
-// function stillBush(){
-//     $(this).attr("src", "images/stillbush.gif");
-// }
+function mewMouse(){
+    $(window).mousemove(function(mouseLocation){
+        clearTimeout(mewTimeout);
+        mewTimeout = setTimeout(showMew, 5000);
+        hideMew();
+    })
+}
+function showMew(){
+    $(".mew").css("opacity", "1");
+}
+function hideMew(){
+    $(".mew").css("opacity", "0");
+}

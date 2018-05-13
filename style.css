@@ -23,7 +23,7 @@ body>* {
 .sideBar {
     height: 100vh;
     display: inline-block;
-    width: 49%;
+    width: 25%;
 }
 .statsContainer {
     background-image: url("images/pokedex.png");
@@ -34,7 +34,18 @@ body>* {
     top: 1vh;
     position: absolute;
 }
-.logo{
+.muteButton {
+    background-image: url("images/soundoff.png");
+    background-repeat: no-repeat;
+    background-size: 6vh;
+    height: 6vh;
+    width: 6vh;
+    position: absolute;
+    display: inline-block;
+    right: 4vh;
+    top: 23vh;
+}
+.logo {
     background-image: url("images/logo1.png");
     background-repeat: no-repeat;
     background-size: 20vh 14vh;
@@ -60,15 +71,21 @@ body>* {
     text-align: center;
     top: 22vh;
 }
-.links {
+.link1, .link2 {
     font-family: "pokemonSolid";
     font-size: 2vh;
     display: inline-block;
     position: relative;
-    top: 50vh;
-    left: 9vh;
     color: cadetblue;
     margin: 0 4vh;
+}
+.link1 {
+    top: 51vh;
+    left: 1vh;
+}
+.link2 {
+    top: 51vh;
+    left: 16vh;
 }
 .resetButton {
     background-image: url("images/resetbutton.png");
@@ -81,23 +98,17 @@ body>* {
     top: 34vh;
     left: 22vh;
 }
-/* .team {
-    border: 3px solid white;
-    height: 25%;
-    width: 100%;
-} */
 /* --------------------------------------------------------------- */
 #gameArea{
     vertical-align: top;
+    margin-top: 4%;
     height: 80vh;
-    transform: translate(-18%, 24%);
-    width: 50%;
+    width: 73%;
     display: inline-block;
 }
 .row{
     position: relative;
     height: 205px;
-    width: 750px;
 }
 .container {
     float: right;
@@ -105,30 +116,21 @@ body>* {
 .card{
     position: relative;
     display: inline-block;
-    height: 200px;
-    width: 125px;
+    height: 250px;
+    width: 180px;
 }
 .cardBottom img, .cardTop img{
-    border: 3px solid white;
-    height: 71%;
+    height: 80%;
     width: 80%;
     position: absolute;
+    border-radius: 8px;
 }
-
-/*.cardBottom, .cardTop {
-    display: flex;
-    align-items: center;
+.cardBottom img{
+    border: 3px solid lightblue;
 }
-
- .bushStill{
-    display: block;
-    margin: 50px 0 0 5px;
-    height: 48%;
-    width: 90%
+.cardTop img{
+    border: 3px solid white;
 }
-.hiddenBush {
-    opacity: 0;
-} */
 /* --------------------------------------------------------------- */
 .winModal{
     display: none;
@@ -151,6 +153,7 @@ body>* {
     font-family: "pokemonSolid";
     font-size: 10vw;
     color: deepskyblue;
+    text-shadow: 2px 2px 5px lightcyan;
     margin-top: 10vh;
     margin-top: 10vh;
     position: absolute;
@@ -164,4 +167,18 @@ body>* {
     bottom: 0;
     right: 0;
     position: absolute;
+}
+/* --------------------------------------------------------------- */
+.mew {
+    opacity: 0;
+    transition: opacity .5s ease-in-out;
+    pointer-events: none;
+    background-image: url("images/mew.png");
+    background-repeat: no-repeat;
+    background-size: 40vh;
+    height: 40vh;
+    width: 35vh;
+    position: absolute;
+    bottom: 7vh;
+    right: 9vh;
 }
