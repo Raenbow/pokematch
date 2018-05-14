@@ -35,7 +35,7 @@ body>* {
     position: absolute;
 }
 .muteButton {
-    background-image: url("images/soundoff.png");
+    background-image: url('images/soundon.png');
     background-repeat: no-repeat;
     background-size: 6vh;
     height: 6vh;
@@ -113,7 +113,7 @@ body>* {
 .container {
     float: right;
 }
-.card{
+.card {
     position: relative;
     display: inline-block;
     height: 250px;
@@ -169,9 +169,35 @@ body>* {
     position: absolute;
 }
 /* --------------------------------------------------------------- */
+@keyframes mewBob {
+    0%  {top:30vh; animation-timing-function: ease-out;}
+    25%   {top:0; animation-timing-function: ease-in;}
+    50%  {top:30vh; animation-timing-function: ease-out;}
+    75%  {top:60vh; animation-timing-function: ease-in;}
+    100%  {top:30vh; animation-timing-function: ease-out;}
+}
+@keyframes mewWeave {
+    0%   {left:2vw; animation-timing-function: ease-in;}
+    25%  {left:41vw; animation-timing-function: ease-out;}
+    50%  {left:80vw; animation-timing-function: ease-in;}
+    75%  {left:41vw; animation-timing-function: ease-out;}
+    100% {left:2vw; animation-timing-function: ease-in;}
+}
+@keyframes mewWiggle {
+    0% {transform: rotate(0deg); animation-timing-function: linear;}
+    100% {transform: rotate(-360deg); animation-timing-function: linear;}
+}
+.mewBox {
+    animation: mewWeave 15s;
+    animation-iteration-count: infinite;
+    position: absolute;
+    top: 0;
+}   
 .mew {
     opacity: 0;
-    transition: opacity .5s ease-in-out;
+    transition: opacity .75s ease-in-out;
+    animation: mewBob 5s, mewWiggle 20.34567s;
+    animation-iteration-count: infinite;
     pointer-events: none;
     background-image: url("images/mew.png");
     background-repeat: no-repeat;
@@ -179,6 +205,4 @@ body>* {
     height: 40vh;
     width: 35vh;
     position: absolute;
-    bottom: 7vh;
-    right: 9vh;
 }

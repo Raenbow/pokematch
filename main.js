@@ -1,6 +1,7 @@
 
 $(document).ready(initializeGame);
 
+//-------------------------------------------------------------------------------------------------------
 
 var attempts = 0;
 var accuracy = 0;
@@ -18,9 +19,12 @@ var cardArray = [".cardImg1-1", ".cardImg1-2", ".cardImg1-3", ".cardImg1-4", ".c
 var pokemonArray1 = ["images/pmans1.jpg", "images/pmans2.jpg", "images/pmans3.jpg", "images/pmans4.jpg", "images/pmans5.jpg", "images/pmans6.jpg", "images/pmans7.jpg", "images/pmans8.jpg", "images/pmans9.jpg"];
 var pokemonArray2 = ["images/pmans1.jpg", "images/pmans2.jpg", "images/pmans3.jpg", "images/pmans4.jpg", "images/pmans5.jpg", "images/pmans6.jpg", "images/pmans7.jpg", "images/pmans8.jpg", "images/pmans9.jpg"];
 
+//-------------------------------------------------------------------------------------------------------
+
 var backgroundMusic = document.createElement("audio");
 backgroundMusic.src = "sounds/pallettetown.mp3";
 backgroundMusic.loop = true;
+
 backgroundMusic.onplaying = function(){ 
     playing = true;
 } 
@@ -28,7 +32,13 @@ backgroundMusic.onpause = function(){
     playing = false;
 }
 
-var mewTimeout = setTimeout(showMew, 5000);
+var matchSound = document.createElement("audio");
+matchSound.src = "sounds/pokeballcatch.mp3";
+
+var winSound = document.createElement("audio");
+winSound.src = "sounds/victory.mp3";
+
+//-------------------------------------------------------------------------------------------------------
 
 function initializeGame(){
    attachClickHandler();
@@ -36,19 +46,21 @@ function initializeGame(){
    shuffle();
    mewMouse();
 }
-
 function attachClickHandler(){
     $(".card").on("click", cardClicks);
     $(".reset").on("click", resetButton);
     $(".winModal").on("click", winModalClose);
     $(".muteButton").on("click", toggleMute);
 }
+//-------------------------------------------------------------------------------------------------------
 
 function toggleMute(){
     if(playing){
-       backgroundMusic.pause(); 
+       backgroundMusic.pause();
+        $(".muteButton").css("background-image", "url('images/soundoff.png')");
     } else {
         backgroundMusic.play();
+        $(".muteButton").css("background-image", "url('images/soundon.png')")
     }  
 }
 function resetButton(){
@@ -75,8 +87,19 @@ function displayStats(){
     $(".accuracy .value").text(Math.floor(accuracy) + "%");
     return;
 }
-function winModalClose(){
-    $(".winModal").css("display", "none");
+//-------------------------------------------------------------------------------------------------------
+
+function shuffle(array){
+    var pokemonArrayx18 = pokemonArray1.concat(pokemonArray2);
+    var randomPokemon = [];
+    while (pokemonArrayx18.length > 0){
+        var randomIndex = Math.floor(Math.random() * pokemonArrayx18.length);
+        randomPokemon.push(pokemonArrayx18[randomIndex]);
+        pokemonArrayx18.splice(randomIndex, 1);
+    }
+    for(i=0;i<=18;i++){
+        $(cardArray[i]).attr('src', randomPokemon[i]);
+    }
 }
 function cardClicks(){
     if ($(this).find('.cardTop img').css("opacity") === "1"){
@@ -90,6 +113,7 @@ function cardClicks(){
             $(this).find('.cardTop img').css("opacity", "0");
             attempts++;
             if (firstCardClicked === secondCardClicked){
+             //   matchSound.play();
                 matchCounter++;
                 firstCardClicked = null;
                 secondCardClicked = null;
@@ -109,28 +133,28 @@ function cardClicks(){
             }
         if(matchCounter === totalPossibleMatches){
             $(".winModal").css("display", "block");
+        //    backgroundMusic.pause();
+        //    winSound.play();
         }
         displayStats();
         } 
     }
-    
 }
-function shuffle(array){
-    var pokemonArrayx18 = pokemonArray1.concat(pokemonArray2);
-    var randomPokemon = [];
-    while (pokemonArrayx18.length > 0){
-        var randomIndex = Math.floor(Math.random() * pokemonArrayx18.length);
-        randomPokemon.push(pokemonArrayx18[randomIndex]);
-        pokemonArrayx18.splice(randomIndex, 1);
-    }
-    for(i=0;i<=18;i++){
-        $(cardArray[i]).attr('src', randomPokemon[i]);
-    }
+function winModalClose(){
+    $(".winModal").css("display", "none");
+    // winSound.pause();
+    // if ($(".muteButton").css("background-image") === 'images/soundon.png'){
+    //     backgroundMusic.play();
+    // };
 }
+//-------------------------------------------------------------------------------------------------------
+
+var mewTimeout = setTimeout(showMew, 5000);
+
 function mewMouse(){
     $(window).mousemove(function(mouseLocation){
         clearTimeout(mewTimeout);
-        mewTimeout = setTimeout(showMew, 5000);
+        mewTimeout = setTimeout(showMew, 10000);
         hideMew();
     })
 }
