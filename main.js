@@ -3,6 +3,7 @@ $(document).ready(initializeGame);
 
 //-------------------------------------------------------------------------------------------------------
 
+var mute = false;
 var attempts = 0;
 var accuracy = 0;
 var gamesPlayed = 0;
@@ -58,9 +59,11 @@ function toggleMute(){
     if(playing){
        backgroundMusic.pause();
         $(".muteButton").css("background-image", "url('images/soundoff.png')");
+        mute = true;
     } else {
         backgroundMusic.play();
         $(".muteButton").css("background-image", "url('images/soundon.png')")
+        mute = false;
     }  
 }
 function resetButton(){
@@ -113,7 +116,13 @@ function cardClicks(){
             $(this).find('.cardTop img').css("opacity", "0");
             attempts++;
             if (firstCardClicked === secondCardClicked){
-             //   matchSound.play();
+                $(".card").off("click");
+                setTimeout(function(){
+                    thisCard1.css("opacity", "0");
+                    thisCard2.css("opacity", "0");
+                    $(".card").on("click", cardClicks);
+                }, 1000);
+                matchSound.play();
                 matchCounter++;
                 firstCardClicked = null;
                 secondCardClicked = null;
@@ -133,8 +142,8 @@ function cardClicks(){
             }
         if(matchCounter === totalPossibleMatches){
             $(".winModal").css("display", "block");
-        //    backgroundMusic.pause();
-        //    winSound.play();
+             backgroundMusic.pause();
+            winSound.play();
         }
         displayStats();
         } 
@@ -142,10 +151,10 @@ function cardClicks(){
 }
 function winModalClose(){
     $(".winModal").css("display", "none");
-    // winSound.pause();
-    // if ($(".muteButton").css("background-image") === 'images/soundon.png'){
-    //     backgroundMusic.play();
-    // };
+        winSound.pause();
+     if (mute === false){
+         backgroundMusic.play();
+     };
 }
 //-------------------------------------------------------------------------------------------------------
 
