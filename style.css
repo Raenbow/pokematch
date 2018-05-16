@@ -111,7 +111,6 @@ body>* {
 }
 .row{
     position: relative;
-    height: 205px;
     display: inline-block;
     height: 33%;
     left: 20vh;
