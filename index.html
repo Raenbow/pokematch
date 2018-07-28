@@ -3,231 +3,246 @@
     <head>
             <title>Pokemon Match Adventure!</title>
             <link rel="stylesheet" href="style.css">
-            <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-            <!-- <script src"http://learning-fuze.github.io/memory_match/v0.1/script.js"></script> -->
             <script src="main.js"></script>
     </head>
     <body>
 
-        <div class='sideBar'>
-             <div class='statsContainer'>
-                <div class='muteButton'></div>
-                <div class='logo'></div>
-                <h1 class='gameTitle'>Match Adventure!</h1>
-                <div class='link1'>Settings</div>
-                <div class='link2'>About!</div>
-                <div class='gamesPlayed'>
-                    <div class='label'>Games Played</div>
-                    <div class='value'>0</div>
-                </div>
-                <div class='attempts'>
-                    <div class='label'>Match Attempts</div>
-                    <div class='value'>0</div>
-                </div>
-                <div class='accuracy'>
-                    <div class='label'>Accuracy</div>
-                    <div class='value'>0%</div>
-                </div>
-                <div class="resetButton reset"></div>
-            </div>
-         </div>
+        <img class="background" src="./images/background.jpg" alt="">
 
-        <div id='gameArea'>
-            <div class='row'>
-                <div class='container'>
-                    <div class='card'>
-                        <div class='cardBottom'>
-                            <img src="images/poke1-1.png" class='cardImg1-1'>
-                        </div>
-                        <div class='cardTop'>
-                            <img src="images/greenbackground2.jpg">
-                        </div>
+        <div class="pokedex">
+            <div class="pokedexDisplay">
+
+                <!-- <div class="pokeImgContainer"> -->
+                    <!-- <img src="./images/pokedex.png" alt="pokedex"> -->
+                <!-- </div> -->
+
+                <div class="screenTop">
+                    <div class="topContainer">
+                        <img src="./images/logo1.png" alt="">
+                        <button type="button">
+                            <img src="./images/soundon.png" alt="Sound Toggle">
+                        </button>
+                    </div>
+                    <h1 class="gameTitle">
+                        Match Adventure
+                    </h1>
+                </div> <!-- pokedex screenTop End -->
+
+                <div class="screenMiddle">
+                    <div class="gamesPlayed">
+                        <h3 class="label">
+                            Games Played
+                        </h3>
+                        <p class="value">
+                            0
+                        </p>
+                    </div>
+                    <div class="attempts">
+                        <h3 class="label">
+                            Match Attempts
+                        </h3>
+                        <p class="value">
+                            0
+                        </p>
+                    </div>
+                    <div class="accuracy">
+                        <h3 class="label">
+                            Accuracy
+                        </h3>
+                        <p class="value">
+                            0%
+                        </p>
+                    </div>
+                </div> <!-- pokedex screenMiddle End -->
+
+                <div class="screenBottom">
+                    <h3>
+                        Settings
+                    </h3>
+                    <button type="reset">
+                        <img src="./images/resetbutton.png" alt="Reset">
+                    </button>
+                    <h3>
+                        About
+                    </h3>
+                </div> <!-- pokedex screenBottom End -->
+            
+            </div> <!-- pokedexScreen End -->
+        </div> <!-- pokedex End -->
+
+        <div class="gameBoard">
+
+            <div class="row">
+
+                <div class='card'>
+                    <div class='cardTop'>
+                        <img src="images/greenbackground2.jpg">
+                    </div>
+                    <div class='cardBottom'>
+                        <img src="images/poke1-1.png" class='cardImg1-1'>
                     </div>
                 </div>
-                <div class=container>
-                    <div class=card>
-                        <div class=cardBottom>
-                            <img src="images/poke2-1.png" class=cardImg1-2>
-                        </div>
-                        <div class=cardTop>
-                            <img src="images/greenbackground2.jpg">
-                        </div>
+                <div class='card'>
+                    <div class='cardTop'>
+                        <img src="images/greenbackground2.jpg">
+                    </div>
+                    <div class='cardBottom'>
+                        <img src="images/poke1-1.png" class='cardImg1-1'>
                     </div>
                 </div>
-                <div class=container>
-                    <div class=card>
-                        <div class=cardBottom>
-                            <img src="images/poke3-1.png" class=cardImg1-3>
-                        </div>
-                        <div class=cardTop>
-                            <img src="images/greenbackground2.jpg">
-                        </div>
+                <div class='card'>
+                    <div class='cardTop'>
+                        <img src="images/greenbackground2.jpg">
+                    </div>
+                    <div class='cardBottom'>
+                        <img src="images/poke1-1.png" class='cardImg1-1'>
                     </div>
                 </div>
-                <div class=container>
-                    <div class=card>
-                        <div class=cardBottom>
-                            <img src="images/poke1-1.png" class=cardImg1-4>
-                        </div>
-                        <div class=cardTop>
-                            <img src="images/greenbackground2.jpg">
-                        </div>
+                <div class='card'>
+                    <div class='cardTop'>
+                        <img src="images/greenbackground2.jpg">
+                    </div>
+                    <div class='cardBottom'>
+                        <img src="images/poke1-1.png" class='cardImg1-1'>
                     </div>
                 </div>
-                <div class=container>
-                    <div class=card>
-                        <div class=cardBottom>
-                            <img src="images/poke2-1.png" class=cardImg1-5>
-                        </div>
-                        <div class=cardTop>
-                            <img src="images/greenbackground2.jpg">
-                        </div>
+                <div class='card'>
+                    <div class='cardTop'>
+                        <img src="images/greenbackground2.jpg">
+                    </div>
+                    <div class='cardBottom'>
+                        <img src="images/poke1-1.png" class='cardImg1-1'>
                     </div>
                 </div>
-                <div class=container>
-                    <div class=card>
-                        <div class=cardBottom>
-                            <img src="images/poke3-1.png" class=cardImg1-6>
-                        </div>
-                        <div class=cardTop>
-                            <img src="images/greenbackground2.jpg">
-                        </div>
+                <div class='card'>
+                    <div class='cardTop'>
+                        <img src="images/greenbackground2.jpg">
+                    </div>
+                    <div class='cardBottom'>
+                        <img src="images/poke1-1.png" class='cardImg1-1'>
                     </div>
                 </div>
-            </div>
-            <div class=row>
-                <div class=container>
-                    <div class=card>
-                        <div class=cardBottom>
-                            <img src="images/poke1-1.png" class=cardImg2-1>
-                        </div>
-                        <div class=cardTop>
-                            <img src="images/greenbackground2.jpg">
-                        </div>
+
+            </div> <!-- row End -->
+
+            <div class="row">
+
+                <div class='card'>
+                    <div class='cardTop'>
+                        <img src="images/greenbackground2.jpg">
+                    </div>
+                    <div class='cardBottom'>
+                        <img src="images/poke1-1.png" class='cardImg1-1'>
                     </div>
                 </div>
-                <div class=container>
-                    <div class=card>
-                        <div class=cardBottom>
-                            <img src="images/poke2-1.png" class=cardImg2-2>
-                        </div>
-                        <div class=cardTop>
-                            <img src="images/greenbackground2.jpg">
-                        </div>
+                <div class='card'>
+                    <div class='cardTop'>
+                        <img src="images/greenbackground2.jpg">
+                    </div>
+                    <div class='cardBottom'>
+                        <img src="images/poke1-1.png" class='cardImg1-1'>
                     </div>
                 </div>
-                <div class=container>
-                    <div class=card>
-                        <div class=cardBottom>
-                            <img src="images/poke3-1.png" class=cardImg2-3>
-                        </div>
-                        <div class=cardTop>
-                            <img src="images/greenbackground2.jpg">
-                        </div>
+                <div class='card'>
+                    <div class='cardTop'>
+                        <img src="images/greenbackground2.jpg">
+                    </div>
+                    <div class='cardBottom'>
+                        <img src="images/poke1-1.png" class='cardImg1-1'>
                     </div>
                 </div>
-                <div class=container>
-                    <div class=card>
-                        <div class=cardBottom>
-                            <img src="images/poke1-1.png" class=cardImg2-4>
-                        </div>
-                        <div class=cardTop>
-                            <img src="images/greenbackground2.jpg">
-                        </div>
+                <div class='card'>
+                    <div class='cardTop'>
+                        <img src="images/greenbackground2.jpg">
+                    </div>
+                    <div class='cardBottom'>
+                        <img src="images/poke1-1.png" class='cardImg1-1'>
                     </div>
                 </div>
-                <div class=container>
-                    <div class=card>
-                        <div class=cardBottom>
-                            <img src="images/poke2-1.png" class=cardImg2-5>
-                        </div>
-                        <div class=cardTop>
-                            <img src="images/greenbackground2.jpg">
-                        </div>
+                <div class='card'>
+                    <div class='cardTop'>
+                        <img src="images/greenbackground2.jpg">
+                    </div>
+                    <div class='cardBottom'>
+                        <img src="images/poke1-1.png" class='cardImg1-1'>
                     </div>
                 </div>
-                <div class=container>
-                    <div class=card>
-                        <div class=cardBottom>
-                            <img src="images/poke3-1.png" class=cardImg2-6>
-                        </div>
-                        <div class=cardTop>
-                            <img src="images/greenbackground2.jpg">
-                        </div>
+                <div class='card'>
+                    <div class='cardTop'>
+                        <img src="images/greenbackground2.jpg">
+                    </div>
+                    <div class='cardBottom'>
+                        <img src="images/poke1-1.png" class='cardImg1-1'>
                     </div>
                 </div>
-            </div>
-            <div class=row>
-                <div class=container>
-                    <div class=card>
-                        <div class=cardBottom>
-                            <img src="images/poke1-1.png" class=cardImg3-1>
-                        </div>
-                        <div class=cardTop>
-                            <img src="images/greenbackground2.jpg">
-                        </div>
+
+            </div> <!-- row End -->
+
+            <div class="row">
+
+                <div class='card'>
+                    <div class='cardTop'>
+                        <img src="images/greenbackground2.jpg">
+                    </div>
+                    <div class='cardBottom'>
+                        <img src="images/poke1-1.png" class='cardImg1-1'>
                     </div>
                 </div>
-                <div class=container>
-                    <div class=card>
-                        <div class=cardBottom>
-                            <img src="images/poke2-1.png" class=cardImg3-2>
-                        </div>
-                        <div class=cardTop>
-                            <img src="images/greenbackground2.jpg">
-                        </div>
+                <div class='card'>
+                    <div class='cardTop'>
+                        <img src="images/greenbackground2.jpg">
+                    </div>
+                    <div class='cardBottom'>
+                        <img src="images/poke1-1.png" class='cardImg1-1'>
                     </div>
                 </div>
-                <div class=container>
-                    <div class=card>
-                        <div class=cardBottom>
-                            <img src="images/poke3-1.png" class=cardImg3-3>
-                        </div>
-                        <div class=cardTop>
-                            <img src="images/greenbackground2.jpg">
-                        </div>
+                <div class='card'>
+                    <div class='cardTop'>
+                        <img src="images/greenbackground2.jpg">
+                    </div>
+                    <div class='cardBottom'>
+                        <img src="images/poke1-1.png" class='cardImg1-1'>
                     </div>
                 </div>
-                <div class=container>
-                    <div class=card>
-                        <div class=cardBottom>
-                            <img src="images/poke1-1.png" class=cardImg3-4>
-                        </div>
-                        <div class=cardTop>
-                            <img src="images/greenbackground2.jpg">
-                        </div>
+                <div class='card'>
+                    <div class='cardTop'>
+                        <img src="images/greenbackground2.jpg">
+                    </div>
+                    <div class='cardBottom'>
+                        <img src="images/poke1-1.png" class='cardImg1-1'>
                     </div>
                 </div>
-                <div class=container>
-                    <div class=card>
-                        <div class=cardBottom>
-                            <img src="images/poke2-1.png" class=cardImg3-5>
-                        </div>
-                        <div class=cardTop>
-                            <img src="images/greenbackground2.jpg">
-                        </div>
+                <div class='card'>
+                    <div class='cardTop'>
+                        <img src="images/greenbackground2.jpg">
+                    </div>
+                    <div class='cardBottom'>
+                        <img src="images/poke1-1.png" class='cardImg1-1'>
                     </div>
                 </div>
-                <div class=container>
-                    <div class=card>
-                        <div class=cardBottom>
-                            <img src="images/poke3-1.png" class=cardImg3-6>
-                        </div>
-                        <div class=cardTop>
-                            <img src="images/greenbackground2.jpg">
-                        </div>
+                <div class='card'>
+                    <div class='cardTop'>
+                        <img src="images/greenbackground2.jpg">
+                    </div>
+                    <div class='cardBottom'>
+                        <img src="images/poke1-1.png" class='cardImg1-1'>
                     </div>
                 </div>
-            </div>
-        </div>
+
+            </div> <!-- row End -->
+
+        </div> <!-- gameBoard End -->
+
         <div class='winModal'>
             <div class="winBox">
                 <div class="winText">Way to go!</div>
                 <img src="images/winning.gif" class='winImg'>
             </div>
         </div>
+
         <div class='mewBox'>
             <div class='mew'></div>
         </div>
+
     </body>
 </html>

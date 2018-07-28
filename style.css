@@ -8,34 +8,100 @@
     src: url("fonts/pokemonHollow.ttf");
 }
 body{
-    background-image: url("images/background.jpg");
+    /* background-image: url("images/background.jpg");
     background-repeat: no-repeat;
     background-position: bottom;
-    background-attachment: fixed;
+    background-attachment: fixed; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     height: 100vh;
     margin: 0;
-    font-size: 0;
+    font-family: "pokemonSolid";
+    color: cadetblue;
+    /* font-size: 0; */
 }
-body>* {
+/* body>* {
     font-size: 1rem;
+} */
+button,
+button :focus{
+    background: transparent;
+    border: none;
+    outline: none;
 }
+
 /* --------------------------------------------------------------- */
-.sideBar {
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .background{
+        height: 110vh;
+        position: fixed;
+        right: -50%;
+        bottom: 0;
+        z-index: -1;
+    } 
+    .pokedex{
+        display: flex;
+        height: 100%;
+        transform: rotate(90deg);
+        transform-origin: 77% 36%;
+        width: 55%;
+    }
+    .screenTop, .screenMiddle, .screenBottom{
+        transform: rotate(-90deg);
+        position: absolute
+    }
+} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .background{
+        max-height: 100vh;
+        min-width: 100vw;
+        position: fixed;
+        z-index: -1;
+    } 
+} 
+/* --------------------------------------------------------------- */
+/* .sideBar {
     height: 100%;
     display: inline-block;
     width: 25%;
+} */
+.container{
+    display: flex;
 }
-.statsContainer {
-    background-image: url("images/pokedex.png");
+/* .pokedex {
+    display: flex;
+    height: 100%;
+    width: 25%;
+} */
+.pokedexDisplay{
+    background: url("./images/pokedex.png");
+    background-size: 100%;
     background-repeat: no-repeat;
-    background-size: 100% 98%;
-    height: 98%;
-    width: 26%;
-    top: 2%;
-    left: 3%;
-    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
-.muteButton {
+/* .pokeImgContainer{
+    width: 100%;
+} */
+/* .pokedexDisplay > img{
+    position: absolute;
+    max-height: 80%;
+    max-width: 30%;
+    top: 10%;
+    left: 5%;
+    z-index: -1;
+} */
+/* .muteButton {
     background-image: url('images/soundon.png');
     background-repeat: no-repeat;
     background-size: 100%;
@@ -45,8 +111,8 @@ body>* {
     display: inline-block;
     right: 9%;
     top: 23%;
-}
-.logo {
+} */
+/* .logo {
     background-image: url("images/logo1.png");
     background-repeat: no-repeat;
     background-size: 100% 144%;
@@ -56,24 +122,24 @@ body>* {
     display: inline-block;
     left: 30%;
     top: 13vw;
-}
+} */
 .gameTitle {
     font-family: "pokemonHollow";
-    font-size: 2.1rem;
+    /* font-size: 2.1rem;
     color: cadetblue;
     position: relative;
     text-align: center;
-    top: 11vw;
+    top: 11vw; */
 }
-.gamesPlayed, .attempts, .accuracy {
+/* .gamesPlayed, .attempts, .accuracy {
     font-family: "pokemonSolid";
     font-size: 2vh;
     color: cadetblue;
     position: relative;
     text-align: center;
     top: 22vh;
-}
-.link1, .link2 {
+} */
+/* .link1, .link2 {
     font-family: "pokemonSolid";
     font-size: 2vh;
     display: inline-block;
@@ -89,8 +155,8 @@ body>* {
 .link2 {
     top: 51vh;
     left: 16vh;
-}
-.resetButton {
+} */
+/* .resetButton {
     background-image: url("images/resetbutton.png");
     background-repeat: no-repeat;
     background-size: 6vh;
@@ -100,16 +166,22 @@ body>* {
     display: inline-block;
     top: 34vh;
     left: 22vh;
-}
+} */
 /* --------------------------------------------------------------- */
-#gameArea{
+/* #gameArea{
     vertical-align: top;
     margin-top: 4%;
     height: 80vh;
     width: 73%;
     display: inline-block;
+} */
+.gameBoard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 75%;
 }
-.row{
+/* .row{
     position: relative;
     display: inline-block;
     height: 33%;
@@ -118,7 +190,7 @@ body>* {
 }
 .container {
     float: right;
-}
+} */
 .card {
     transition: opacity .5s ease-in-out;
     position: relative;
@@ -139,10 +211,10 @@ body>* {
     90% { transform: translate(.5px, 1px) rotate(0deg); }
     100% { transform: translate(.5px, -1px) rotate(-.5deg); }
 }
-.card:hover {
+/* .card:hover {
     animation: shake .5s;
     animation-iteration-count: infinite;
-}
+} */
 .cardBottom img, .cardTop img{
     height: 75%;
     width: 75%;
