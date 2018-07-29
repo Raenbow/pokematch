@@ -1,0 +1,362 @@
+
+@font-face{
+    font-family: "pokemonSolid";
+    src: url("fonts/pokemonSolid.ttf");
+}
+@font-face{
+    font-family: "pokemonHollow";
+    src: url("fonts/pokemonHollow.ttf");
+}
+body{
+    background-image: url("images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: 65%;
+    /* background-position: bottom; */
+    background-attachment: fixed;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: "pokemonSolid";
+    color: cadetblue;
+    /* font-size: 0; */
+}
+/* body>* {
+    font-size: 1rem;
+} */
+button,
+button :focus{
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+/* --------------------------------------------------------------- */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) and (orientation: portrait) {
+    body{
+        flex-direction: column-reverse;
+        justify-content: flex-start;
+    }
+    .pokedex{
+        display: flex;
+        /* transform: rotate(90deg); */
+        /* transform-origin: 20% 64%; */
+        height: 25%;
+        width: 85%;
+        background: darkred;
+    }
+    .gameBoardContainer{
+        /* height: 75%; */
+        width: 100%;
+    }
+    .card{
+        height: 19vw;
+        width: 12.5vw;
+    }
+}
+@media only screen and (max-width: 600px) and (orientation: landscape) {
+    body{
+        /* flex-direction: column-reverse; */
+        justify-content: flex-start;
+    }
+    .pokedex{
+        display: flex;
+        /* transform: rotate(90deg); */
+        /* transform-origin: 20% 64%; */
+        height: 85%;
+        width: 30%;
+        background: darkred;
+    }
+    .gameBoardContainer{
+        /* height: 75%; */
+        /* width: 100%; */
+    }
+    .card{
+        height: 14vw;
+        width: 9.5vw;
+    }
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    
+    /* .background{
+        height: 110vh;
+        position: fixed;
+        right: -50%;
+        bottom: 0;
+        z-index: -1;
+    }  */
+    .pokedex{
+        display: flex;
+        transform: rotate(90deg);
+        transform-origin: 20% 64%;
+        height: 60%;
+        width: 40%;
+        background: darkred;
+    }
+    /* .screenTop, .screenMiddle, .screenBottom{
+        transform: rotate(-90deg);
+        position: absolute
+    } */
+} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    /* .background{
+        max-height: 100vh;
+        min-width: 100vw;
+        position: fixed;
+        z-index: -1;
+    }  */
+} 
+/* --------------------------------------------------------------- */
+/* .sideBar {
+    height: 100%;
+    display: inline-block;
+    width: 25%;
+} */
+.container{
+    display: flex;
+}
+.pokedex {
+    display: flex;
+}
+.pokedexImgContainer{
+    width: 100%;
+}
+.pokedexImgTop{
+    display: none;
+}
+.pokedexImgWhole{
+    display: none;
+}
+.pokedexImgBottom{
+    display: none;
+}
+.pokedexDisplay{
+    display: none;
+    width: 100%;
+}
+/* .pokedexDisplay > img{
+    position: absolute;
+    max-height: 80%;
+    max-width: 30%;
+    top: 10%;
+    left: 5%;
+    z-index: -1;
+} */
+/* .muteButton {
+    background-image: url('images/soundon.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 3vw;
+    width: 3vw;
+    position: absolute;
+    display: inline-block;
+    right: 9%;
+    top: 23%;
+} */
+/* .logo {
+    background-image: url("images/logo1.png");
+    background-repeat: no-repeat;
+    background-size: 100% 144%;
+    height: 10%;
+    width: 40%;
+    position: relative;
+    display: inline-block;
+    left: 30%;
+    top: 13vw;
+} */
+.gameTitle {
+    font-family: "pokemonHollow";
+    /* font-size: 2.1rem;
+    color: cadetblue;
+    position: relative;
+    text-align: center;
+    top: 11vw; */
+}
+/* .gamesPlayed, .attempts, .accuracy {
+    font-family: "pokemonSolid";
+    font-size: 2vh;
+    color: cadetblue;
+    position: relative;
+    text-align: center;
+    top: 22vh;
+} */
+/* .link1, .link2 {
+    font-family: "pokemonSolid";
+    font-size: 2vh;
+    display: inline-block;
+    position: relative;
+    color: cadetblue;
+    margin: 0 4vh;
+}
+.link1 {
+    font-size: 1.1rem;
+    top: 25.5vw;
+    left: 3%;
+}
+.link2 {
+    top: 51vh;
+    left: 16vh;
+} */
+/* .resetButton {
+    background-image: url("images/resetbutton.png");
+    background-repeat: no-repeat;
+    background-size: 6vh;
+    height: 6vh;
+    width: 6vh;
+    position: relative;
+    display: inline-block;
+    top: 34vh;
+    left: 22vh;
+} */
+/* --------------------------------------------------------------- */
+/* #gameArea{
+    vertical-align: top;
+    margin-top: 4%;
+    height: 80vh;
+    width: 73%;
+    display: inline-block;
+} */
+.gameBoardContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+.gameBoard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 75%;
+}
+/* .row{
+    position: relative;
+    display: inline-block;
+    height: 33%;
+    left: 20vh;
+    top: 5vh;
+}
+.container {
+    float: right;
+} */
+.card {
+    transition: opacity .5s ease-in-out;
+    position: relative;
+    display: inline-block;
+    /* height: 14vw; */
+    /* width: 9.5vw; */
+}
+@keyframes shake {
+    0% { transform: translate(.5px, .5px) rotate(0deg); }
+    10% { transform: translate(-.5px, -1px) rotate(-.5deg); }
+    20% { transform: translate(-1.5px, 0px) rotate(.5deg); }
+    30% { transform: translate(1.5px, 1px) rotate(0deg); }
+    40% { transform: translate(.5px, -.5px) rotate(.5deg); }
+    50% { transform: translate(-.5px, 1px) rotate(-.5deg); }
+    60% { transform: translate(-1.5px, .5px) rotate(0deg); }
+    70% { transform: translate(1.5px, .5px) rotate(-.5deg); }
+    80% { transform: translate(-.5px, -.5px) rotate(.5deg); }
+    90% { transform: translate(.5px, 1px) rotate(0deg); }
+    100% { transform: translate(.5px, -1px) rotate(-.5deg); }
+}
+/* .card:hover {
+    animation: shake .5s;
+    animation-iteration-count: infinite;
+} */
+.cardBottom img, .cardTop img{
+    height: 75%;
+    width: 75%;
+    position: absolute;
+    border-radius: 8px;
+}
+.cardBottom img{
+    border: 3px solid lightblue;
+}
+.cardTop img{
+    border: 3px solid white;
+}
+/* --------------------------------------------------------------- */
+.winModal{
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+.winBox {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    bottom: 0;
+    right: 0;
+    display: block;
+}
+.winText {
+    font-family: "pokemonSolid";
+    font-size: 10vw;
+    color: deepskyblue;
+    text-shadow: 2px 2px 5px lightcyan;
+    margin-top: 10vh;
+    margin-top: 10vh;
+    position: absolute;
+    top: 0;
+    left: 25vw;
+    z-index: 1;
+}
+.winImg{
+    display: block;
+    height: 100vh;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+}
+/* --------------------------------------------------------------- */
+@keyframes mewBob {
+    0%  {top:30vh; animation-timing-function: ease-out;}
+    25%   {top:0; animation-timing-function: ease-in;}
+    50%  {top:30vh; animation-timing-function: ease-out;}
+    75%  {top:60vh; animation-timing-function: ease-in;}
+    100%  {top:30vh; animation-timing-function: ease-out;}
+}
+@keyframes mewWeave {
+    0%   {left:2vw; animation-timing-function: ease-in;}
+    25%  {left:41vw; animation-timing-function: ease-out;}
+    50%  {left:80vw; animation-timing-function: ease-in;}
+    75%  {left:41vw; animation-timing-function: ease-out;}
+    100% {left:2vw; animation-timing-function: ease-in;}
+}
+@keyframes mewWiggle {
+    0% {transform: rotate(0deg); animation-timing-function: linear;}
+    100% {transform: rotate(-360deg); animation-timing-function: linear;}
+}
+.mewBox {
+    animation: mewWeave 15s;
+    animation-iteration-count: infinite;
+    position: absolute;
+    top: 0;
+}   
+.mew {
+    opacity: 0;
+    transition: opacity .75s ease-in-out;
+    animation: mewBob 5s, mewWiggle 20.34567s;
+    animation-iteration-count: infinite;
+    pointer-events: none;
+    background-image: url("images/mew.png");
+    background-repeat: no-repeat;
+    background-size: 40vh;
+    height: 40vh;
+    width: 35vh;
+    position: fixed;
+}
