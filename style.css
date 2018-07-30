@@ -40,16 +40,33 @@ button :focus{
         flex-direction: column-reverse;
         justify-content: flex-start;
     }
+    .headerLogo{
+        width: 80%;
+        padding-bottom: 5%;
+    }
     .pokedex{
         display: flex;
-        /* transform: rotate(90deg); */
-        /* transform-origin: 20% 64%; */
-        height: 25%;
+        height: 14%;
         width: 85%;
-        background: darkred;
+        overflow: hidden;
+    }
+    .pokedexOpen{
+        color: rgba(255,255,255, .3);
+        position: absolute;
+        font-size: 2em;
+        bottom: 11%;
+        right: 38%;
+    }
+    .pokedexOpen > i{
+        background: rgba(0,0,0,0.15);
+        border-radius: 20px 20px 0 0;
+        width: 65px;
+    }
+    .pokedexImgWhole{
+        width: 100%;
     }
     .gameBoardContainer{
-        /* height: 75%; */
+        flex-direction: column;
         width: 100%;
     }
     .card{
@@ -59,20 +76,38 @@ button :focus{
 }
 @media only screen and (max-width: 600px) and (orientation: landscape) {
     body{
-        /* flex-direction: column-reverse; */
         justify-content: flex-start;
     }
     .pokedex{
         display: flex;
-        /* transform: rotate(90deg); */
-        /* transform-origin: 20% 64%; */
         height: 85%;
-        width: 30%;
-        background: darkred;
+        width: 20%;
+    }
+    .pokedexOpen{
+        color: rgba(255,255,255, .3);
+        position: absolute;
+        font-size: 2em;
+        right: -74px;
+        top: -30px;
+    }
+    .pokedexOpen > i{
+        background: rgba(0,0,0,0.15);
+        border-radius: 20px 20px 0 0;
+        width: 65px;
+    }
+    .pokedexImgContainer{
+        transform: rotate(90deg);
+        transform-origin: 23% 15%;
+    }
+    .pokedexImgWhole{
+        width: 290%;
     }
     .gameBoardContainer{
-        /* height: 75%; */
-        /* width: 100%; */
+        flex-direction: column;
+    }
+    .headerLogo{
+        width: 40%;
+        padding-bottom: 2%;
     }
     .card{
         height: 14vw;
@@ -132,15 +167,15 @@ button :focus{
 .pokedexImgContainer{
     width: 100%;
 }
-.pokedexImgTop{
+/* .pokedexImgTop{
     display: none;
-}
-.pokedexImgWhole{
+} */
+/* .pokedexImgWhole{
     display: none;
-}
-.pokedexImgBottom{
+} */
+/* .pokedexImgBottom{
     display: none;
-}
+} */
 .pokedexDisplay{
     display: none;
     width: 100%;

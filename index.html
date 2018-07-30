@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf8">
+            <meta charset="utf8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Pokemon Match Adventure!</title>
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
             <link rel="stylesheet" href="style.css">
             <script src="main.js"></script>
     </head>
     <body>
 
-        <!-- <img class="background" src="./images/background.jpg" alt=""> -->
-
         <div class="pokedex">
 
             <div class="pokedexImgContainer">
-                <img class="pokedexImgTop" src="./images/pokedex-top.png" alt="collapsed pokedex top">
+                <button class="pokedexOpen" type="button">
+                    <i class="fas fa-angle-up"></i>
+                </button>
                 <img class="pokedexImgWhole" src="./images/pokedex.png" alt="pokedex">
-                <img class="pokedexImgBottom" src="./images/pokedex-bottom.png" alt="collapsed pokedex bottom">
             </div>
 
             <div class="pokedexDisplay">
@@ -75,6 +75,8 @@
             </div> <!-- pokedexScreen End -->
         </div> <!-- pokedex End -->
         <div class="gameBoardContainer">
+
+            <img class="headerLogo" src="./images/logo1.png" alt="">
             <div class="gameBoard">
 
                 <div class="row">
@@ -238,7 +240,7 @@
 
             </div> <!-- gameBoard End -->
         </div>
-        
+
         <div class='winModal'>
             <div class="winBox">
                 <div class="winText">Way to go!</div>
