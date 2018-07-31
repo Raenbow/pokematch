@@ -6,6 +6,7 @@
             <title>Pokemon Match Adventure!</title>
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
             <link rel="stylesheet" href="style.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <script src="main.js"></script>
     </head>
     <body>
@@ -13,7 +14,7 @@
         <div class="pokedex">
 
             <div class="pokedexImgContainer">
-                <button class="pokedexOpen" type="button">
+                <button class="pokedexOpenButton" type="button">
                     <i class="fas fa-angle-up"></i>
                 </button>
                 <img class="pokedexImgWhole" src="./images/pokedex.png" alt="pokedex">
@@ -22,38 +23,35 @@
             <div class="pokedexDisplay">
 
                 <div class="screenTop">
-                    <div class="topContainer">
+                    <!-- <div class="topContainer"> -->
                         <img src="./images/logo1.png" alt="">
-                        <button type="button">
-                            <img src="./images/soundon.png" alt="Sound Toggle">
-                        </button>
-                    </div>
-                    <h1 class="gameTitle">
+                    <!-- </div> -->
+                    <h2 class="gameTitle">
                         Match Adventure
-                    </h1>
+                    </h2>
                 </div> <!-- pokedex screenTop End -->
 
                 <div class="screenMiddle">
                     <div class="gamesPlayed">
-                        <h3 class="label">
-                            Games Played
-                        </h3>
+                        <h5 class="label">
+                            Games Played:
+                        </h5>
                         <p class="value">
                             0
                         </p>
                     </div>
                     <div class="attempts">
-                        <h3 class="label">
-                            Match Attempts
-                        </h3>
+                        <h5 class="label">
+                            Match Attempts:
+                        </h5>
                         <p class="value">
                             0
                         </p>
                     </div>
                     <div class="accuracy">
-                        <h3 class="label">
-                            Accuracy
-                        </h3>
+                        <h5 class="label">
+                            Accuracy:
+                        </h5>
                         <p class="value">
                             0%
                         </p>
@@ -61,15 +59,15 @@
                 </div> <!-- pokedex screenMiddle End -->
 
                 <div class="screenBottom">
-                    <h3>
-                        Settings
-                    </h3>
-                    <button type="reset">
-                        <img src="./images/resetbutton.png" alt="Reset">
+                    <button class="resetButton" type="reset">
+                        <img src="./images/resetbutton.png" alt="Reset Button">
                     </button>
-                    <h3>
-                        About
-                    </h3>
+                    <h5>
+                        Settings
+                    </h5>
+                    <button class="soundToggleButton" type="button">
+                        <img class="soundToggleIcon" src="./images/soundon.png" alt="Sound Toggle">
+                    </button>
                 </div> <!-- pokedex screenBottom End -->
             
             </div> <!-- pokedexScreen End -->

@@ -45,19 +45,33 @@ button :focus{
         padding-bottom: 5%;
     }
     .pokedex{
+        transform: translateY(1vh);
+        position: fixed;
         display: flex;
         height: 14%;
-        width: 85%;
-        overflow: hidden;
+        width: 77%;
+        z-index: 1;
     }
-    .pokedexOpen{
-        color: rgba(255,255,255, .3);
+    /* .pokedexExpanded-LT600P{
+        height: auto;
+        width: 77%;
         position: absolute;
+        top: 0;
+    } */
+    .pokedexOpenButton{
+        color: rgba(255,255,255, .4);
+        position: fixed;
         font-size: 2em;
-        bottom: 11%;
-        right: 38%;
+        bottom: 11vh;
+        right: 34%;
     }
-    .pokedexOpen > i{
+    .pokedexOpenButton-LT600P{
+        transform: rotate(90deg);
+        bottom: unset;
+        right: -19%;
+        top: 7vh;
+    }
+    .pokedexOpenButton > i{
         background: rgba(0,0,0,0.15);
         border-radius: 20px 20px 0 0;
         width: 65px;
@@ -65,9 +79,80 @@ button :focus{
     .pokedexImgWhole{
         width: 100%;
     }
+    .pokedexDisplay{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+        top: 22vh;
+        width: 100%;
+    }
+    .screenTop{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .screenTop > img{
+        width: 50%
+    }
+    /* .topContainer{
+        width: 90%;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+    }
+    .topContainer > img{
+        width: 50%;
+        height: 100%;
+        object-fit: contain;
+    } */
+    .gameTitle{
+        margin: 0.3em 0;
+    }
+    .label, .value{
+        margin: 0.2em 0;
+    }
+    .screenMiddle{
+        width: 90%;
+        margin-top: 3%;
+        text-align: center;
+        letter-spacing: 3px;
+    }
+    .gamesPlayed, .attempts {
+        display: flex;
+        justify-content: space-between;
+        padding: 2% 8% 2% 5%;
+    }
+    .accuracy{
+        display: flex;
+        justify-content: space-between;
+        padding: 2% 2% 2% 5%;
+    }
+    .screenBottom{
+        display: flex;
+        width: 89%;
+        justify-content: space-between;
+        letter-spacing: 3px;
+    }
+    .resetButton{
+        width: 23%;
+    }
+    .resetButton > img {
+        width: 100%;
+    }
+    .screenBottom > h5{
+        margin-top: 1.1em;
+    }
+    .soundToggleButton{
+        width: 25%;
+    }
+    .soundToggleIcon{
+        width: 100%;
+    }
     .gameBoardContainer{
         flex-direction: column;
         width: 100%;
+        padding-bottom: 10vh;
     }
     .card{
         height: 19vw;
@@ -83,14 +168,14 @@ button :focus{
         height: 85%;
         width: 20%;
     }
-    .pokedexOpen{
+    .pokedexOpenButton{
         color: rgba(255,255,255, .3);
         position: absolute;
         font-size: 2em;
         right: -74px;
         top: -30px;
     }
-    .pokedexOpen > i{
+    .pokedexOpenButton > i{
         background: rgba(0,0,0,0.15);
         border-radius: 20px 20px 0 0;
         width: 65px;
@@ -163,6 +248,7 @@ button :focus{
 }
 .pokedex {
     display: flex;
+    transition: 1000ms;
 }
 .pokedexImgContainer{
     width: 100%;
@@ -176,10 +262,10 @@ button :focus{
 /* .pokedexImgBottom{
     display: none;
 } */
-.pokedexDisplay{
+/* .pokedexDisplay{
     display: none;
     width: 100%;
-}
+} */
 /* .pokedexDisplay > img{
     position: absolute;
     max-height: 80%;
@@ -394,4 +480,32 @@ button :focus{
     height: 40vh;
     width: 35vh;
     position: fixed;
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) and (orientation: portrait) {
+    .mew {
+        background-size: 20vh;
+        height: 20vh;
+        width: 16vh;
+    }
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
 }
