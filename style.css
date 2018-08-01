@@ -51,6 +51,9 @@ button :focus{
         width: 77%;
         z-index: 1;
     }
+    .pokedex.expanded {
+        transform: translateY(-86vh)
+    }
     .pokedexOpenButton{
         color: rgba(255,255,255, .4);
         position: fixed;
@@ -58,7 +61,7 @@ button :focus{
         bottom: 11vh;
         right: 34%;
     }
-    .pokedexOpenButton-LT600P{
+    .pokedexOpenButton.switched{
         transform: rotate(90deg);
         bottom: unset;
         right: -19%;
@@ -132,9 +135,17 @@ button :focus{
         width: 100%;
     }
     .gameBoardContainer{
+        transition: 1000ms;
+        opacity: 1;
+        pointer-events: auto;
         flex-direction: column;
         width: 100%;
         padding-bottom: 10vh;
+    }
+    .gameBoardContainer.faded{
+        transition: 300ms;
+        opacity: 0;
+        pointer-events: none;
     }
     .card{
         height: 19vw;
@@ -145,13 +156,6 @@ button :focus{
     body{
         justify-content: flex-start;
     }
-    /* .pokedex{
-        transform: translateY(1vh);
-        position: fixed;
-        display: flex;
-        height: 14%;
-        width: 77%;
-    } */
     .pokedex{
         position: fixed;
         transform: translateX(1vw);
@@ -160,6 +164,9 @@ button :focus{
         width: 20%;
         z-index: 1;
     }
+    .pokedex.expanded {
+        transform: translateX(87.5vw)
+    }
     .pokedexOpenButton{
         color: rgba(255,255,255, .3);
         position: fixed;
@@ -167,7 +174,7 @@ button :focus{
         left: 26vh;
         bottom: 81vh;
     }
-    .pokedexOpenButton-LT600L{
+    .pokedexOpenButton.switched{
         transform: rotate(-90deg);
         left: -15vh;
         bottom: 61vh;
@@ -255,8 +262,16 @@ button :focus{
         width: 100%;
     }
     .gameBoardContainer{
+        transition: 1000ms;
+        opacity: 1;
+        pointer-events: auto;
         flex-direction: column;
         margin-left: 15%;
+    }
+    .gameBoardContainer.faded{
+        transition: 300ms;
+        opacity: 0;
+        pointer-events: none;
     }
     .headerLogo{
         width: 40%;
@@ -316,7 +331,8 @@ button :focus{
 }
 .pokedex {
     display: flex;
-    transition: 1000ms;
+    transition-duration: 1000ms;
+    transition-property: transform;
 }
 .pokedexImgContainer{
     width: 100%;
