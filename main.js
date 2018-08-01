@@ -44,6 +44,7 @@ winSound.src = "sounds/victory.mp3";
 
 function initializeGame(){
    attachClickHandler();
+   $(window).on("resize", resizeTransitionStop);
    backgroundMusic.play();
    shuffle();
    mewMouse();
@@ -61,27 +62,46 @@ function pokedexExpand(){
     var portrait = window.matchMedia("(orientation: portrait)").matches;
     var landscape = window.matchMedia("(orientation: landscape)").matches;
 
-    if ( window.innerWidth < 600 && portrait && menuOpened === false){
-        $(".pokedex").css("transform", "translateY(-86vh)");
-        $(".gameBoardContainer").css({
-            "transition" : "300ms",
-            "opacity" : "0",
-            "pointer-events" : "none"
-        });
-        $(".pokedexOpenButton > i").addClass("fa-times").removeClass("fa-angle-up");
-        $(".pokedexOpenButton").addClass("pokedexOpenButton-LT600P");
-        menuOpened = true;
-    } else if ( window.innerWidth < 600 && portrait && menuOpened === true){
-        $(".pokedex").css("transform", "translateY(1vh)");
-        $(".gameBoardContainer").css({
-            "transition" : "1000ms",
-            "opacity" : "1",
-            "pointer-events" : "auto"
-        });
-        $(".pokedexOpenButton > i").addClass("fa-angle-up").removeClass("fa-times");
-        $(".pokedexOpenButton").removeClass("pokedexOpenButton-LT600P");
-        menuOpened = false;
+    if ( window.innerWidth < 600 ){
+
+        if ( portrait && menuOpened === false ){
+            $(".pokedex").addClass("expanded");
+            $(".gameBoardContainer").addClass("faded");
+            $(".pokedexOpenButton > i").addClass("fa-times").removeClass("fa-angle-up");
+            $(".pokedexOpenButton").addClass("switched");
+            menuOpened = true;
+        } else if ( portrait && menuOpened === true ){
+            $('.pokedex').removeClass('expanded');
+            $(".gameBoardContainer").removeClass("faded");
+            $(".pokedexOpenButton > i").addClass("fa-angle-up").removeClass("fa-times");
+            $(".pokedexOpenButton").removeClass("switched");
+            menuOpened = false;
+        }
+
+        if ( landscape && menuOpened === false ){
+            $('.pokedex').addClass('expanded');
+            $(".gameBoardContainer").addClass("faded");
+            $(".pokedexOpenButton > i").addClass("fa-times").removeClass("fa-angle-up");
+            $(".pokedexOpenButton").addClass("switched");
+            menuOpened = true;
+        } else if ( landscape && menuOpened === true ){
+            $('.pokedex').removeClass('expanded');
+            $(".gameBoardContainer").removeClass("faded");
+            $(".pokedexOpenButton > i").addClass("fa-angle-up").removeClass("fa-times");
+            $(".pokedexOpenButton").removeClass("switched");
+            menuOpened = false;
+        }
     }
+}
+function resizeTransitionStop(){
+    $(".pokedex").css("transition-property", "none");
+    setTimeout(function(){
+        $(".pokedex").css("transition-property", "");
+    }, 10);
+    $(".gameBoardContainer").css("transition-property", "none");
+    setTimeout(function(){
+        $(".gameBoardContainer").css("transition-property", "");
+    }, 10);
 }
 function toggleMute(){
     if(playing){
