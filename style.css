@@ -12,7 +12,6 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     background-position-x: 65%;
-    /* background-position: bottom; */
     background-attachment: fixed;
     display: flex;
     justify-content: space-around;
@@ -52,12 +51,6 @@ button :focus{
         width: 77%;
         z-index: 1;
     }
-    /* .pokedexExpanded-LT600P{
-        height: auto;
-        width: 77%;
-        position: absolute;
-        top: 0;
-    } */
     .pokedexOpenButton{
         color: rgba(255,255,255, .4);
         position: fixed;
@@ -95,17 +88,6 @@ button :focus{
     .screenTop > img{
         width: 50%
     }
-    /* .topContainer{
-        width: 90%;
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: flex-end;
-    }
-    .topContainer > img{
-        width: 50%;
-        height: 100%;
-        object-fit: contain;
-    } */
     .gameTitle{
         margin: 0.3em 0;
     }
@@ -163,17 +145,32 @@ button :focus{
     body{
         justify-content: flex-start;
     }
+    /* .pokedex{
+        transform: translateY(1vh);
+        position: fixed;
+        display: flex;
+        height: 14%;
+        width: 77%;
+    } */
     .pokedex{
+        position: fixed;
+        transform: translateX(1vw);
         display: flex;
         height: 85%;
         width: 20%;
+        z-index: 1;
     }
     .pokedexOpenButton{
         color: rgba(255,255,255, .3);
-        position: absolute;
+        position: fixed;
         font-size: 2em;
-        right: -74px;
-        top: -30px;
+        left: 26vh;
+        bottom: 81vh;
+    }
+    .pokedexOpenButton-LT600L{
+        transform: rotate(-90deg);
+        left: -15vh;
+        bottom: 61vh;
     }
     .pokedexOpenButton > i{
         background: rgba(0,0,0,0.15);
@@ -182,13 +179,84 @@ button :focus{
     }
     .pokedexImgContainer{
         transform: rotate(90deg);
-        transform-origin: 23% 15%;
+        transform-origin: 4vw 8vw;
     }
     .pokedexImgWhole{
-        width: 290%;
+        height: 100vw;
+    }
+    .pokedexDisplay{
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 55vw;
+        height: 69vh;
+        right: 45vh;
+        top: 9vh;
+    }
+    .screenTop{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .screenTop > img{
+        width: 35%;
+        height: 100%;
+        object-fit: contain;
+    }
+    .gameTitle{
+        font-size: 1.4em;
+        margin: 0.3em 0;
+    }
+    .label, .value{
+        margin: 0.2em 0;
+    }
+    .screenMiddle{
+        width: 90%;
+        padding-top: 11%;
+        text-align: center;
+        letter-spacing: 3px;
+    }
+    .gamesPlayed, .attempts {
+        display: flex;
+        justify-content: space-between;
+        padding: 0% 8% 0% 5%;
+    }
+    .accuracy{
+        display: flex;
+        justify-content: space-between;
+        padding: 0% 2% 0% 5%;
+    }
+    .screenBottom{
+        display: flex;
+        width: 89%;
+        justify-content: center;
+        letter-spacing: 3px;
+    }
+    .resetButton{
+        position: fixed;
+        top: 11vh;
+        left: -98vh;
+        width: 45%;
+    }
+    .resetButton > img {
+        width: 100%;
+    }
+    .screenBottom > h5{
+        margin-top: 1.1em;
+    }
+    .soundToggleButton{
+        position: fixed;
+        top: 11vh;
+        right: 44vh;
+        width: 49%;
+    }
+    .soundToggleIcon{
+        width: 100%;
     }
     .gameBoardContainer{
         flex-direction: column;
+        margin-left: 15%;
     }
     .headerLogo{
         width: 40%;
