@@ -31,12 +31,12 @@ button :focus{
     border: none;
     outline: none;
 }
-
-
-
 .container{
     display: flex;
 }
+
+/* --------------------------------(POKEDEX)--------------------------------- */
+
 .pokedex {
     display: flex;
     transition-duration: 1000ms;
@@ -45,101 +45,11 @@ button :focus{
 .pokedexImgContainer{
     width: 100%;
 }
-/* .pokedexImgTop{
-    display: none;
-} */
-/* .pokedexImgWhole{
-    display: none;
-} */
-/* .pokedexImgBottom{
-    display: none;
-} */
-/* .pokedexDisplay{
-    display: none;
-    width: 100%;
-} */
-/* .pokedexDisplay > img{
-    position: absolute;
-    max-height: 80%;
-    max-width: 30%;
-    top: 10%;
-    left: 5%;
-    z-index: -1;
-} */
-/* .muteButton {
-    background-image: url('images/soundon.png');
-    background-repeat: no-repeat;
-    background-size: 100%;
-    height: 3vw;
-    width: 3vw;
-    position: absolute;
-    display: inline-block;
-    right: 9%;
-    top: 23%;
-} */
-/* .logo {
-    background-image: url("images/logo1.png");
-    background-repeat: no-repeat;
-    background-size: 100% 144%;
-    height: 10%;
-    width: 40%;
-    position: relative;
-    display: inline-block;
-    left: 30%;
-    top: 13vw;
-} */
 .gameTitle {
     font-family: "pokemonHollow";
-    /* font-size: 2.1rem;
-    color: cadetblue;
-    position: relative;
-    text-align: center;
-    top: 11vw; */
 }
-/* .gamesPlayed, .attempts, .accuracy {
-    font-family: "pokemonSolid";
-    font-size: 2vh;
-    color: cadetblue;
-    position: relative;
-    text-align: center;
-    top: 22vh;
-} */
-/* .link1, .link2 {
-    font-family: "pokemonSolid";
-    font-size: 2vh;
-    display: inline-block;
-    position: relative;
-    color: cadetblue;
-    margin: 0 4vh;
-}
-.link1 {
-    font-size: 1.1rem;
-    top: 25.5vw;
-    left: 3%;
-}
-.link2 {
-    top: 51vh;
-    left: 16vh;
-} */
-/* .resetButton {
-    background-image: url("images/resetbutton.png");
-    background-repeat: no-repeat;
-    background-size: 6vh;
-    height: 6vh;
-    width: 6vh;
-    position: relative;
-    display: inline-block;
-    top: 34vh;
-    left: 22vh;
-} */
-/* --------------------------------------------------------------- */
-/* #gameArea{
-    vertical-align: top;
-    margin-top: 4%;
-    height: 80vh;
-    width: 73%;
-    display: inline-block;
-} */
+/* --------------------------------(GAME BOARD)--------------------------------- */
+
 .gameBoardContainer{
     display: flex;
     align-items: center;
@@ -152,23 +62,26 @@ button :focus{
     align-items: center;
     min-width: 75%;
 }
-/* .row{
-    position: relative;
-    display: inline-block;
-    height: 33%;
-    left: 20vh;
-    top: 5vh;
-}
-.container {
-    float: right;
-} */
 .card {
     transition: opacity .5s ease-in-out;
     position: relative;
     display: inline-block;
-    /* height: 14vw; */
-    /* width: 9.5vw; */
 }
+
+.cardBottom img, .cardTop img{
+    height: 75%;
+    width: 75%;
+    position: absolute;
+    border-radius: 8px;
+}
+.cardBottom img{
+    border: 3px solid lightblue;
+}
+.cardTop img{
+    border: 3px solid white;
+}
+
+/* --------------------------------(CARD HOVER SHAKE)--------------------------------- */
 @keyframes shake {
     0% { transform: translate(.5px, .5px) rotate(0deg); }
     10% { transform: translate(-.5px, -1px) rotate(-.5deg); }
@@ -186,19 +99,8 @@ button :focus{
     animation: shake .5s;
     animation-iteration-count: infinite;
 } */
-.cardBottom img, .cardTop img{
-    height: 75%;
-    width: 75%;
-    position: absolute;
-    border-radius: 8px;
-}
-.cardBottom img{
-    border: 3px solid lightblue;
-}
-.cardTop img{
-    border: 3px solid white;
-}
-/* --------------------------------------------------------------- */
+
+/* --------------------------------(POP-UP WIN MODAL)--------------------------------- */
 .winModal{
     display: none;
     position: fixed;
@@ -235,7 +137,7 @@ button :focus{
     right: 0;
     position: absolute;
 }
-/* --------------------------------------------------------------- */
+/* -------------------------------(MEW ANIMATION)--------------------------------- */
 @keyframes mewBob {
     0%  {top:30vh; animation-timing-function: ease-out;}
     25%   {top:0; animation-timing-function: ease-in;}
@@ -810,12 +712,66 @@ button :focus{
 /* ------------------------------------------------------------------------ */
 
 @media only screen and (min-width: 992px) {
-    /* .background{
-        max-height: 100vh;
-        min-width: 100vw;
-        position: fixed;
-        z-index: -1;
-    }  */
+    .pokedex{
+        width: 28%;
+        transform: translate(0vh, -5vh);
+        z-index: 0;
+    }
+    .pokedexImgContainer{
+        transform: none;
+    }
+    .pokedexOpenButton{
+        display: none;
+    }
+    .pokedexImgWhole{
+        height: 95vh;
+    }
+    .pokedexDisplay{
+        width: 43vh;
+        height: 52vh;
+        right: -7vh;
+        top: 21vh;
+    }
+    .screenTop > img{
+        width: 50%;
+    }
+    .gameTitle{
+        font-size: 2.4em;
+    }
+    .label, .value{
+        font-size: 1.2em;
+        margin: 0.7em 0;
+    }
+    .screenBottom > h5{
+        font-size: 1.1em;
+        margin-top: 3em;
+    }
+    .resetButton{
+        top: unset;
+        right: unset;
+        bottom: 13vh;
+        left: 4vh;
+        width: 20%;
+    }
+    .soundToggleButton{
+        top: unset;
+        left: unset;
+        bottom: 12.6vh;
+        right: -5vh;
+        width: 21.5%;
+    }
+
+    .gameBoardContainer{
+        padding-top: 6vh;
+        margin-left: 25%;
+    }
+    .headerLogo{
+        display: none;
+    }
+    .card{
+        height: 14vw;
+        width: 11vw;
+    }
 } 
 
 /* ------------------------------------------------------------------------ */
