@@ -36,18 +36,97 @@ button :focus{
 }
 
 /* --------------------------------(POKEDEX)--------------------------------- */
-
-.pokedex {
+.pokedex{
     display: flex;
+    justify-content: center;
+    align-items: center;
     transition-duration: 1000ms;
     transition-property: transform;
+    width: 28%;
+    /* transform: translate(0vh, -5vh); */
+    z-index: 0;
 }
 .pokedexImgContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: none;
+     width: 100%;
+}
+.pokedexOpenButton{
+    display: none;
+}
+.pokedexImgWhole{
+    height: 50vw;
+}
+.pokedexDisplay{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    height: 28vw;
+    /* right: -7vh; */
+    /* top: 21vh; */
+}
+.screenTop{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.screenTop > img{
+    width: 50%;
+}
+.gameTitle{
+    font-family: "pokemonHollow";
+    margin: 0.2em 0;
+    font-size: 2.5vw;
+}
+.screenMiddle{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+.gamesPlayed, .attempts, .accuracy{
+    display: flex;
+    align-items: inherit;
+}
+.label, .value{
+    font-size: 1.5vw;
+    margin: 0.7em 0;
+}
+.screenBottom{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+}
+.settings{
+    font-size: 1.5vw;
+}
+.resetButton{
+    /* top: unset; */
+    /* right: unset; */
+    /* bottom: 13vh; */
+    /* left: 4vh; */
+    width: 20%;
+}
+.resetButton > img {
     width: 100%;
 }
-.gameTitle {
-    font-family: "pokemonHollow";
+.soundToggleButton{
+    /* top: unset; */
+    /* left: unset; */
+    /* bottom: 12.6vh; */
+    /* right: -5vh; */
+    width: 21.5%;
 }
+.soundToggleButton > img {
+    width: 100%;
+}
+
 /* --------------------------------(GAME BOARD)--------------------------------- */
 
 .gameBoardContainer{
@@ -55,6 +134,8 @@ button :focus{
     align-items: center;
     justify-content: center;
     flex-grow: 1;
+    padding-top: 6vh;
+    /* margin-left: 25%; */
 }
 .gameBoard{
     display: flex;
@@ -62,12 +143,16 @@ button :focus{
     align-items: center;
     min-width: 75%;
 }
+.headerLogo{
+        display: none;
+    }
 .card {
     transition: opacity .5s ease-in-out;
     position: relative;
     display: inline-block;
+    height: 14vw;
+    width: 11vw;
 }
-
 .cardBottom img, .cardTop img{
     height: 75%;
     width: 75%;
@@ -176,11 +261,13 @@ button :focus{
     position: fixed;
 }
 
-/* ------------------------------------------------------------------------ */
-/* -------------------------DEVICES 600PX AND DOWN------------------------- */
-/* ------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------ */
+/* ---------------------------------DEVICES 767PX AND DOWN----------------------------------- */
+/* ------------------------------------------------------------------------------------------ */
+/* ---------------------------------------(PORTRAIT)----------------------------------------- */
 
-@media only screen and (max-width: 600px) and (orientation: portrait) {
+@media only screen and (max-width: 767px) and (orientation: portrait) {
 
     body{
         flex-direction: column-reverse;
@@ -191,7 +278,7 @@ button :focus{
         padding-bottom: 5%;
     }
     .pokedex{
-        transform: translateY(1vh);
+        transform: translateY(44vh);
         position: fixed;
         display: flex;
         height: 14%;
@@ -199,35 +286,38 @@ button :focus{
         z-index: 1;
     }
     .pokedex.expanded {
-        transform: translateY(-86vh)
+        transform: translateY(-42.5vh);
     }
     .pokedexOpenButton{
         color: rgba(255,255,255, .4);
         position: fixed;
         font-size: 2em;
-        bottom: 11vh;
-        right: 34%;
+        bottom: 84.5vw;
+        right: 26vw;
+        display: block;
     }
     .pokedexOpenButton.switched{
         transform: rotate(90deg);
-        bottom: unset;
-        right: -19%;
-        top: 7vh;
+        bottom: 62vw;
+        right: -15vw;
     }
     .pokedexOpenButton > i{
         background: rgba(0,0,0,0.15);
         border-radius: 20px 20px 0 0;
         width: 65px;
     }
+    .pokedexImgContainer{
+        width: unset;
+    }
     .pokedexImgWhole{
-        width: 100%;
+        height: 155vw;
     }
     .pokedexDisplay{
         display: flex;
         flex-direction: column;
         align-items: center;
         position: fixed;
-        top: 22vh;
+        height: 82vw;
         width: 100%;
     }
     .screenTop{
@@ -239,9 +329,10 @@ button :focus{
         width: 50%
     }
     .gameTitle{
-        margin: 0.3em 0;
+        font-size: 7.5vw;
     }
     .label, .value{
+        font-size: 4.5vw;
         margin: 0.2em 0;
     }
     .screenMiddle{
@@ -251,13 +342,11 @@ button :focus{
         letter-spacing: 3px;
     }
     .gamesPlayed, .attempts {
-        display: flex;
-        justify-content: space-between;
+        /* justify-content: space-between; */
         padding: 2% 8% 2% 5%;
     }
     .accuracy{
-        display: flex;
-        justify-content: space-between;
+        /* justify-content: space-between; */
         padding: 2% 2% 2% 5%;
     }
     .screenBottom{
@@ -272,7 +361,8 @@ button :focus{
     .resetButton > img {
         width: 100%;
     }
-    .screenBottom > h5{
+    .settings{
+        font-size: 4.5vw;
         margin-top: 1.1em;
     }
     .soundToggleButton{
@@ -306,7 +396,12 @@ button :focus{
     }
 
 }
-@media only screen and (max-width: 600px) and (orientation: landscape) {
+
+/* ------------------------------------------------------------------------------------------ */
+/* --------------------------------------(LANDSCAPE)----------------------------------------- */
+/* ------------------------------------------------------------------------------------------ */
+
+@media only screen and (max-width: 767px) and (orientation: landscape) {
 
     body{
         justify-content: flex-start;
@@ -439,12 +534,13 @@ button :focus{
 
 }
 
-/* ------------------------------------------------------------------------ */
-/* --------------------------DEVICES 600PX AND UP-------------------------- */
-/* -------------------(portrait tablets and large phones)------------------ */
-/* ------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------ */
+/* ---------------------------------DEVICES 768PX TO 991PX----------------------------------- */
+/* ---------------------------(portrait tablets and large phones)---------------------------- */
+/* ------------------------------------------------------------------------------------------ */
+/* ---------------------------------------(PORTRAIT)----------------------------------------- */
 
-@media only screen and (min-width: 600px) and (orientation: portrait) {
+@media only screen and (min-width: 768px) and (max-width: 991px) and (orientation: portrait) {
     
     body{
         flex-direction: column-reverse;
@@ -563,7 +659,12 @@ button :focus{
         width: 12.5vw;
     }
 } 
-@media only screen and (min-width: 600px) and (orientation: landscape) {
+
+/* ------------------------------------------------------------------------------------------ */
+/* --------------------------------------(LANDSCAPE)----------------------------------------- */
+/* ------------------------------------------------------------------------------------------ */
+
+@media only screen and (min-width: 600px) and (max-width: 991px) and (orientation: landscape) {
 
     body{
         justify-content: flex-start;
@@ -698,80 +799,25 @@ button :focus{
 }
 
 /* ------------------------------------------------------------------------ */
-/* --------------------------DEVICES 768PX AND UP-------------------------- */
-/* ---------------------------(landscape tablets)-------------------------- */
+/* -------------------------DEVICES 992PX TO 1199PX------------------------ */
+/* -----------------------------(small laptops)---------------------------- */
 /* ------------------------------------------------------------------------ */
+@media only screen and (min-width: 992px) and (max-width: 1199px) and (orientation: portrait) {
+    
+} 
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 992px) and (max-width: 1199px) and (orientation: landscape) {
     
 } 
 
 /* ------------------------------------------------------------------------ */
-/* --------------------------DEVICES 992PX AND UP-------------------------- */
+/* -------------------------DEVICES 1200PX AND UP-------------------------- */
 /* ---------------------------(laptops/desktops)--------------------------- */
 /* ------------------------------------------------------------------------ */
 
-@media only screen and (min-width: 992px) {
-    .pokedex{
-        width: 28%;
-        transform: translate(0vh, -5vh);
-        z-index: 0;
-    }
-    .pokedexImgContainer{
-        transform: none;
-    }
-    .pokedexOpenButton{
-        display: none;
-    }
-    .pokedexImgWhole{
-        height: 95vh;
-    }
-    .pokedexDisplay{
-        width: 43vh;
-        height: 52vh;
-        right: -7vh;
-        top: 21vh;
-    }
-    .screenTop > img{
-        width: 50%;
-    }
-    .gameTitle{
-        font-size: 2.4em;
-    }
-    .label, .value{
-        font-size: 1.2em;
-        margin: 0.7em 0;
-    }
-    .screenBottom > h5{
-        font-size: 1.1em;
-        margin-top: 3em;
-    }
-    .resetButton{
-        top: unset;
-        right: unset;
-        bottom: 13vh;
-        left: 4vh;
-        width: 20%;
-    }
-    .soundToggleButton{
-        top: unset;
-        left: unset;
-        bottom: 12.6vh;
-        right: -5vh;
-        width: 21.5%;
-    }
-
-    .gameBoardContainer{
-        padding-top: 6vh;
-        margin-left: 25%;
-    }
-    .headerLogo{
-        display: none;
-    }
-    .card{
-        height: 14vw;
-        width: 11vw;
-    }
+@media only screen and (min-width: 1200px) {
+    
+    
 } 
 
 /* ------------------------------------------------------------------------ */
