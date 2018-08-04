@@ -273,12 +273,10 @@ button :focus{
         flex-direction: column-reverse;
         justify-content: flex-start;
     }
-    .headerLogo{
-        width: 80%;
-        padding-bottom: 5%;
-    }
+
+    /* ----------------------(POKEDEX)---------------------- */
     .pokedex{
-        transform: translateY(44vh);
+        transform: translateY(45vh);
         position: fixed;
         display: flex;
         height: 14%;
@@ -292,12 +290,15 @@ button :focus{
         color: rgba(255,255,255, .4);
         position: fixed;
         font-size: 2em;
+        height: 9vh;
+        width: 25vw;
         bottom: 84.5vw;
         right: 26vw;
         display: block;
     }
     .pokedexOpenButton.switched{
         transform: rotate(90deg);
+        width: 25vw;
         bottom: 62vw;
         right: -15vw;
     }
@@ -317,7 +318,7 @@ button :focus{
         flex-direction: column;
         align-items: center;
         position: fixed;
-        height: 82vw;
+        height: 85vw;
         width: 100%;
     }
     .screenTop{
@@ -351,6 +352,7 @@ button :focus{
     }
     .screenBottom{
         display: flex;
+        margin-top: 2vh;
         width: 89%;
         justify-content: space-between;
         letter-spacing: 3px;
@@ -371,24 +373,32 @@ button :focus{
     .soundToggleIcon{
         width: 100%;
     }
+
+    /* ----------------------(GAME BOARD)---------------------- */
     .gameBoardContainer{
         transition: 1000ms;
         opacity: 1;
         pointer-events: auto;
         flex-direction: column;
         width: 100%;
-        padding-bottom: 10vh;
+        padding-bottom: 18vh;
     }
     .gameBoardContainer.faded{
         transition: 300ms;
         opacity: 0;
         pointer-events: none;
     }
+    .headerLogo{
+        width: 80%;
+        padding-bottom: 5%;
+        display: block;
+    }
     .card{
         height: 19vw;
         width: 12.5vw;
     }
 
+    /* ----------------------(MEW ANIMATION)---------------------- */
     .mew {
         background-size: 20vh;
         height: 20vh;
@@ -397,15 +407,113 @@ button :focus{
 
 }
 
+/* ---------------------------------DEVICES 320PX BY 568PX----------------------------------- */
+/* ---------------------------------------(PORTRAIT)----------------------------------------- */
+
+@media only screen and (width: 320px) and (height: 568px) and (orientation: portrait) {
+
+    .pokedex{
+        transform: translateY(39vh);
+    }
+
+}
+
+/* ---------------------------------DEVICES 360PX BY 640PX----------------------------------- */
+/* ---------------------------------------(PORTRAIT)----------------------------------------- */
+
+@media only screen and (width: 360px) and (height: 640px) and (orientation: portrait) {
+
+    .pokedex{
+        transform: translateY(39vh);
+    }
+
+}
+
+/* ---------------------------------DEVICES 375PX BY 667PX----------------------------------- */
+/* ---------------------------------------(PORTRAIT)----------------------------------------- */
+
+@media only screen and (width: 375px) and (height: 667px) and (orientation: portrait) {
+
+    .pokedex{
+        transform: translateY(39vh);
+    }
+
+}
+
+/* ---------------------------------DEVICES 375PX BY 812PX----------------------------------- */
+/* ---------------------------------------(PORTRAIT)----------------------------------------- */
+
+@media only screen and (width: 375px) and (height: 812px) and (orientation: portrait) {
+
+    .pokedex{
+        transform: translateY(34vh);
+    }
+
+}
+
+/* ---------------------------------DEVICES 411PX BY 731PX----------------------------------- */
+/* ---------------------------------------(PORTRAIT)----------------------------------------- */
+
+@media only screen and (width: 411px) and (height: 731px) and (orientation: portrait) {
+
+    .pokedex{
+        transform: translateY(39vh);
+    }
+    .pokedexOpenButton{
+        bottom: 83.5vw;
+    }
+    .pokedexOpenButton.switched{
+        right: -14vw;
+    }
+
+}
+
+/* ---------------------------------DEVICES 411PX BY 823PX----------------------------------- */
+/* ---------------------------------------(PORTRAIT)----------------------------------------- */
+
+@media only screen and (width: 411px) and (height: 823px) and (orientation: portrait) {
+
+    .pokedex{
+        transform: translateY(36vh);
+    }
+    .pokedexOpenButton{
+        bottom: 83.5vw;
+    }
+    .pokedexOpenButton.switched{
+        right: -14vw;
+    }
+
+}
+
+/* ---------------------------------DEVICES 414PX BY 736PX----------------------------------- */
+/* ---------------------------------------(PORTRAIT)----------------------------------------- */
+
+@media only screen and (width: 414px) and (height: 736px) and (orientation: portrait) {
+
+    .pokedex{
+        transform: translateY(39vh);
+    }
+    .pokedexOpenButton{
+        bottom: 83.5vw;
+    }
+    .pokedexOpenButton.switched{
+        right: -14vw;
+    }
+
+}
+
+/* ------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------ */
+/* ---------------------------------DEVICES 767PX AND DOWN----------------------------------- */
 /* ------------------------------------------------------------------------------------------ */
 /* --------------------------------------(LANDSCAPE)----------------------------------------- */
-/* ------------------------------------------------------------------------------------------ */
 
 @media only screen and (max-width: 767px) and (orientation: landscape) {
 
     body{
         justify-content: flex-start;
     }
+    /* ----------------------(POKEDEX)---------------------- */
     .pokedex{
         position: fixed;
         transform: translateX(1vw);
@@ -511,6 +619,8 @@ button :focus{
     .soundToggleIcon{
         width: 100%;
     }
+
+    /* ----------------------(GAME BOARD)---------------------- */
     .gameBoardContainer{
         transition: 1000ms;
         opacity: 1;
@@ -531,6 +641,8 @@ button :focus{
         height: 14vw;
         width: 9.5vw;
     }
+
+    /* ----------------------(MEW ANIMATION)---------------------- */
 
 }
 
