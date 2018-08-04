@@ -31,10 +31,629 @@ button :focus{
     border: none;
     outline: none;
 }
+.container{
+    display: flex;
+}
 
-/* --------------------------------------------------------------- */
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) and (orientation: portrait) {
+/* --------------------------------(POKEDEX)--------------------------------- */
+.pokedex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 1000ms;
+    transition-property: transform;
+    width: 28%;
+    /* transform: translate(0vh, -5vh); */
+    z-index: 0;
+}
+.pokedexImgContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: none;
+     width: 100%;
+}
+.pokedexOpenButton{
+    display: none;
+}
+.pokedexImgWhole{
+    height: 50vw;
+}
+.pokedexDisplay{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    height: 28vw;
+    /* right: -7vh; */
+    /* top: 21vh; */
+}
+.screenTop{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.screenTop > img{
+    width: 50%;
+}
+.gameTitle{
+    font-family: "pokemonHollow";
+    margin: 0.2em 0;
+    font-size: 2.5vw;
+}
+.screenMiddle{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+.gamesPlayed, .attempts, .accuracy{
+    display: flex;
+    align-items: inherit;
+}
+.label, .value{
+    font-size: 1.5vw;
+    margin: 0.7em 0;
+}
+.screenBottom{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+}
+.settings{
+    font-size: 1.5vw;
+}
+.resetButton{
+    /* top: unset; */
+    /* right: unset; */
+    /* bottom: 13vh; */
+    /* left: 4vh; */
+    width: 20%;
+}
+.resetButton > img {
+    width: 100%;
+}
+.soundToggleButton{
+    /* top: unset; */
+    /* left: unset; */
+    /* bottom: 12.6vh; */
+    /* right: -5vh; */
+    width: 21.5%;
+}
+.soundToggleButton > img {
+    width: 100%;
+}
+
+/* --------------------------------(GAME BOARD)--------------------------------- */
+
+.gameBoardContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    padding-top: 6vh;
+    /* margin-left: 25%; */
+}
+.gameBoard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 75%;
+}
+.headerLogo{
+        display: none;
+    }
+.card {
+    transition: opacity .5s ease-in-out;
+    position: relative;
+    display: inline-block;
+    height: 14vw;
+    width: 11vw;
+}
+.cardBottom img, .cardTop img{
+    height: 75%;
+    width: 75%;
+    position: absolute;
+    border-radius: 8px;
+}
+.cardBottom img{
+    border: 3px solid lightblue;
+}
+.cardTop img{
+    border: 3px solid white;
+}
+
+/* --------------------------------(CARD HOVER SHAKE)--------------------------------- */
+@keyframes shake {
+    0% { transform: translate(.5px, .5px) rotate(0deg); }
+    10% { transform: translate(-.5px, -1px) rotate(-.5deg); }
+    20% { transform: translate(-1.5px, 0px) rotate(.5deg); }
+    30% { transform: translate(1.5px, 1px) rotate(0deg); }
+    40% { transform: translate(.5px, -.5px) rotate(.5deg); }
+    50% { transform: translate(-.5px, 1px) rotate(-.5deg); }
+    60% { transform: translate(-1.5px, .5px) rotate(0deg); }
+    70% { transform: translate(1.5px, .5px) rotate(-.5deg); }
+    80% { transform: translate(-.5px, -.5px) rotate(.5deg); }
+    90% { transform: translate(.5px, 1px) rotate(0deg); }
+    100% { transform: translate(.5px, -1px) rotate(-.5deg); }
+}
+/* .card:hover {
+    animation: shake .5s;
+    animation-iteration-count: infinite;
+} */
+
+/* --------------------------------(POP-UP WIN MODAL)--------------------------------- */
+.winModal{
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+.winBox {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    bottom: 0;
+    right: 0;
+    display: block;
+}
+.winText {
+    font-family: "pokemonSolid";
+    font-size: 10vw;
+    color: deepskyblue;
+    text-shadow: 2px 2px 5px lightcyan;
+    margin-top: 10vh;
+    margin-top: 10vh;
+    position: absolute;
+    top: 0;
+    left: 25vw;
+    z-index: 1;
+}
+.winImg{
+    display: block;
+    height: 100vh;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+}
+/* -------------------------------(MEW ANIMATION)--------------------------------- */
+@keyframes mewBob {
+    0%  {top:30vh; animation-timing-function: ease-out;}
+    25%   {top:0; animation-timing-function: ease-in;}
+    50%  {top:30vh; animation-timing-function: ease-out;}
+    75%  {top:60vh; animation-timing-function: ease-in;}
+    100%  {top:30vh; animation-timing-function: ease-out;}
+}
+@keyframes mewWeave {
+    0%   {left:2vw; animation-timing-function: ease-in;}
+    25%  {left:41vw; animation-timing-function: ease-out;}
+    50%  {left:80vw; animation-timing-function: ease-in;}
+    75%  {left:41vw; animation-timing-function: ease-out;}
+    100% {left:2vw; animation-timing-function: ease-in;}
+}
+@keyframes mewWiggle {
+    0% {transform: rotate(0deg); animation-timing-function: linear;}
+    100% {transform: rotate(-360deg); animation-timing-function: linear;}
+}
+.mewBox {
+    animation: mewWeave 15s;
+    animation-iteration-count: infinite;
+    position: absolute;
+    top: 0;
+}   
+.mew {
+    opacity: 0;
+    transition: opacity .75s ease-in-out;
+    animation: mewBob 5s, mewWiggle 20.34567s;
+    animation-iteration-count: infinite;
+    pointer-events: none;
+    background-image: url("images/mew.png");
+    background-repeat: no-repeat;
+    background-size: 40vh;
+    height: 40vh;
+    width: 35vh;
+    position: fixed;
+}
+
+/* ------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------ */
+/* ---------------------------------DEVICES 767PX AND DOWN----------------------------------- */
+/* ------------------------------------------------------------------------------------------ */
+/* ---------------------------------------(PORTRAIT)----------------------------------------- */
+
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+
+    body{
+        flex-direction: column-reverse;
+        justify-content: flex-start;
+    }
+
+    /* ----------------------(POKEDEX)---------------------- */
+    .pokedex{
+        transform: translateY(45vh);
+        position: fixed;
+        display: flex;
+        height: 14%;
+        width: 77%;
+        z-index: 1;
+    }
+    .pokedex.expanded {
+        transform: translateY(-42.5vh);
+    }
+    .pokedexOpenButton{
+        color: rgba(255,255,255, .4);
+        position: fixed;
+        font-size: 2em;
+        height: 9vh;
+        width: 25vw;
+        bottom: 84.5vw;
+        right: 26vw;
+        display: block;
+    }
+    .pokedexOpenButton.switched{
+        transform: rotate(90deg);
+        width: 25vw;
+        bottom: 62vw;
+        right: -15vw;
+    }
+    .pokedexOpenButton > i{
+        background: rgba(0,0,0,0.15);
+        border-radius: 20px 20px 0 0;
+        width: 65px;
+    }
+    .pokedexImgContainer{
+        width: unset;
+    }
+    .pokedexImgWhole{
+        height: 155vw;
+    }
+    .pokedexDisplay{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+        height: 85vw;
+        width: 100%;
+    }
+    .screenTop{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .screenTop > img{
+        width: 50%
+    }
+    .gameTitle{
+        font-size: 7.5vw;
+    }
+    .label, .value{
+        font-size: 4.5vw;
+        margin: 0.2em 0;
+    }
+    .screenMiddle{
+        width: 90%;
+        margin-top: 3%;
+        text-align: center;
+        letter-spacing: 3px;
+    }
+    .gamesPlayed, .attempts {
+        /* justify-content: space-between; */
+        padding: 2% 8% 2% 5%;
+    }
+    .accuracy{
+        /* justify-content: space-between; */
+        padding: 2% 2% 2% 5%;
+    }
+    .screenBottom{
+        display: flex;
+        margin-top: 2vh;
+        width: 89%;
+        justify-content: space-between;
+        letter-spacing: 3px;
+    }
+    .resetButton{
+        width: 23%;
+    }
+    .resetButton > img {
+        width: 100%;
+    }
+    .settings{
+        font-size: 4.5vw;
+        margin-top: 1.1em;
+    }
+    .soundToggleButton{
+        width: 25%;
+    }
+    .soundToggleIcon{
+        width: 100%;
+    }
+
+    /* ----------------------(GAME BOARD)---------------------- */
+    .gameBoardContainer{
+        transition: 1000ms;
+        opacity: 1;
+        pointer-events: auto;
+        flex-direction: column;
+        width: 100%;
+        padding-bottom: 18vh;
+    }
+    .gameBoardContainer.faded{
+        transition: 300ms;
+        opacity: 0;
+        pointer-events: none;
+    }
+    .headerLogo{
+        width: 80%;
+        padding-bottom: 5%;
+        display: block;
+    }
+    .card{
+        height: 19vw;
+        width: 12.5vw;
+    }
+
+    /* ----------------------(MEW ANIMATION)---------------------- */
+    .mew {
+        background-size: 20vh;
+        height: 20vh;
+        width: 16vh;
+    }
+
+}
+
+/* ---------------------------------DEVICES 320PX BY 568PX----------------------------------- */
+/* ---------------------------------------(PORTRAIT)----------------------------------------- */
+
+@media only screen and (width: 320px) and (height: 568px) and (orientation: portrait) {
+
+    .pokedex{
+        transform: translateY(39vh);
+    }
+
+}
+
+/* ---------------------------------DEVICES 360PX BY 640PX----------------------------------- */
+/* ---------------------------------------(PORTRAIT)----------------------------------------- */
+
+@media only screen and (width: 360px) and (height: 640px) and (orientation: portrait) {
+
+    .pokedex{
+        transform: translateY(39vh);
+    }
+
+}
+
+/* ---------------------------------DEVICES 375PX BY 667PX----------------------------------- */
+/* ---------------------------------------(PORTRAIT)----------------------------------------- */
+
+@media only screen and (width: 375px) and (height: 667px) and (orientation: portrait) {
+
+    .pokedex{
+        transform: translateY(39vh);
+    }
+
+}
+
+/* ---------------------------------DEVICES 375PX BY 812PX----------------------------------- */
+/* ---------------------------------------(PORTRAIT)----------------------------------------- */
+
+@media only screen and (width: 375px) and (height: 812px) and (orientation: portrait) {
+
+    .pokedex{
+        transform: translateY(34vh);
+    }
+
+}
+
+/* ---------------------------------DEVICES 411PX BY 731PX----------------------------------- */
+/* ---------------------------------------(PORTRAIT)----------------------------------------- */
+
+@media only screen and (width: 411px) and (height: 731px) and (orientation: portrait) {
+
+    .pokedex{
+        transform: translateY(39vh);
+    }
+    .pokedexOpenButton{
+        bottom: 83.5vw;
+    }
+    .pokedexOpenButton.switched{
+        right: -14vw;
+    }
+
+}
+
+/* ---------------------------------DEVICES 411PX BY 823PX----------------------------------- */
+/* ---------------------------------------(PORTRAIT)----------------------------------------- */
+
+@media only screen and (width: 411px) and (height: 823px) and (orientation: portrait) {
+
+    .pokedex{
+        transform: translateY(36vh);
+    }
+    .pokedexOpenButton{
+        bottom: 83.5vw;
+    }
+    .pokedexOpenButton.switched{
+        right: -14vw;
+    }
+
+}
+
+/* ---------------------------------DEVICES 414PX BY 736PX----------------------------------- */
+/* ---------------------------------------(PORTRAIT)----------------------------------------- */
+
+@media only screen and (width: 414px) and (height: 736px) and (orientation: portrait) {
+
+    .pokedex{
+        transform: translateY(39vh);
+    }
+    .pokedexOpenButton{
+        bottom: 83.5vw;
+    }
+    .pokedexOpenButton.switched{
+        right: -14vw;
+    }
+
+}
+
+/* ------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------ */
+/* ---------------------------------DEVICES 767PX AND DOWN----------------------------------- */
+/* ------------------------------------------------------------------------------------------ */
+/* --------------------------------------(LANDSCAPE)----------------------------------------- */
+
+@media only screen and (max-width: 767px) and (orientation: landscape) {
+
+    body{
+        justify-content: flex-start;
+    }
+    /* ----------------------(POKEDEX)---------------------- */
+    .pokedex{
+        position: fixed;
+        transform: translateX(1vw);
+        display: flex;
+        height: 85%;
+        width: 20%;
+        z-index: 1;
+    }
+    .pokedex.expanded {
+        transform: translateX(87.5vw)
+    }
+    .pokedexOpenButton{
+        color: rgba(255,255,255, .3);
+        position: fixed;
+        font-size: 2em;
+        left: 26vh;
+        bottom: 81vh;
+    }
+    .pokedexOpenButton.switched{
+        transform: rotate(-90deg);
+        left: -15vh;
+        bottom: 61vh;
+    }
+    .pokedexOpenButton > i{
+        background: rgba(0,0,0,0.15);
+        border-radius: 20px 20px 0 0;
+        width: 65px;
+    }
+    .pokedexImgContainer{
+        transform: rotate(90deg);
+        transform-origin: 4vw 8vw;
+    }
+    .pokedexImgWhole{
+        height: 100vw;
+    }
+    .pokedexDisplay{
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 55vw;
+        height: 69vh;
+        right: 45vh;
+        top: 9vh;
+    }
+    .screenTop{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .screenTop > img{
+        width: 35%;
+        height: 100%;
+        object-fit: contain;
+    }
+    .gameTitle{
+        font-size: 1.4em;
+        margin: 0.3em 0;
+    }
+    .label, .value{
+        margin: 0.2em 0;
+    }
+    .screenMiddle{
+        width: 90%;
+        padding-top: 11%;
+        text-align: center;
+        letter-spacing: 3px;
+    }
+    .gamesPlayed, .attempts {
+        display: flex;
+        justify-content: space-between;
+        padding: 0% 8% 0% 5%;
+    }
+    .accuracy{
+        display: flex;
+        justify-content: space-between;
+        padding: 0% 2% 0% 5%;
+    }
+    .screenBottom{
+        display: flex;
+        width: 89%;
+        justify-content: center;
+        letter-spacing: 3px;
+    }
+    .resetButton{
+        position: fixed;
+        top: 11vh;
+        left: -98vh;
+        width: 45%;
+    }
+    .resetButton > img {
+        width: 100%;
+    }
+    .screenBottom > h5{
+        margin-top: 1.1em;
+    }
+    .soundToggleButton{
+        position: fixed;
+        top: 11vh;
+        right: 44vh;
+        width: 49%;
+    }
+    .soundToggleIcon{
+        width: 100%;
+    }
+
+    /* ----------------------(GAME BOARD)---------------------- */
+    .gameBoardContainer{
+        transition: 1000ms;
+        opacity: 1;
+        pointer-events: auto;
+        flex-direction: column;
+        margin-left: 15%;
+    }
+    .gameBoardContainer.faded{
+        transition: 300ms;
+        opacity: 0;
+        pointer-events: none;
+    }
+    .headerLogo{
+        width: 40%;
+        padding-bottom: 2%;
+    }
+    .card{
+        height: 14vw;
+        width: 9.5vw;
+    }
+
+    /* ----------------------(MEW ANIMATION)---------------------- */
+
+}
+
+/* ------------------------------------------------------------------------------------------ */
+/* ---------------------------------DEVICES 768PX TO 991PX----------------------------------- */
+/* ---------------------------(portrait tablets and large phones)---------------------------- */
+/* ------------------------------------------------------------------------------------------ */
+/* ---------------------------------------(PORTRAIT)----------------------------------------- */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) and (orientation: portrait) {
+    
     body{
         flex-direction: column-reverse;
         justify-content: flex-start;
@@ -151,8 +770,14 @@ button :focus{
         height: 19vw;
         width: 12.5vw;
     }
-}
-@media only screen and (max-width: 600px) and (orientation: landscape) {
+} 
+
+/* ------------------------------------------------------------------------------------------ */
+/* --------------------------------------(LANDSCAPE)----------------------------------------- */
+/* ------------------------------------------------------------------------------------------ */
+
+@media only screen and (min-width: 600px) and (max-width: 991px) and (orientation: landscape) {
+
     body{
         justify-content: flex-start;
     }
@@ -165,19 +790,19 @@ button :focus{
         z-index: 1;
     }
     .pokedex.expanded {
-        transform: translateX(87.5vw)
+        transform: translateX(87vw);
     }
     .pokedexOpenButton{
         color: rgba(255,255,255, .3);
         position: fixed;
         font-size: 2em;
-        left: 26vh;
+        left: 32.5vh;
         bottom: 81vh;
     }
     .pokedexOpenButton.switched{
         transform: rotate(-90deg);
-        left: -15vh;
-        bottom: 61vh;
+        left: -12vh;
+        bottom: 60vh;
     }
     .pokedexOpenButton > i{
         background: rgba(0,0,0,0.15);
@@ -186,19 +811,19 @@ button :focus{
     }
     .pokedexImgContainer{
         transform: rotate(90deg);
-        transform-origin: 4vw 8vw;
+        transform-origin: 5vw 5vw;
     }
     .pokedexImgWhole{
-        height: 100vw;
+        height: 95vw;
     }
     .pokedexDisplay{
         position: fixed;
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 55vw;
+        width: 52vw;
         height: 69vh;
-        right: 45vh;
+        right: 55.5vh;
         top: 9vh;
     }
     .screenTop{
@@ -216,11 +841,12 @@ button :focus{
         margin: 0.3em 0;
     }
     .label, .value{
+        font-size: 1em;
         margin: 0.2em 0;
     }
     .screenMiddle{
         width: 90%;
-        padding-top: 11%;
+        padding-top: 8%;
         text-align: center;
         letter-spacing: 3px;
     }
@@ -242,20 +868,20 @@ button :focus{
     }
     .resetButton{
         position: fixed;
-        top: 11vh;
-        left: -98vh;
+        top: 8vh;
+        right: 129vh;
         width: 45%;
     }
     .resetButton > img {
         width: 100%;
     }
-    .screenBottom > h5{
+    /* .screenBottom > h5{
         margin-top: 1.1em;
-    }
+    } */
     .soundToggleButton{
         position: fixed;
-        top: 11vh;
-        right: 44vh;
+        top: 7.5vh;
+        right: 58vh;
         width: 49%;
     }
     .soundToggleIcon{
@@ -278,318 +904,33 @@ button :focus{
         padding-bottom: 2%;
     }
     .card{
-        height: 14vw;
-        width: 9.5vw;
+        height: 12vw;
+        width: 8.5vw;
     }
-}
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-    
-    /* .background{
-        height: 110vh;
-        position: fixed;
-        right: -50%;
-        bottom: 0;
-        z-index: -1;
-    }  */
-    .pokedex{
-        display: flex;
-        transform: rotate(90deg);
-        transform-origin: 20% 64%;
-        height: 60%;
-        width: 40%;
-        background: darkred;
-    }
-    /* .screenTop, .screenMiddle, .screenBottom{
-        transform: rotate(-90deg);
-        position: absolute
-    } */
-} 
 
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
+}
+
+/* ------------------------------------------------------------------------ */
+/* -------------------------DEVICES 992PX TO 1199PX------------------------ */
+/* -----------------------------(small laptops)---------------------------- */
+/* ------------------------------------------------------------------------ */
+@media only screen and (min-width: 992px) and (max-width: 1199px) and (orientation: portrait) {
     
 } 
 
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-    /* .background{
-        max-height: 100vh;
-        min-width: 100vw;
-        position: fixed;
-        z-index: -1;
-    }  */
-} 
-/* --------------------------------------------------------------- */
-/* .sideBar {
-    height: 100%;
-    display: inline-block;
-    width: 25%;
-} */
-.container{
-    display: flex;
-}
-.pokedex {
-    display: flex;
-    transition-duration: 1000ms;
-    transition-property: transform;
-}
-.pokedexImgContainer{
-    width: 100%;
-}
-/* .pokedexImgTop{
-    display: none;
-} */
-/* .pokedexImgWhole{
-    display: none;
-} */
-/* .pokedexImgBottom{
-    display: none;
-} */
-/* .pokedexDisplay{
-    display: none;
-    width: 100%;
-} */
-/* .pokedexDisplay > img{
-    position: absolute;
-    max-height: 80%;
-    max-width: 30%;
-    top: 10%;
-    left: 5%;
-    z-index: -1;
-} */
-/* .muteButton {
-    background-image: url('images/soundon.png');
-    background-repeat: no-repeat;
-    background-size: 100%;
-    height: 3vw;
-    width: 3vw;
-    position: absolute;
-    display: inline-block;
-    right: 9%;
-    top: 23%;
-} */
-/* .logo {
-    background-image: url("images/logo1.png");
-    background-repeat: no-repeat;
-    background-size: 100% 144%;
-    height: 10%;
-    width: 40%;
-    position: relative;
-    display: inline-block;
-    left: 30%;
-    top: 13vw;
-} */
-.gameTitle {
-    font-family: "pokemonHollow";
-    /* font-size: 2.1rem;
-    color: cadetblue;
-    position: relative;
-    text-align: center;
-    top: 11vw; */
-}
-/* .gamesPlayed, .attempts, .accuracy {
-    font-family: "pokemonSolid";
-    font-size: 2vh;
-    color: cadetblue;
-    position: relative;
-    text-align: center;
-    top: 22vh;
-} */
-/* .link1, .link2 {
-    font-family: "pokemonSolid";
-    font-size: 2vh;
-    display: inline-block;
-    position: relative;
-    color: cadetblue;
-    margin: 0 4vh;
-}
-.link1 {
-    font-size: 1.1rem;
-    top: 25.5vw;
-    left: 3%;
-}
-.link2 {
-    top: 51vh;
-    left: 16vh;
-} */
-/* .resetButton {
-    background-image: url("images/resetbutton.png");
-    background-repeat: no-repeat;
-    background-size: 6vh;
-    height: 6vh;
-    width: 6vh;
-    position: relative;
-    display: inline-block;
-    top: 34vh;
-    left: 22vh;
-} */
-/* --------------------------------------------------------------- */
-/* #gameArea{
-    vertical-align: top;
-    margin-top: 4%;
-    height: 80vh;
-    width: 73%;
-    display: inline-block;
-} */
-.gameBoardContainer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-}
-.gameBoard{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 75%;
-}
-/* .row{
-    position: relative;
-    display: inline-block;
-    height: 33%;
-    left: 20vh;
-    top: 5vh;
-}
-.container {
-    float: right;
-} */
-.card {
-    transition: opacity .5s ease-in-out;
-    position: relative;
-    display: inline-block;
-    /* height: 14vw; */
-    /* width: 9.5vw; */
-}
-@keyframes shake {
-    0% { transform: translate(.5px, .5px) rotate(0deg); }
-    10% { transform: translate(-.5px, -1px) rotate(-.5deg); }
-    20% { transform: translate(-1.5px, 0px) rotate(.5deg); }
-    30% { transform: translate(1.5px, 1px) rotate(0deg); }
-    40% { transform: translate(.5px, -.5px) rotate(.5deg); }
-    50% { transform: translate(-.5px, 1px) rotate(-.5deg); }
-    60% { transform: translate(-1.5px, .5px) rotate(0deg); }
-    70% { transform: translate(1.5px, .5px) rotate(-.5deg); }
-    80% { transform: translate(-.5px, -.5px) rotate(.5deg); }
-    90% { transform: translate(.5px, 1px) rotate(0deg); }
-    100% { transform: translate(.5px, -1px) rotate(-.5deg); }
-}
-/* .card:hover {
-    animation: shake .5s;
-    animation-iteration-count: infinite;
-} */
-.cardBottom img, .cardTop img{
-    height: 75%;
-    width: 75%;
-    position: absolute;
-    border-radius: 8px;
-}
-.cardBottom img{
-    border: 3px solid lightblue;
-}
-.cardTop img{
-    border: 3px solid white;
-}
-/* --------------------------------------------------------------- */
-.winModal{
-    display: none;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1;
-}
-.winBox {
-    position: absolute;
-    height: 100vh;
-    width: 100vw;
-    bottom: 0;
-    right: 0;
-    display: block;
-}
-.winText {
-    font-family: "pokemonSolid";
-    font-size: 10vw;
-    color: deepskyblue;
-    text-shadow: 2px 2px 5px lightcyan;
-    margin-top: 10vh;
-    margin-top: 10vh;
-    position: absolute;
-    top: 0;
-    left: 25vw;
-    z-index: 1;
-}
-.winImg{
-    display: block;
-    height: 100vh;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-}
-/* --------------------------------------------------------------- */
-@keyframes mewBob {
-    0%  {top:30vh; animation-timing-function: ease-out;}
-    25%   {top:0; animation-timing-function: ease-in;}
-    50%  {top:30vh; animation-timing-function: ease-out;}
-    75%  {top:60vh; animation-timing-function: ease-in;}
-    100%  {top:30vh; animation-timing-function: ease-out;}
-}
-@keyframes mewWeave {
-    0%   {left:2vw; animation-timing-function: ease-in;}
-    25%  {left:41vw; animation-timing-function: ease-out;}
-    50%  {left:80vw; animation-timing-function: ease-in;}
-    75%  {left:41vw; animation-timing-function: ease-out;}
-    100% {left:2vw; animation-timing-function: ease-in;}
-}
-@keyframes mewWiggle {
-    0% {transform: rotate(0deg); animation-timing-function: linear;}
-    100% {transform: rotate(-360deg); animation-timing-function: linear;}
-}
-.mewBox {
-    animation: mewWeave 15s;
-    animation-iteration-count: infinite;
-    position: absolute;
-    top: 0;
-}   
-.mew {
-    opacity: 0;
-    transition: opacity .75s ease-in-out;
-    animation: mewBob 5s, mewWiggle 20.34567s;
-    animation-iteration-count: infinite;
-    pointer-events: none;
-    background-image: url("images/mew.png");
-    background-repeat: no-repeat;
-    background-size: 40vh;
-    height: 40vh;
-    width: 35vh;
-    position: fixed;
-}
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) and (orientation: portrait) {
-    .mew {
-        background-size: 20vh;
-        height: 20vh;
-        width: 16vh;
-    }
+@media only screen and (min-width: 992px) and (max-width: 1199px) and (orientation: landscape) {
+    
 } 
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
+/* ------------------------------------------------------------------------ */
+/* -------------------------DEVICES 1200PX AND UP-------------------------- */
+/* ---------------------------(laptops/desktops)--------------------------- */
+/* ------------------------------------------------------------------------ */
 
-} 
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-
-} 
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-
-} 
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
+    
+    
+} 
 
-}
+/* ------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------ */
