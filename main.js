@@ -47,7 +47,7 @@ function initializeGame(){
    $(window).on("resize", resizeTransitionStop);
    backgroundMusic.play();
    shuffle();
-   mewMouse();
+   mewBlink();
 }
 function attachClickHandler(){
     $(".card").on("click", cardClicks);
@@ -212,18 +212,31 @@ function winModalClose(){
 }
 //-------------------------------------------------------------------------------------------------------
 
-var mewTimeout = setTimeout(showMew, 5000);
 
-function mewMouse(){
-    $(window).mousemove(function(mouseLocation){
+
+function mewBlink(){
+    var mewTimeout = setTimeout(showMew, 5000);
+
+    function mewShowMath() {
+        return Math.floor(Math.random() * 11000) + 8001;
+    };
+    function mewHideMath() {
+        return Math.floor(Math.random() * 3000) + 1501;
+    };
+    function showMew(){
+        $(".mew").css("opacity", "1");
+
+        setTimeout(hideMew, mewHideMath());
+    }
+    function hideMew(){
+        $(".mew").css("opacity", "0");
+
         clearTimeout(mewTimeout);
-        mewTimeout = setTimeout(showMew, 10000);
+        mewTimeout = setTimeout(showMew, mewShowMath());
+    }
+
+    $(window).mousemove(function(mouseLocation){
         hideMew();
     })
-}
-function showMew(){
-    $(".mew").css("opacity", "1");
-}
-function hideMew(){
-    $(".mew").css("opacity", "0");
+
 }

@@ -84,19 +84,27 @@ button :focus{
     font-size: 2.5vw;
 }
 .screenMiddle{
-    width: 90%;
+    width: 85%;
     display: flex;
     flex-direction: column;
+    padding-bottom: 3%;
     /* justify-content: center; */
-    align-items: center;
+    /* align-items: center; */
 }
 .gamesPlayed, .attempts, .accuracy{
     display: flex;
-    align-items: inherit;
+    justify-content: space-between;
+    /* align-items: inherit; */
+}
+.gamesPlayed, .attempts {
+    padding: 2% 8% 2% 5%;
+}
+.accuracy{
+    padding: 2% 2% 2% 5%;
 }
 .label, .value{
     font-size: 1.5vw;
-    margin: 0.7em 0;
+    margin: 0.3em 0;
 }
 .screenBottom{
     display: flex;
@@ -209,7 +217,7 @@ button :focus{
     color: deepskyblue;
     text-shadow: 2px 2px 5px lightcyan;
     margin-top: 10vh;
-    margin-top: 10vh;
+    /* margin-top: 10vh; */
     position: absolute;
     top: 0;
     left: 25vw;
@@ -341,15 +349,16 @@ button :focus{
         margin-top: 3%;
         text-align: center;
         letter-spacing: 3px;
+        align-items: stretch;
     }
-    .gamesPlayed, .attempts {
-        /* justify-content: space-between; */
+    /* .gamesPlayed, .attempts {
+        justify-content: space-between;
         padding: 2% 8% 2% 5%;
     }
     .accuracy{
-        /* justify-content: space-between; */
+        justify-content: space-between;
         padding: 2% 2% 2% 5%;
-    }
+    } */
     .screenBottom{
         display: flex;
         margin-top: 2vh;
