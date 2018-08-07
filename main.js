@@ -51,7 +51,7 @@ function initializeGame(){
 }
 function attachClickHandler(){
     $(".card").on("click", cardClicks);
-    $(".reset").on("click", resetButton);
+    $(".resetButton").on("click", resetButton);
     $(".winModal").on("click", winModalClose);
     $(".soundToggleButton").on("click", toggleSounds);
     $(".pokedexOpenButton").on("click", pokedexExpand);
