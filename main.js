@@ -218,10 +218,10 @@ function mewBlink(){
     var mewTimeout = setTimeout(showMew, 5000);
 
     function mewShowMath() {
-        return Math.floor(Math.random() * 11000) + 8001;
+        return Math.floor(Math.random() * 12000) + 8001;
     };
     function mewHideMath() {
-        return Math.floor(Math.random() * 3000) + 1501;
+        return Math.floor(Math.random() * 2000) + 1501;
     };
     function showMew(){
         $(".mew").css("opacity", "1");
