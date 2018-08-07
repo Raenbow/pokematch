@@ -115,20 +115,12 @@ button :focus{
     font-size: 1.5vw;
 }
 .resetButton{
-    /* top: unset; */
-    /* right: unset; */
-    /* bottom: 13vh; */
-    /* left: 4vh; */
     width: 20%;
 }
 .resetButton > img {
     width: 100%;
 }
 .soundToggleButton{
-    /* top: unset; */
-    /* left: unset; */
-    /* bottom: 12.6vh; */
-    /* right: -5vh; */
     width: 21.5%;
 }
 .soundToggleButton > img {

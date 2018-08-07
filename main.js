@@ -53,14 +53,14 @@ function attachClickHandler(){
     $(".card").on("click", cardClicks);
     $(".reset").on("click", resetButton);
     $(".winModal").on("click", winModalClose);
-    $(".muteButton").on("click", toggleMute);
+    $(".soundToggleButton").on("click", toggleSounds);
     $(".pokedexOpenButton").on("click", pokedexExpand);
 }
 //-------------------------------------------------------------------------------------------------------
 
 function pokedexExpand(){
-    var portrait = window.matchMedia("(orientation: portrait)").matches;
-    var landscape = window.matchMedia("(orientation: landscape)").matches;
+    // var portrait = window.matchMedia("(orientation: portrait)").matches;
+    // var landscape = window.matchMedia("(orientation: landscape)").matches;
 
     // if ( window.innerWidth < 600 ){
 
@@ -109,17 +109,30 @@ function resizeTransitionStop(){
         $(".gameBoardContainer").css("transition-property", "");
     }, 10);
 }
-function toggleMute(){
-    if(playing){
-       backgroundMusic.pause();
-        $(".muteButton").css("background-image", "url('images/soundoff.png')");
-        mute = true;
-    } else {
+function toggleSounds(){
+    if ($(".soundToggleButton").hasClass("soundoff")){
+        $(".soundToggleButton").removeClass("soundoff").addClass("soundon");
+        var mute = false;
         backgroundMusic.play();
-        $(".muteButton").css("background-image", "url('images/soundon.png')")
-        mute = false;
-    }  
+        $(".soundToggleIcon").attr("src", "./images/soundon.png");
+    } else if ($(".soundToggleButton").hasClass("soundon")){
+        $(".soundToggleButton").removeClass("soundon").addClass("soundoff");
+        var mute = true;
+        backgroundMusic.pause();
+        $(".soundToggleIcon").attr("src", "./images/soundoff.png");
+    }
 }
+// function toggleMute(){
+//     if(playing){
+//        backgroundMusic.pause();
+//         $(".muteButton").css("background-image", "url('images/soundoff.png')");
+//         mute = true;
+//     } else {
+//         backgroundMusic.play();
+//         $(".muteButton").css("background-image", "url('images/soundon.png')")
+//         mute = false;
+//     }  
+// }
 function resetButton(){
     gamesPlayed++;
     shuffle();
