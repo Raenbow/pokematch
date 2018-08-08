@@ -119,7 +119,6 @@ function displayStats(){
 //-------------------------------------------------------------------------------------------------------
 
 function renderGameBoard(){
-    console.log("RenderGameBoard Running")
     if (gameState.difficulty === "regular"){
         createRegularBoard()
     }
