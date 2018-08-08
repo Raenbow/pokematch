@@ -124,12 +124,12 @@ function renderGameBoard(){
     }
 }
 function createRegularBoard(){
-    for(numOfRows=1;numOfRows<=3;numOfRows++){
+    for( numOfRows=1; numOfRows<=3; numOfRows++ ){
         $(".gameBoard").append(
             $("<div>", {"class": `row${numOfRows}`})
         );
 
-        for(cardsPerRow=1;cardsPerRow<=6;cardsPerRow++){
+        for( cardsPerRow=1; cardsPerRow<=6; cardsPerRow++ ){
             $(`.row${numOfRows}`)
             .append(
                 $("<div>", {"class": "card"})
@@ -171,42 +171,53 @@ function cardClicks(){
             $(this).find('.cardTop img').css("opacity", "0");
             gameState.stats.attempts++;
             if (gameState.firstCardClicked === gameState.secondCardClicked){
-                $(".card").off("click");
-                setTimeout(function(){
-                    gameState.thisCard1.css("opacity", "0");
-                    gameState.thisCard2.css("opacity", "0");
-                    $(".card").on("click", cardClicks);
-                }, 1000);
-                if (gameState.mute === false){
-                    matchSound.play();
-                }
-                gameState.stats.matchCounter++;
-                gameState.firstCardClicked = null;
-                gameState.secondCardClicked = null;
+                cardMatch();
             } else {
-                $(".card").off("click");
-                setTimeout(function(){
-                    if (gameState.thisCard1.find('.cardTop img').css("opacity") === "0" ){
-                        gameState.thisCard1.find('.cardTop img').css("opacity", "1");
-                    }
-                    if (gameState.thisCard2.find('.cardTop img').css("opacity") === "0" ){
-                        gameState.thisCard2.find('.cardTop img').css("opacity", "1");
-                    }
-                    gameState.firstCardClicked = null;
-                    gameState.secondCardClicked = null;
-                    $(".card").on("click", cardClicks);
-                }, 2000);
+                cardMismatch();
             }
         if(gameState.stats.matchCounter === gameState.totalPossibleMatches){
-            $(".winModal").css("display", "block");
-             backgroundMusic.pause();
-             if (gameState.mute === false){
-                 winSound.play();
-             }
+            winModalOpen();
         }
         displayStats();
         } 
     }
+}
+function cardMatch(){
+    $(".card").off("click");
+    setTimeout(function(){
+        gameState.thisCard1.css("opacity", "0");
+        gameState.thisCard2.css("opacity", "0");
+        $(".card").on("click", cardClicks);
+    }, 1000);
+    if (gameState.mute === false){
+        matchSound.play();
+    }
+    gameState.stats.matchCounter++;
+    gameState.firstCardClicked = null;
+    gameState.secondCardClicked = null;
+}
+function cardMismatch(){
+    $(".card").off("click");
+    setTimeout(function(){
+        if (gameState.thisCard1.find('.cardTop img').css("opacity") === "0" ){
+            gameState.thisCard1.find('.cardTop img').css("opacity", "1");
+        }
+        if (gameState.thisCard2.find('.cardTop img').css("opacity") === "0" ){
+            gameState.thisCard2.find('.cardTop img').css("opacity", "1");
+        }
+        gameState.firstCardClicked = null;
+        gameState.secondCardClicked = null;
+        $(".card").on("click", cardClicks);
+    }, 2000);
+}
+//-------------------------------------------------------------------------------------------------------
+
+function winModalOpen(){
+    $(".winModal").css("display", "block");
+             backgroundMusic.pause();
+             if (gameState.mute === false){
+                 winSound.play();
+             }
 }
 function winModalClose(){
     $(".winModal").css("display", "none");
@@ -214,6 +225,7 @@ function winModalClose(){
      if (gameState.mute === false){
          backgroundMusic.play();
      };
+     resetButton();
 }
 //-------------------------------------------------------------------------------------------------------
 
