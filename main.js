@@ -6,6 +6,7 @@ $(document).ready(initializeGame);
 //-------------------------------------------------------------------------------------------------------
 
 var gameState = {
+    difficulty: "regular",
     mute: true,
     stats: {
         attempts: 0,
@@ -39,10 +40,10 @@ winSound.src = "sounds/victory.mp3";
 //-------------------------------------------------------------------------------------------------------
 
 function initializeGame(){
-   attachClickHandler();
    $(window).on("resize", resizeTransitionStop);
-   backgroundMusic.play();
+   renderGameBoard();
    shuffle();
+   attachClickHandler();
    mewBlink();
 }
 function attachClickHandler(){
@@ -117,6 +118,36 @@ function displayStats(){
 }
 //-------------------------------------------------------------------------------------------------------
 
+function renderGameBoard(){
+    console.log("RenderGameBoard Running")
+    if (gameState.difficulty === "regular"){
+        createRegularBoard()
+    }
+}
+function createRegularBoard(){
+    for(numOfRows=1;numOfRows<=3;numOfRows++){
+        $(".gameBoard").append(
+            $("<div>", {"class": `row${numOfRows}`})
+        );
+
+        for(cardsPerRow=1;cardsPerRow<=6;cardsPerRow++){
+            $(`.row${numOfRows}`)
+            .append(
+                $("<div>", {"class": "card"})
+                .append(
+                    $("<div>", {"class": "cardBottom"})
+                    .append(
+                        $("<img>", {"src": "images/poke1-1.png", "class": `cardImg${numOfRows}-${cardsPerRow}`})
+                    ),
+                    $("<div>", {"class": "cardTop"})
+                    .append(
+                        $("<img>", {"src": "images/greenbackground2.jpg"})
+                    )
+                )
+            );
+        }
+    }
+}
 function shuffle(array){
     var pokemonArrayx18 = pokemonArray1.concat(pokemonArray2);
     var randomPokemon = [];
