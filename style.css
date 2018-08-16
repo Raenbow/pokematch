@@ -317,12 +317,18 @@ card.regSize{
     animation: mewBob 5s, mewWiggle 20.34567s;
     animation-iteration-count: infinite;
     pointer-events: none;
-    background-image: url("images/mew.png");
     background-repeat: no-repeat;
-    background-size: 40vh;
     height: 40vh;
     width: 35vh;
     position: fixed;
+}
+.img-mew {
+    background-image: url("images/mew.png");
+    background-size: 40vh;
+}
+.img-sylveon {
+    background-image: url("images/sylveon.png");
+    background-size: 30vh;
 }
 
 /* ------------------------------------------------------------------------------------------ */
