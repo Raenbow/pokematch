@@ -9,6 +9,7 @@ var gameState = {
     difficulty: "regular",
     cardArray: [],
     imageArray: [],
+    backgroundArray: [],
     mute: true,
     stats: {
         attempts: 0,
@@ -20,7 +21,9 @@ var gameState = {
     firstCardClicked: null,
     secondCardClicked: null,
     thisCard1: null,
-    thisCard2: null
+    thisCard2: null,
+    winImageNum: 1,
+    winMsg: ["Way to go!", "You did it!", "Hooray!!!", "Gonna catch 'em all!", "Keep it up!", "Awesome job!"]
 }
 
 //-------------------------------------------------------------------------------------------------------
@@ -107,20 +110,21 @@ function toggleSounds(){
 }
 function difficultySwitch_Easy(){
     gameState.difficulty = "easy";
-    gameState.totalPossibleMatches = 9;
-    $(".gameBoard").empty();
+    gameState.totalPossibleMatches = 8;
+    resetBoard();
     renderGameBoard();
     shuffle();
     $(".card").addClass("easySize").removeClass("hardSize, regSize");
     $(".card").on("click", cardClicks);
     
     $(".mew").removeClass("img-mew").addClass("img-sylveon");
+    resetStats();
     winModalChange();
 }
 function difficultySwitch_Reg(){
     gameState.difficulty = "regular";
     gameState.totalPossibleMatches = 12;
-    $(".gameBoard").empty();
+    resetBoard();
     renderGameBoard();
     shuffle();
     $(".card").addClass("regSize").removeClass("hardSize, easySize");
@@ -129,12 +133,13 @@ function difficultySwitch_Reg(){
     if ($(".mew").hasClass("img-sylveon")){
         $(".mew").removeClass("img-sylveon").addClass("img-mew");
     }
+    resetStats();
     winModalChange();
 }
 function difficultySwitch_Hard(){
     gameState.difficulty = "hard";
     gameState.totalPossibleMatches = 18;
-    $(".gameBoard").empty();
+    resetBoard();
     renderGameBoard();
     shuffle();
     $(".card").addClass("hardSize").removeClass("regSize, easySize");
@@ -143,6 +148,7 @@ function difficultySwitch_Hard(){
     if ($(".mew").hasClass("img-sylveon")){
         $(".mew").removeClass("img-sylveon").addClass("img-mew");
     }
+    resetStats();
     winModalChange();
 }
 function resetButton(){
@@ -151,6 +157,7 @@ function resetButton(){
     resetStats();
     $('.card').css("opacity","1");
     $('.cardTop img').css("opacity","1");
+    winModalChange();
     return gameState.stats;
 }
 function resetStats(){
@@ -159,6 +166,10 @@ function resetStats(){
     gameState.stats.attempts = 0;
     displayStats();
     return gameState.stats;
+}
+function resetBoard(){
+    $(".gameBoard").empty();
+    gameState.cardArray = [];
 }
 function displayStats(){
     $(".gamesPlayed .value").text(gameState.stats.gamesPlayed);
@@ -198,23 +209,25 @@ function renderGameBoard(){
     }
 }
 function createEasyBoard(){
-    for( numOfRows=1; numOfRows<=3; numOfRows++ ){
+    var cardBack = `images/cardBacks/eevee${Math.floor(Math.random() * 5) + 1}.jpg`
+
+    for( numOfRows=1; numOfRows<=4; numOfRows++ ){
         $(".gameBoard").append(
             $("<div>", {"class": `row${numOfRows}`})
         );
 
-        for( cardsPerRow=1; cardsPerRow<=6; cardsPerRow++ ){
+        for( cardsPerRow=1; cardsPerRow<=4; cardsPerRow++ ){
             $(`.row${numOfRows}`)
             .append(
                 $("<div>", {"class": "card"})
                 .append(
                     $("<div>", {"class": "cardBottom"})
                     .append(
-                        $("<img>", {"src": "images/pokemon25/image1.jpg", "class": `cardImg${numOfRows}-${cardsPerRow}`})
+                        $("<img>", {"src": "images/pokemon8/image1.jpg", "class": `cardImg${numOfRows}-${cardsPerRow}`})
                     ),
                     $("<div>", {"class": "cardTop"})
                     .append(
-                        $("<img>", {"src": "images/greenbackground2.jpg"})
+                        $("<img>", {"src": cardBack})
                     )
                 )
             );
@@ -224,6 +237,8 @@ function createEasyBoard(){
     }
 }
 function createRegularBoard(){
+    var cardBack = `images/cardBacks/pattern${Math.floor(Math.random() * 6) + 1}.jpg`
+
     for( numOfRows=1; numOfRows<=4; numOfRows++ ){
         $(".gameBoard").append(
             $("<div>", {"class": `row${numOfRows}`})
@@ -240,7 +255,7 @@ function createRegularBoard(){
                     ),
                     $("<div>", {"class": "cardTop"})
                     .append(
-                        $("<img>", {"src": "images/greenbackground2.jpg"})
+                        $("<img>", {"src": cardBack})
                     )
                 )
             );
@@ -250,6 +265,8 @@ function createRegularBoard(){
     }
 }
 function createHardBoard(){
+    var cardBack = `images/cardBacks/pattern${Math.floor(Math.random() * 6) + 1}.jpg`
+
     for( numOfRows=1; numOfRows<=4; numOfRows++ ){
         $(".gameBoard").append(
             $("<div>", {"class": `row${numOfRows}`})
@@ -262,11 +279,11 @@ function createHardBoard(){
                 .append(
                     $("<div>", {"class": "cardBottom"})
                     .append(
-                        $("<img>", {"src": "images/pokemon25/image1.jpg", "class": `cardImg${numOfRows}-${cardsPerRow}`})
+                        $("<img>", {"src": "images/pokemon18/image1.jpg", "class": `cardImg${numOfRows}-${cardsPerRow}`})
                     ),
                     $("<div>", {"class": "cardTop"})
                     .append(
-                        $("<img>", {"src": "images/greenbackground2.jpg"})
+                        $("<img>", {"src": cardBack})
                     )
                 )
             );
@@ -284,14 +301,14 @@ function createImageArray(){
         }
     } else if (gameState.difficulty === "easy"){
         for (doubleIt=1; doubleIt<=2; doubleIt++){
-            for (pokemonImgNum=1; pokemonImgNum<=9; pokemonImgNum++){
-                gameState.imageArray.push(`images/pokemon9/image${pokemonImgNum}.jpg`)
+            for (pokemonImgNum=1; pokemonImgNum<=8; pokemonImgNum++){
+                gameState.imageArray.push(`images/pokemon8/image${pokemonImgNum}.jpg`)
             }
         }
     } else if (gameState.difficulty === "hard"){
         for (doubleIt=1; doubleIt<=2; doubleIt++){
-            for (pokemonImgNum=1; pokemonImgNum<=25; pokemonImgNum++){
-                gameState.imageArray.push(`images/pokemon25/image${pokemonImgNum}.jpg`)
+            for (pokemonImgNum=1; pokemonImgNum<=18; pokemonImgNum++){
+                gameState.imageArray.push(`images/pokemon18/image${pokemonImgNum}.jpg`)
             }
         }
     }
@@ -325,6 +342,7 @@ function cardClicks(){
                 cardMismatch();
             }
         if(gameState.stats.matchCounter === gameState.totalPossibleMatches){
+            winModalChange();
             winModalOpen();
         }
         displayStats();
@@ -363,8 +381,19 @@ function cardMismatch(){
 
 function winModalChange(){
     if (gameState.difficulty === "easy"){
-        $("winImg").attr("src", "images/victory/eevee.png");
-    }
+        $(".winImg").attr("src", "images/victory/eevee.png");
+    } else {
+        if (gameState.winImageNum <=3){
+            $(".winImg").attr("src", `images/victory/image${gameState.winImageNum}.png`);
+            gameState.winImageNum++;
+        } else {
+            gameState.winImageNum = 1;
+            $(".winImg").attr("src", `images/victory/image${gameState.winImageNum}.png`);
+            gameState.winImageNum++;
+        }
+    };
+
+    $(".winText").text(gameState.winMsg[Math.floor(Math.random() * 6)]);
 }
 function winModalOpen(){
     $(".winModal").css("display", "block");
