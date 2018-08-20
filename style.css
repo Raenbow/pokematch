@@ -31,7 +31,7 @@ button :focus{
     border: none;
     outline: none;
 }
-button :hover{
+button:hover{
     cursor: pointer;
     -webkit-filter: brightness(125%);
     filter: brightness(125%);
@@ -97,16 +97,19 @@ button :hover{
     letter-spacing: 3px;
     /* justify-content: center; */
     /* align-items: center; */
+    transition: 1000ms;
 }
 .gamesPlayed, .attempts, .accuracy,
-.easyDiv, .regDiv, .hardDiv {
+.settingsDisplay > div  {
     display: flex;
     justify-content: space-between;
     /* align-items: inherit; */
 }
-.gamesPlayed, .attempts,
-.easyDiv, .regDiv, .hardDiv {
+.gamesPlayed, .attempts {
     padding: 2% 8% 2% 5%;
+}
+.settingsDisplay > div {
+    padding: 1% 1% 2% 1%;
 }
 .accuracy{
     padding: 2% 2% 2% 5%;
@@ -121,9 +124,11 @@ button :hover{
     flex-direction: column;
     /* padding-bottom: 3%; */
     /* letter-spacing: 3px; */
+    transition: 1000ms;
 }
 .difficultyButton{
     /* font-size: 1.5vw; */
+    display: flex;
     font-family: "pokemonSolid";
     letter-spacing: 3px;
     color: cadetblue;
@@ -164,14 +169,14 @@ button :hover{
 .resetButton{
     width: 20%;
 }
-.resetButton :hover{
+.resetButton:hover{
     -webkit-filter: brightness(110%);
     filter: brightness(110%);
 }
 .soundToggleButton{
     width: 21.5%;
 }
-.soundToggleButton :hover{
+.soundToggleButton:hover{
     -webkit-filter: brightness(105%);
     filter: brightness(105%);
 }
@@ -203,12 +208,13 @@ button :hover{
     transition: opacity .5s ease-in-out;
     position: relative;
     display: inline-block;
-    height: 12vw;
-    width: 10vw;
+    height: 11vw;
+    width: 9vw;
+    margin: 0 2vw 0 0;
 }
 .cardBottom img, .cardTop img{
-    height: 75%;
-    width: 75%;
+    height: 90%;
+    width: 90%;
     position: absolute;
     border-radius: 8px;
 }
@@ -218,16 +224,25 @@ button :hover{
 .cardTop img{
     border: 3px solid white;
 }
-/* .card.easySize{
-
-} */
-card.regSize{
+.card.easySize{
     height: 12vw;
     width: 10vw;
+    margin: 0 3vw 0 0;
 }
+/* card.regSize{
+    height: 11vw;
+    width: 9vw;
+    margin: 0 2vw 0 0;
+} */
 .card.hardSize{
     height: 9vw;
     width: 7vw;
+    margin: 1vw 1vw 0 0;
+}
+.card.challengeSize{
+    height: 8vw;
+    width: 6vw;
+    margin: 1vw 1vw 0 0;
 }
 
 /* --------------------------------(CARD HOVER SHAKE)--------------------------------- */
@@ -330,6 +345,10 @@ card.regSize{
     background-image: url("images/sylveon.png");
     background-size: 30vh;
 }
+.img-mewshape {
+    background-image: url("images/mewshape1.png");
+    background-size: 30vh;
+}
 
 /* ------------------------------------------------------------------------------------------ */
 /* ------------------------------------------------------------------------------------------ */
@@ -346,7 +365,7 @@ card.regSize{
 
     /* ----------------------(POKEDEX)---------------------- */
     .pokedex{
-        transform: translateY(45vh);
+        transform: translateY(51vh);
         position: fixed;
         display: flex;
         height: 14%;
@@ -421,15 +440,24 @@ card.regSize{
         justify-content: space-between;
         padding: 2% 2% 2% 5%;
     } */
+    .settingsDisplay{
+        margin-top: 3%;
+    }
+    .diffStar {
+        font-size: 4.85vw;
+    }
     .screenBottom{
         display: flex;
         margin-top: 2vh;
         width: 89%;
-        justify-content: space-between;
+        justify-content: center;
         letter-spacing: 3px;
     }
     .resetButton{
         width: 23%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
     }
     .resetButton > img {
         width: 100%;
@@ -440,6 +468,9 @@ card.regSize{
     }
     .soundToggleButton{
         width: 25%;
+        position: absolute;
+        right: 0;
+        bottom: 0;
     }
     .soundToggleIcon{
         width: 100%;
@@ -460,7 +491,7 @@ card.regSize{
         pointer-events: none;
     }
     .headerLogo{
-        width: 80%;
+        width: 70%;
         padding-bottom: 5%;
         display: block;
     }
@@ -468,9 +499,14 @@ card.regSize{
         margin-left: 2%;
     }
     .card {
-        height: 18vw;
+        height: 21vw;
         width: 16vw;
     }
+
+    /* ------------------------(WIN MODAL)------------------------ */
+    /* .winImg-Easy {
+        right: -81vw;
+    } */
 
     /* ----------------------(MEW ANIMATION)---------------------- */
     .mew {
@@ -679,6 +715,9 @@ and (orientation: portrait) {
         justify-content: space-between;
         padding: 0% 2% 0% 5%;
     }
+    .diffStar {
+        font-size: 4.85vw;
+    }
     .screenBottom{
         display: flex;
         width: 89%;
@@ -725,8 +764,8 @@ and (orientation: portrait) {
         padding-bottom: 2%;
     }
     .card {
-        height: 13vw;
-        width: 11vw;
+        height: 15vw;
+        width: 12vw;
     }
 
     /* ----------------------(MEW ANIMATION)---------------------- */
@@ -953,7 +992,7 @@ and (orientation: landscape){
     .pokedexDisplay h3, .pokedexDisplay p {
         font-size: 2.5vw;
     }
-    .easyDiv, .regDiv, .hardDiv {
+    .easyDiv, .regDiv, .hardDiv, .challengeDiv {
         padding: 2% 8% 0% 5%;
     }
     .resetButton {
@@ -1248,11 +1287,7 @@ and (orientation: landscape){
 /* -------------------------DEVICES 992PX TO 1199PX------------------------ */
 /* -----------------------------(small laptops)---------------------------- */
 /* ------------------------------------------------------------------------ */
-@media only screen and (min-width: 992px) and (max-width: 1199px) and (orientation: portrait) {
-    
-} 
-
-@media only screen and (min-width: 992px) and (max-width: 1199px) and (orientation: landscape) {
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
     
 } 
 
@@ -1268,3 +1303,40 @@ and (orientation: landscape){
 
 /* ------------------------------------------------------------------------ */
 /* ------------------------------------------------------------------------ */
+
+@media only screen and (min-width: 992px) {
+
+    .gameBoardContainer{
+        padding-top: unset;
+    }
+    /* .card.easySize{
+        margin-right: 4vw;
+    } */
+    /* .card.regSize{
+        margin-right: 2vw;
+    } */
+    /* .cardBottom img, .cardTop img{
+        height: 90%;
+        width: 90%;
+    } */
+
+}
+
+/* ------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------ */
+
+.opacityShow {
+    opacity: 1;
+}
+.opacityHide {
+    opacity: 0;
+}
+.displayShow-block {
+    display: block;
+}
+.displayShow-flex {
+    display: flex;
+}
+.displayHide {
+    display: none;
+}

@@ -9,7 +9,9 @@ var gameState = {
     difficulty: "regular",
     cardArray: [],
     imageArray: [],
-    backgroundArray: [],
+    soundArray: [],
+    cardBackNum: Math.floor(Math.random() * 6) + 1,
+    eeveeCardBackNum: Math.floor(Math.random() * 5) + 1,
     mute: true,
     stats: {
         attempts: 0,
@@ -22,8 +24,11 @@ var gameState = {
     secondCardClicked: null,
     thisCard1: null,
     thisCard2: null,
-    winImageNum: 1,
-    winMsg: ["Way to go!", "You did it!", "Hooray!!!", "Gonna catch 'em all!", "Keep it up!", "Awesome job!"]
+    winImageNum: Math.floor(Math.random() * 9) + 1,
+    eeveeWinImageNum: Math.floor(Math.random() * 6) + 1,
+    pikaWinImageNum: Math.floor(Math.random() * 3) + 1,
+    winMsg: ["Way to go!", "You did it!", "Hooray!", "You got this!", "Keep it up!", "Awesome job!"],
+    mewNum: 1
 }
 
 //-------------------------------------------------------------------------------------------------------
@@ -32,11 +37,26 @@ var backgroundMusic = document.createElement("audio");
 backgroundMusic.src = "sounds/pallettetown.mp3";
 backgroundMusic.loop = true;
 
-var matchSound = document.createElement("audio");
-matchSound.src = "sounds/pokeballcatch.mp3";
+var missSound = document.createElement("audio");
+missSound.src = "sounds/pokeball_tick.mp3";
+missSound.volume = 0.5;
+
+var catchSound = document.createElement("audio");
+catchSound.src = "sounds/pokeballcatch.mp3";
+catchSound.volume = 0.5;
+
+var pokemonCrySound = document.createElement("audio");
 
 var winSound = document.createElement("audio");
 winSound.src = "sounds/victory.mp3";
+winSound.volume = 0.7;
+
+var pikachuWinSound = document.createElement("audio");
+pikachuWinSound.src = "sounds/pikachu_remix.mp3";
+// pikachuWinSound.loop = true;
+
+var eeveeSound = document.createElement("audio");
+eeveeSound.src = "sounds/eevee.mp3";
 
 //-------------------------------------------------------------------------------------------------------
 
@@ -58,6 +78,7 @@ function attachClickHandler(){
     $(".easy").on("click", difficultySwitch_Easy);
     $(".reg").on("click", difficultySwitch_Reg);
     $(".hard").on("click", difficultySwitch_Hard);
+    $(".challenge").on("click", difficultySwitch_Challenge);
 }
 function resizeTransitionStop(){
     $(".pokedex").css("transition-property", "none");
@@ -114,10 +135,13 @@ function difficultySwitch_Easy(){
     resetBoard();
     renderGameBoard();
     shuffle();
-    $(".card").addClass("easySize").removeClass("hardSize, regSize");
+    $(".card").addClass("easySize").removeClass("hardSize, regSize, challengeSize");
     $(".card").on("click", cardClicks);
     
-    $(".mew").removeClass("img-mew").addClass("img-sylveon");
+    if (!$(".mew").hasClass("img-sylveon")){
+        $(".mew").removeClass("img-mew img-mewshape").addClass("img-sylveon");
+    }
+    
     resetStats();
     winModalChange();
 }
@@ -127,11 +151,11 @@ function difficultySwitch_Reg(){
     resetBoard();
     renderGameBoard();
     shuffle();
-    $(".card").addClass("regSize").removeClass("hardSize, easySize");
+    $(".card").addClass("regSize").removeClass("hardSize, easySize, challengeSize");
     $(".card").on("click", cardClicks);
     
-    if ($(".mew").hasClass("img-sylveon")){
-        $(".mew").removeClass("img-sylveon").addClass("img-mew");
+    if (!$(".mew").hasClass("img-mew")){
+        $(".mew").removeClass("img-sylveon img-mewshape").addClass("img-mew");
     }
     resetStats();
     winModalChange();
@@ -142,11 +166,26 @@ function difficultySwitch_Hard(){
     resetBoard();
     renderGameBoard();
     shuffle();
-    $(".card").addClass("hardSize").removeClass("regSize, easySize");
+    $(".card").addClass("hardSize").removeClass("regSize, easySize, challengeSize");
     $(".card").on("click", cardClicks);
 
-    if ($(".mew").hasClass("img-sylveon")){
-        $(".mew").removeClass("img-sylveon").addClass("img-mew");
+    if (!$(".mew").hasClass("img-mew")){
+        $(".mew").removeClass("img-sylveon img-mewshape").addClass("img-mew");
+    }
+    resetStats();
+    winModalChange();
+}
+function difficultySwitch_Challenge(){
+    gameState.difficulty = "challenge";
+    gameState.totalPossibleMatches = 25;
+    resetBoard();
+    renderGameBoard();
+    shuffle();
+    $(".card").addClass("challengeSize").removeClass("regSize, easySize, hardSize");
+    $(".card").on("click", cardClicks);
+
+    if (!$(".mew").hasClass("img-mewshape")){
+        $(".mew").removeClass("img-sylveon img-mew").addClass("img-mewshape");
     }
     resetStats();
     winModalChange();
@@ -185,13 +224,16 @@ function displayStats(){
 function displayDifficulty(){
     if (gameState.difficulty === "easy"){
         $(".easy > i").removeClass("far fa-star").addClass("fas fa-star");
-        $(".reg > i, .hard > i").removeClass("fas fa-star").addClass("far fa-star");
+        $(".reg > i, .hard > i, .challenge > i").removeClass("fas fa-star").addClass("far fa-star");
     } else if (gameState.difficulty === "regular"){
         $(".reg > i").removeClass("far fa-star").addClass("fas fa-star");
-        $(".easy > i, .hard > i").removeClass("fas fa-star").addClass("far fa-star");
+        $(".easy > i, .hard > i, .challenge > i").removeClass("fas fa-star").addClass("far fa-star");
     } else if (gameState.difficulty === "hard"){
         $(".hard > i").removeClass("far fa-star").addClass("fas fa-star");
-        $(".easy > i, .reg > i").removeClass("fas fa-star").addClass("far fa-star");
+        $(".easy > i, .reg > i, .challenge > i").removeClass("fas fa-star").addClass("far fa-star");
+    } else if (gameState.difficulty === "challenge"){
+        $(".challenge > i").removeClass("far fa-star").addClass("fas fa-star");
+        $(".easy > i, .reg > i, .hard > i").removeClass("fas fa-star").addClass("far fa-star");
     }
 }
 //-------------------------------------------------------------------------------------------------------
@@ -199,17 +241,20 @@ function displayDifficulty(){
 function renderGameBoard(){
     if (gameState.difficulty === "easy"){
         createEasyBoard();
-        displayDifficulty();
     } else if (gameState.difficulty === "regular"){
         createRegularBoard();
-        displayDifficulty();
     } else if (gameState.difficulty === "hard"){
         createHardBoard();
-        displayDifficulty();
+    } else if (gameState.difficulty === "challenge"){
+        createChallengeBoard();
     }
+    displayDifficulty();
 }
 function createEasyBoard(){
-    var cardBack = `images/cardBacks/eevee${Math.floor(Math.random() * 5) + 1}.jpg`
+
+    if (gameState.eeveeCardBackNum > 5){
+        gameState.eeveeCardBackNum = 1;
+    }
 
     for( numOfRows=1; numOfRows<=4; numOfRows++ ){
         $(".gameBoard").append(
@@ -227,7 +272,7 @@ function createEasyBoard(){
                     ),
                     $("<div>", {"class": "cardTop"})
                     .append(
-                        $("<img>", {"src": cardBack})
+                        $("<img>", {"src": `images/cardBacks/eevee${gameState.eeveeCardBackNum}.jpg`})
                     )
                 )
             );
@@ -235,9 +280,13 @@ function createEasyBoard(){
             gameState.cardArray.push(`.cardImg${numOfRows}-${cardsPerRow}`);
         }
     }
+            gameState.eeveeCardBackNum++;
 }
 function createRegularBoard(){
-    var cardBack = `images/cardBacks/pattern${Math.floor(Math.random() * 6) + 1}.jpg`
+    
+    if (gameState.cardBackNum > 6){
+        gameState.cardBackNum = 1;
+    }
 
     for( numOfRows=1; numOfRows<=4; numOfRows++ ){
         $(".gameBoard").append(
@@ -255,7 +304,7 @@ function createRegularBoard(){
                     ),
                     $("<div>", {"class": "cardTop"})
                     .append(
-                        $("<img>", {"src": cardBack})
+                        $("<img>", {"src": `images/cardBacks/pattern${gameState.cardBackNum}.jpg`})
                     )
                 )
             );
@@ -263,9 +312,13 @@ function createRegularBoard(){
             gameState.cardArray.push(`.cardImg${numOfRows}-${cardsPerRow}`);
         }
     }
+            gameState.cardBackNum++;
 }
 function createHardBoard(){
-    var cardBack = `images/cardBacks/pattern${Math.floor(Math.random() * 6) + 1}.jpg`
+    
+    if (gameState.cardBackNum > 6){
+        gameState.cardBackNum = 1;
+    }
 
     for( numOfRows=1; numOfRows<=4; numOfRows++ ){
         $(".gameBoard").append(
@@ -283,7 +336,7 @@ function createHardBoard(){
                     ),
                     $("<div>", {"class": "cardTop"})
                     .append(
-                        $("<img>", {"src": cardBack})
+                        $("<img>", {"src": `images/cardBacks/pattern${gameState.cardBackNum}.jpg`})
                     )
                 )
             );
@@ -291,6 +344,39 @@ function createHardBoard(){
             gameState.cardArray.push(`.cardImg${numOfRows}-${cardsPerRow}`);
         }
     }
+            gameState.cardBackNum++;
+}
+function createChallengeBoard(){
+    
+    if (gameState.cardBackNum > 6){
+        gameState.cardBackNum = 1;
+    }
+
+    for( numOfRows=1; numOfRows<=5; numOfRows++ ){
+        $(".gameBoard").append(
+            $("<div>", {"class": `row${numOfRows}`})
+        );
+
+        for( cardsPerRow=1; cardsPerRow<=10; cardsPerRow++ ){
+            $(`.row${numOfRows}`)
+            .append(
+                $("<div>", {"class": "card"})
+                .append(
+                    $("<div>", {"class": "cardBottom"})
+                    .append(
+                        $("<img>", {"src": "images/challenge/image132.png", "class": `cardImg${numOfRows}-${cardsPerRow}`})
+                    ),
+                    $("<div>", {"class": "cardTop"})
+                    .append(
+                        $("<img>", {"src": `images/cardBacks/pattern${gameState.cardBackNum}.jpg`})
+                    )
+                )
+            );
+
+            gameState.cardArray.push(`.cardImg${numOfRows}-${cardsPerRow}`);
+        }
+    }
+            gameState.cardBackNum++;
 }
 function createImageArray(){
     if (gameState.difficulty === "regular"){
@@ -311,6 +397,25 @@ function createImageArray(){
                 gameState.imageArray.push(`images/pokemon18/image${pokemonImgNum}.jpg`)
             }
         }
+    } else if (gameState.difficulty === "challenge"){
+        var pokemonNumCheck = [];
+        var challengeImageArray = [];
+        var pokemonNum = null;
+
+        function notSame(currentValue){
+            return pokemonNum !== currentValue;
+        }
+
+        while (challengeImageArray.length < 25){
+            pokemonNum = [Math.floor(Math.random() * 151) + 1];
+
+            if (pokemonNumCheck.every(notSame)){
+                pokemonNumCheck.push(pokemonNum);
+                challengeImageArray.push(`images/challenge/image${pokemonNum}.png`);
+            }
+        }
+        
+        gameState.imageArray = challengeImageArray.concat(challengeImageArray);
     }
 }
 function shuffle(){
@@ -342,8 +447,16 @@ function cardClicks(){
                 cardMismatch();
             }
         if(gameState.stats.matchCounter === gameState.totalPossibleMatches){
-            winModalChange();
-            winModalOpen();
+            if (gameState.difficulty === "easy"){
+                setTimeout(function(){
+                    winModalChange();
+                    winModalOpen();
+                }, 1500)
+            } else {
+                winModalChange();
+                winModalOpen();
+            }
+            
         }
         displayStats();
         } 
@@ -357,7 +470,7 @@ function cardMatch(){
         $(".card").on("click", cardClicks);
     }, 1000);
     if (gameState.mute === false){
-        matchSound.play();
+        matchSound();
     }
     gameState.stats.matchCounter++;
     gameState.firstCardClicked = null;
@@ -365,6 +478,9 @@ function cardMatch(){
 }
 function cardMismatch(){
     $(".card").off("click");
+    if (gameState.mute === false){
+            mismatchSound();
+        }
     setTimeout(function(){
         if (gameState.thisCard1.find('.cardTop img').css("opacity") === "0" ){
             gameState.thisCard1.find('.cardTop img').css("opacity", "1");
@@ -377,34 +493,79 @@ function cardMismatch(){
         $(".card").on("click", cardClicks);
     }, 2000);
 }
+function matchSound(){
+    if (gameState.difficulty === "easy"){
+        for (eeveeNum=1; eeveeNum<=8; eeveeNum++){
+            if (gameState.firstCardClicked === `images/pokemon8/image${eeveeNum}.jpg`){
+                pokemonCrySound.src = `sounds/eeveelutions/cry${eeveeNum}.mp3`;
+                pokemonCrySound.play();
+            }
+        }
+    } else {
+        catchSound.play();
+    }
+}
+function mismatchSound(){
+    if (gameState.difficulty === "challenge"){
+        pokemonCrySound.src = `sounds/cries/cry${Math.floor(Math.random() * 31) + 1}.mp3`
+        pokemonCrySound.play();
+    } else {
+        missSound.play();
+    }
+}
 //-------------------------------------------------------------------------------------------------------
 
 function winModalChange(){
-    if (gameState.difficulty === "easy"){
-        $(".winImg").attr("src", "images/victory/eevee.png");
-    } else {
-        if (gameState.winImageNum <=3){
-            $(".winImg").attr("src", `images/victory/image${gameState.winImageNum}.png`);
-            gameState.winImageNum++;
-        } else {
-            gameState.winImageNum = 1;
-            $(".winImg").attr("src", `images/victory/image${gameState.winImageNum}.png`);
-            gameState.winImageNum++;
+    if (gameState.difficulty === "easy") {
+        if (gameState.eeveeWinImageNum > 6) {
+            gameState.eeveeWinImageNum = 1;
         }
+        $(".winImg").attr("src", `images/victory/eeveelutions/eevee${gameState.eeveeWinImageNum}.png`);
+        gameState.eeveeWinImageNum++;
+    } else if (gameState.difficulty === "challenge") {
+        if (gameState.pikaWinImageNum > 3) {
+            gameState.pikaWinImageNum = 1;
+        }
+        $(".winImg").attr("src", `images/victory/pikachu/pikachu${gameState.pikaWinImageNum}.png`);
+        gameState.pikaWinImageNum++;
+    } else {
+        if (gameState.winImageNum > 9) {
+            gameState.winImageNum = 1;
+        }
+        $(".winImg").attr("src", `images/victory/image${gameState.winImageNum}.png`);
+        gameState.winImageNum++;
     };
 
     $(".winText").text(gameState.winMsg[Math.floor(Math.random() * 6)]);
 }
+function winMusicChange(){
+    if (gameState.difficulty === "easy"){
+        eeveeSound.play();
+        winSound.play();
+    } else if ($(".winImg").attr("src") === "images/victory/image2.png"){
+        pokemonCrySound.src = "sounds/oshawott.mp3";
+        pokemonCrySound.play();
+        winSound.play();
+    } else if (gameState.difficulty === "challenge"){
+        pikachuWinSound.play();
+    } else {
+        winSound.play();
+    }
+}
 function winModalOpen(){
+    $(".headerLogo").css("display", "none");
     $(".winModal").css("display", "block");
-             backgroundMusic.pause();
-             if (gameState.mute === false){
-                 winSound.play();
-             }
+    if (gameState.mute === false){
+        backgroundMusic.pause();
+        winMusicChange(); 
+    }
 }
 function winModalClose(){
     $(".winModal").css("display", "none");
+        pikachuWinSound.pause();
+        pikachuWinSound.currentTime = 0;
         winSound.pause();
+        winSound.currentTime = 0;
      if (gameState.mute === false){
          backgroundMusic.play();
      };
@@ -423,11 +584,22 @@ function mewBlink(){
     };
     function showMew(){
         $(".mew").css("opacity", "1");
+        
+        if (gameState.difficulty === "challenge"){
+            $(".img-mewshape").css("background-image", `url("images/mewshape${gameState.mewNum}.png")`);
+        }
 
         setTimeout(hideMew, mewHideMath());
     }
     function hideMew(){
         $(".mew").css("opacity", "0");
+
+        if (gameState.difficulty === "challenge"){
+            gameState.mewNum++
+            if (gameState.mewNum > 3){
+                gameState.mewNum = 1;
+            }
+        }
 
         clearTimeout(mewTimeout);
         mewTimeout = setTimeout(showMew, mewShowMath());
