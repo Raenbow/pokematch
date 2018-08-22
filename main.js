@@ -8,11 +8,13 @@ $(document).ready(initializeGame);
 var gameState = {
     difficulty: "regular",
     cardArray: [],
+    cardArrayTops: [],
     imageArray: [],
     soundArray: [],
-    cardBackNum: Math.floor(Math.random() * 6) + 1,
+    cardBackNum: Math.floor(Math.random() * 20) + 1,
     eeveeCardBackNum: Math.floor(Math.random() * 5) + 1,
     mute: true,
+    muteFlash: null,
     stats: {
         attempts: 0,
         accuracy: 0,
@@ -61,11 +63,16 @@ eeveeSound.src = "sounds/eevee.mp3";
 //-------------------------------------------------------------------------------------------------------
 
 function initializeGame(){
-   $(window).on("resize", resizeTransitionStop);
-   renderGameBoard();
-   shuffle();
-   attachClickHandler();
-   mewBlink();
+    $(window).on("resize", resizeTransitionStop);
+    renderGameBoard();
+    shuffle();
+    attachClickHandler();
+    mewBlink();
+    mewImageChange();
+
+    if (!sessionStorage.getItem("firstMuteClick")){
+        muteFlashOn();
+    }
 }
 function attachClickHandler(){
     $(".card").on("click", cardClicks);
@@ -79,6 +86,8 @@ function attachClickHandler(){
     $(".reg").on("click", difficultySwitch_Reg);
     $(".hard").on("click", difficultySwitch_Hard);
     $(".challenge").on("click", difficultySwitch_Challenge);
+    $(".instructButton").on("click", insctructionsToggle);
+    $(".expand").on("click", instructExpands);
 }
 function resizeTransitionStop(){
     $(".pokedex").css("transition-property", "none");
@@ -91,6 +100,31 @@ function resizeTransitionStop(){
     }, 10);
 }
 //-------------------------------------------------------------------------------------------------------
+function insctructionsToggle(){
+    if (!$(".welcome").hasClass("closed")){
+        $(".instructions").removeClass("closed");
+        $(".welcome").addClass("closed");
+        $(".introHeader").text("Instructions");
+        $(".instructButton").text("Back");
+    } else if ($(".welcome").hasClass("closed")){
+        $(".welcome").removeClass("closed");
+        $(".instructions").addClass("closed");
+        $(".introHeader").text("Welcome to Pokemon Match Adventure!");
+        $(".instructButton").text("Instructions");
+    }
+}
+function instructExpands(){
+    if (!$(this).parents(".instructItem").hasClass("open")){
+        $(this).parents(".instructItem").addClass("open").removeClass("closed");
+        $(this).children().removeClass("fa-plus-circle").addClass("fa-times-circle");
+        $(".closed").addClass("hidden");
+    } else if ($(this).parents(".instructItem").hasClass("open")){
+        $(this).parents(".instructItem").removeClass("open").addClass("closed");
+        $(this).children().removeClass("fa-times-circle").addClass("fa-plus-circle");
+        $("li").removeClass("hidden");
+    }
+    
+}
 function pokedexExpand(){
     if ( !$(".pokedex").hasClass("expanded") ){
         $(".pokedex").addClass("expanded");
@@ -117,6 +151,10 @@ function statsMenuOpen(){
     $(".statsButton").css("display", "none");
 }
 function toggleSounds(){
+    if (!sessionStorage.getItem("firstMuteClick")){
+        muteFlashOff();
+        sessionStorage.setItem("firstMuteClick", true);
+    }
     if ($(".soundToggleButton").hasClass("soundoff")){
         $(".soundToggleButton").removeClass("soundoff").addClass("soundon");
         backgroundMusic.play();
@@ -129,6 +167,20 @@ function toggleSounds(){
         return gameState.mute = true;
     }
 }
+function muteFlashOn(){
+    $(".soundToggleButton").css("transition", "filter .5s ease-in-out");
+    gameState.muteFlash = setInterval(function(){
+        $(".soundToggleButton").addClass("firstMuteFlash");
+        setTimeout(function(){
+            $(".soundToggleButton").removeClass("firstMuteFlash");
+        }, 1000);
+    }, 2000);
+}
+function muteFlashOff(){
+    $(".soundToggleButton").css("transition", "unset");
+    clearInterval(gameState.muteFlash);
+    $(".soundToggleButton").removeClass("firstMuteFlash");
+}
 function difficultySwitch_Easy(){
     gameState.difficulty = "easy";
     gameState.totalPossibleMatches = 8;
@@ -137,11 +189,7 @@ function difficultySwitch_Easy(){
     shuffle();
     $(".card").addClass("easySize").removeClass("hardSize, regSize, challengeSize");
     $(".card").on("click", cardClicks);
-    
-    if (!$(".mew").hasClass("img-sylveon")){
-        $(".mew").removeClass("img-mew img-mewshape").addClass("img-sylveon");
-    }
-    
+    mewImageChange();
     resetStats();
     winModalChange();
 }
@@ -153,10 +201,7 @@ function difficultySwitch_Reg(){
     shuffle();
     $(".card").addClass("regSize").removeClass("hardSize, easySize, challengeSize");
     $(".card").on("click", cardClicks);
-    
-    if (!$(".mew").hasClass("img-mew")){
-        $(".mew").removeClass("img-sylveon img-mewshape").addClass("img-mew");
-    }
+    mewImageChange();
     resetStats();
     winModalChange();
 }
@@ -168,10 +213,7 @@ function difficultySwitch_Hard(){
     shuffle();
     $(".card").addClass("hardSize").removeClass("regSize, easySize, challengeSize");
     $(".card").on("click", cardClicks);
-
-    if (!$(".mew").hasClass("img-mew")){
-        $(".mew").removeClass("img-sylveon img-mewshape").addClass("img-mew");
-    }
+    mewImageChange();
     resetStats();
     winModalChange();
 }
@@ -183,10 +225,7 @@ function difficultySwitch_Challenge(){
     shuffle();
     $(".card").addClass("challengeSize").removeClass("regSize, easySize, hardSize");
     $(".card").on("click", cardClicks);
-
-    if (!$(".mew").hasClass("img-mewshape")){
-        $(".mew").removeClass("img-sylveon img-mew").addClass("img-mewshape");
-    }
+    mewImageChange();
     resetStats();
     winModalChange();
 }
@@ -272,19 +311,20 @@ function createEasyBoard(){
                     ),
                     $("<div>", {"class": "cardTop"})
                     .append(
-                        $("<img>", {"src": `images/cardBacks/eevee${gameState.eeveeCardBackNum}.jpg`})
+                        $("<img>", {"src": `images/cardBacks/eevee${gameState.eeveeCardBackNum}.jpg`, "class": `cardTop${numOfRows}-${cardsPerRow}`})
                     )
                 )
             );
 
             gameState.cardArray.push(`.cardImg${numOfRows}-${cardsPerRow}`);
+            gameState.cardArrayTops.push(`.cardTop${numOfRows}-${cardsPerRow}`);
         }
     }
             gameState.eeveeCardBackNum++;
 }
 function createRegularBoard(){
     
-    if (gameState.cardBackNum > 6){
+    if (gameState.cardBackNum > 20){
         gameState.cardBackNum = 1;
     }
 
@@ -304,19 +344,20 @@ function createRegularBoard(){
                     ),
                     $("<div>", {"class": "cardTop"})
                     .append(
-                        $("<img>", {"src": `images/cardBacks/pattern${gameState.cardBackNum}.jpg`})
+                        $("<img>", {"src": `images/cardBacks/pattern${gameState.cardBackNum}.jpg`, "class": `cardTop${numOfRows}-${cardsPerRow}`})
                     )
                 )
             );
 
             gameState.cardArray.push(`.cardImg${numOfRows}-${cardsPerRow}`);
+            gameState.cardArrayTops.push(`.cardTop${numOfRows}-${cardsPerRow}`);
         }
     }
             gameState.cardBackNum++;
 }
 function createHardBoard(){
     
-    if (gameState.cardBackNum > 6){
+    if (gameState.cardBackNum > 20){
         gameState.cardBackNum = 1;
     }
 
@@ -336,19 +377,20 @@ function createHardBoard(){
                     ),
                     $("<div>", {"class": "cardTop"})
                     .append(
-                        $("<img>", {"src": `images/cardBacks/pattern${gameState.cardBackNum}.jpg`})
+                        $("<img>", {"src": `images/cardBacks/pattern${gameState.cardBackNum}.jpg`, "class": `cardTop${numOfRows}-${cardsPerRow}`})
                     )
                 )
             );
 
             gameState.cardArray.push(`.cardImg${numOfRows}-${cardsPerRow}`);
+            gameState.cardArrayTops.push(`.cardTop${numOfRows}-${cardsPerRow}`);
         }
     }
             gameState.cardBackNum++;
 }
 function createChallengeBoard(){
     
-    if (gameState.cardBackNum > 6){
+    if (gameState.cardBackNum > 20){
         gameState.cardBackNum = 1;
     }
 
@@ -368,12 +410,13 @@ function createChallengeBoard(){
                     ),
                     $("<div>", {"class": "cardTop"})
                     .append(
-                        $("<img>", {"src": `images/cardBacks/pattern${gameState.cardBackNum}.jpg`})
+                        $("<img>", {"src": `images/cardBacks/pattern${gameState.cardBackNum}.jpg`, "class": `cardTop${numOfRows}-${cardsPerRow}`})
                     )
                 )
             );
 
             gameState.cardArray.push(`.cardImg${numOfRows}-${cardsPerRow}`);
+            gameState.cardArrayTops.push(`.cardTop${numOfRows}-${cardsPerRow}`);
         }
     }
             gameState.cardBackNum++;
@@ -402,18 +445,15 @@ function createImageArray(){
         var challengeImageArray = [];
         var pokemonNum = null;
 
-        function notSame(currentValue){
-            return pokemonNum !== currentValue;
-        }
-
         while (challengeImageArray.length < 25){
-            pokemonNum = [Math.floor(Math.random() * 151) + 1];
+            pokemonNum = Math.floor(Math.random() * 151) + 1;
 
-            if (pokemonNumCheck.every(notSame)){
+            if (!pokemonNumCheck.includes(pokemonNum)){
                 pokemonNumCheck.push(pokemonNum);
                 challengeImageArray.push(`images/challenge/image${pokemonNum}.png`);
             }
         }
+        console.log(pokemonNumCheck);
         
         gameState.imageArray = challengeImageArray.concat(challengeImageArray);
     }
@@ -428,6 +468,9 @@ function shuffle(){
     }
     for(i=0;i<=randomPokemon.length;i++){
         $(gameState.cardArray[i]).attr('src', randomPokemon[i]);
+        if ($(gameState.cardArrayTops[i]).css("opacity") === "1"){
+            $(gameState.cardArray[i]).css("opacity", "0");
+        }
     }
 }
 function cardClicks(){
@@ -436,10 +479,12 @@ function cardClicks(){
             gameState.firstCardClicked = $(this).find('.cardBottom img').attr('src');
             gameState.thisCard1 = $(this);
             $(this).find('.cardTop img').css("opacity", "0");
+            $(this).find('.cardBottom img').css("opacity", "1");
         } else {
             gameState.secondCardClicked = $(this).find('.cardBottom img').attr('src');
             gameState.thisCard2 = $(this);
             $(this).find('.cardTop img').css("opacity", "0");
+            $(this).find('.cardBottom img').css("opacity", "1");
             gameState.stats.attempts++;
             if (gameState.firstCardClicked === gameState.secondCardClicked){
                 cardMatch();
@@ -506,12 +551,13 @@ function matchSound(){
     }
 }
 function mismatchSound(){
-    if (gameState.difficulty === "challenge"){
-        pokemonCrySound.src = `sounds/cries/cry${Math.floor(Math.random() * 31) + 1}.mp3`
-        pokemonCrySound.play();
-    } else {
-        missSound.play();
-    }
+    missSound.play();
+    // if (gameState.difficulty === "challenge"){
+    //     pokemonCrySound.src = `sounds/cries/cry${Math.floor(Math.random() * 31) + 1}.mp3`
+    //     pokemonCrySound.play();
+    // } else {
+    //     missSound.play();
+    // }
 }
 //-------------------------------------------------------------------------------------------------------
 
@@ -585,9 +631,7 @@ function mewBlink(){
     function showMew(){
         $(".mew").css("opacity", "1");
         
-        if (gameState.difficulty === "challenge"){
-            $(".img-mewshape").css("background-image", `url("images/mewshape${gameState.mewNum}.png")`);
-        }
+        mewImageChange();
 
         setTimeout(hideMew, mewHideMath());
     }
@@ -609,6 +653,32 @@ function mewBlink(){
         hideMew();
     })
 
+}
+function mewImageChange(){
+    var removeMewShapes = $(".mew").removeClass("img-mewshape1 img-mewshape2 img-mewshape3");
+
+    if (gameState.difficulty === "easy") {
+        removeMewShapes;
+        $(".mew").removeClass("img-mew").addClass("img-sylveon");
+
+    } else if (gameState.difficulty === "challenge"){
+        $(".mew").removeClass("img-sylveon img-mew")
+        switch(gameState.mewNum) {
+            case 1:
+                $(".mew").addClass("img-mewshape1");
+                break;
+            case 2:
+                $(".mew").addClass("img-mewshape2");
+                break;
+            case 3:
+                $(".mew").addClass("img-mewshape3");
+                break;
+        }
+            
+    } else {
+        removeMewShapes
+        $(".mew").removeClass("img-sylveon").addClass("img-mew");
+    };
 }
 
 })()
