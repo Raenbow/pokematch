@@ -39,6 +39,19 @@ button:hover{
 .container{
     display: flex;
 }
+::-webkit-scrollbar {
+    background: transparent;
+}
+/* ::-webkit-scrollbar-button */
+::-webkit-scrollbar-track:vertical,
+::-webkit-scrollbar-thumb {
+    background: #ffffff50;
+    border-radius: 18px;
+}
+/* ::-webkit-scrollbar-track-piece */
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
 
 /* --------------------------------(POKEDEX)--------------------------------- */
 .pokedex{
@@ -124,7 +137,7 @@ button:hover{
     flex-direction: column;
     /* padding-bottom: 3%; */
     /* letter-spacing: 3px; */
-    transition: 1000ms;
+    transition: opacity 1s ease-in-out;
 }
 .difficultyButton{
     /* font-size: 1.5vw; */
@@ -180,15 +193,123 @@ button:hover{
     -webkit-filter: brightness(105%);
     filter: brightness(105%);
 }
+.soundToggleButton.firstMuteFlash{
+    -webkit-filter: brightness(112%);
+    filter: brightness(112%);
+}
 .resetButton > img,
 .soundToggleButton > img {
+    width: 100%;
+}
+
+/* -------------------------------(INTRO MODAL)-------------------------------- */
+
+.introModal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    /* padding-top: 6vh; */
+    margin: 5vw;
+    height: 60%;
+    width: 60%;
+    background: #ffffff30;
+    border: 5px solid #ffffff50;
+    color: aliceblue;
+    text-shadow: 0 0 2px cadetblue;
+    letter-spacing: 3px;
+}
+.introInnerBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+}
+.introHeader {
+    font-size: 2vw;
+}
+.welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 40vh;
+    width: 56vw;
+}
+.welcome.closed {
+    display: none;
+}
+.instructions {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    height: 40vh;
+    width: 56vw;
+    margin: 0;
+    padding: 0;
+    /* overflow: scroll; */
+}
+.instructions.closed {
+    display: none;
+}
+.expand {
+    font-size: 1.4vw;
+    color: cadetblue;
+}
+.instructItem.hidden {
+    display: none;
+}
+.instructItem.open {
+    background: #5f9ea090;
+    border: 5px solid #5f9ea050;
+    padding: 15px;
+}
+.instructItem.open .content {
+    display: block;
+    height: 25vh;
+    width: 52vw;
+    overflow: scroll;
+}
+.content {
+    display: none;
+}
+.instructItem.open h3 {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.7vw;
+    padding-bottom: 6px;
+    border-bottom: 3px solid cadetblue;
+    margin-top: 5px;
+}
+.instructItem h3 {
+    display: flex;
+    font-size: 1.4vw;
+}
+.instructItem.open h3 button {
+    color: aliceblue;
+    font-size: 1.7vw;
+}
+.buttonBox button {
+    background: cadetblue;
+    border: 3px solid cadetblue;
+    border-radius: 18px;
+    font-family: "pokemonSolid";
+    letter-spacing: 3px;
+    color: aliceblue;
+    font-size: 1.4vw;
+    padding: 3px 15px;
+}
+.buttonBox {
+    display: flex;
+    justify-content: space-around;
     width: 100%;
 }
 
 /* --------------------------------(GAME BOARD)--------------------------------- */
 
 .gameBoardContainer{
-    display: flex;
+    /* display: flex; */
+    display: none;
     align-items: center;
     justify-content: center;
     flex-grow: 1;
@@ -345,8 +466,16 @@ button:hover{
     background-image: url("images/sylveon.png");
     background-size: 30vh;
 }
-.img-mewshape {
+.img-mewshape1 {
     background-image: url("images/mewshape1.png");
+    background-size: 30vh;
+}
+.img-mewshape2 {
+    background-image: url("images/mewshape2.png");
+    background-size: 30vh;
+}
+.img-mewshape3 {
+    background-image: url("images/mewshape3.png");
     background-size: 30vh;
 }
 
@@ -1325,7 +1454,7 @@ and (orientation: landscape){
 /* ------------------------------------------------------------------------ */
 /* ------------------------------------------------------------------------ */
 
-.opacityShow {
+/* .opacityShow {
     opacity: 1;
 }
 .opacityHide {
@@ -1339,4 +1468,4 @@ and (orientation: landscape){
 }
 .displayHide {
     display: none;
-}
+} */
