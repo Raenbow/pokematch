@@ -86,8 +86,6 @@ function attachClickHandler(){
     $(".reg").on("click", difficultySwitch_Reg);
     $(".hard").on("click", difficultySwitch_Hard);
     $(".challenge").on("click", difficultySwitch_Challenge);
-    $(".instructButton").on("click", insctructionsToggle);
-    $(".expand").on("click", instructExpands);
 }
 function resizeTransitionStop(){
     $(".pokedex").css("transition-property", "none");
@@ -100,31 +98,7 @@ function resizeTransitionStop(){
     }, 10);
 }
 //-------------------------------------------------------------------------------------------------------
-function insctructionsToggle(){
-    if (!$(".welcome").hasClass("closed")){
-        $(".instructions").removeClass("closed");
-        $(".welcome").addClass("closed");
-        $(".introHeader").text("Instructions");
-        $(".instructButton").text("Back");
-    } else if ($(".welcome").hasClass("closed")){
-        $(".welcome").removeClass("closed");
-        $(".instructions").addClass("closed");
-        $(".introHeader").text("Welcome to Pokemon Match Adventure!");
-        $(".instructButton").text("Instructions");
-    }
-}
-function instructExpands(){
-    if (!$(this).parents(".instructItem").hasClass("open")){
-        $(this).parents(".instructItem").addClass("open").removeClass("closed");
-        $(this).children().removeClass("fa-plus-circle").addClass("fa-times-circle");
-        $(".closed").addClass("hidden");
-    } else if ($(this).parents(".instructItem").hasClass("open")){
-        $(this).parents(".instructItem").removeClass("open").addClass("closed");
-        $(this).children().removeClass("fa-times-circle").addClass("fa-plus-circle");
-        $("li").removeClass("hidden");
-    }
-    
-}
+
 function pokedexExpand(){
     if ( !$(".pokedex").hasClass("expanded") ){
         $(".pokedex").addClass("expanded");
