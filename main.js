@@ -156,56 +156,88 @@ function muteFlashOff(){
     $(".soundToggleButton").removeClass("firstMuteFlash");
 }
 function difficultySwitch_Easy(){
-    gameState.difficulty = "easy";
-    gameState.totalPossibleMatches = 8;
-    resetBoard();
-    renderGameBoard();
-    shuffle();
-    $(".card").addClass("easySize").removeClass("hardSize, regSize, challengeSize");
-    $(".card").on("click", cardClicks);
-    mewImageChange();
-    resetStats();
-    winModalChange();
+    if (gameState.difficulty !== "easy"){
+        gameState.difficulty = "easy";
+        gameState.totalPossibleMatches = 8;
+        resetBoard();
+        renderGameBoard();
+        shuffle();
+        cardSizeSwitch();
+        $(".card").on("click", cardClicks);
+        mewImageChange();
+        increaseGamesPlayed();
+        resetStats();
+        winModalChange();
+    }
 }
 function difficultySwitch_Reg(){
-    gameState.difficulty = "regular";
-    gameState.totalPossibleMatches = 12;
-    resetBoard();
-    renderGameBoard();
-    shuffle();
-    $(".card").addClass("regSize").removeClass("hardSize, easySize, challengeSize");
-    $(".card").on("click", cardClicks);
-    mewImageChange();
-    resetStats();
-    winModalChange();
+    if (gameState.difficulty !== "regular"){
+        gameState.difficulty = "regular";
+        gameState.totalPossibleMatches = 12;
+        resetBoard();
+        renderGameBoard();
+        shuffle();
+        cardSizeSwitch();
+        $(".card").on("click", cardClicks);
+        mewImageChange();
+        increaseGamesPlayed();
+        resetStats();
+        winModalChange();
+    }
 }
 function difficultySwitch_Hard(){
-    gameState.difficulty = "hard";
-    gameState.totalPossibleMatches = 18;
-    resetBoard();
-    renderGameBoard();
-    shuffle();
-    $(".card").addClass("hardSize").removeClass("regSize, easySize, challengeSize");
-    $(".card").on("click", cardClicks);
-    mewImageChange();
-    resetStats();
-    winModalChange();
+    if (gameState.difficulty !== "hard"){
+        gameState.difficulty = "hard";
+        gameState.totalPossibleMatches = 18;
+        resetBoard();
+        renderGameBoard();
+        shuffle();
+        cardSizeSwitch();
+        $(".card").on("click", cardClicks);
+        mewImageChange();
+        increaseGamesPlayed();
+        resetStats();
+        winModalChange();
+    }
 }
 function difficultySwitch_Challenge(){
-    gameState.difficulty = "challenge";
-    gameState.totalPossibleMatches = 25;
+    if (gameState.difficulty !== "challenge"){
+        gameState.difficulty = "challenge";
+        gameState.totalPossibleMatches = 25;
+        resetBoard();
+        renderGameBoard();
+        shuffle();
+        cardSizeSwitch();
+        $(".card").on("click", cardClicks);
+        mewImageChange();
+        increaseGamesPlayed();
+        resetStats();
+        winModalChange();
+    }
+}
+function increaseGamesPlayed(){
+    if (gameState.stats.attempts > 0){
+        gameState.stats.gamesPlayed++;
+    }
+}
+function cardSizeSwitch(){
+    if (gameState.difficulty === "easy"){
+        $(".card").addClass("easySize").removeClass("hardSize, regSize, challengeSize");
+    } else if (gameState.difficulty === "regular"){
+        $(".card").addClass("regSize").removeClass("hardSize, easySize, challengeSize");
+    } else if (gameState.difficulty === "hard"){
+        $(".card").addClass("hardSize").removeClass("regSize, easySize, challengeSize");
+    } else if (gameState.difficulty === "challenge"){
+        $(".card").addClass("challengeSize").removeClass("regSize, easySize, hardSize");
+    }
+}
+function resetButton(){
     resetBoard();
     renderGameBoard();
     shuffle();
-    $(".card").addClass("challengeSize").removeClass("regSize, easySize, hardSize");
+    cardSizeSwitch();
     $(".card").on("click", cardClicks);
-    mewImageChange();
-    resetStats();
-    winModalChange();
-}
-function resetButton(){
-    gameState.stats.gamesPlayed++;
-    shuffle();
+    increaseGamesPlayed();
     resetStats();
     $('.card').css("opacity","1");
     $('.cardTop img').css("opacity","1");
