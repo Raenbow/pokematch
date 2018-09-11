@@ -232,6 +232,8 @@ function cardSizeSwitch(){
     }
 }
 function resetButton(){
+    $(".resetButton").off("click");
+
     resetBoard();
     renderGameBoard();
     shuffle();
@@ -242,6 +244,10 @@ function resetButton(){
     $('.card').css("opacity","1");
     $('.cardTop img').css("opacity","1");
     winModalChange();
+    
+    setTimeout(function(){
+        $(".resetButton").on("click", resetButton)
+    }, 1000);
     return gameState.stats;
 }
 function resetStats(){
