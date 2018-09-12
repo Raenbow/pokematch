@@ -232,6 +232,8 @@ function cardSizeSwitch(){
     }
 }
 function resetButton(){
+    $(".resetButton").off("click");
+
     resetBoard();
     renderGameBoard();
     shuffle();
@@ -242,6 +244,10 @@ function resetButton(){
     $('.card').css("opacity","1");
     $('.cardTop img').css("opacity","1");
     winModalChange();
+    
+    setTimeout(function(){
+        $(".resetButton").on("click", resetButton)
+    }, 1000);
     return gameState.stats;
 }
 function resetStats(){
@@ -573,6 +579,7 @@ function winModalChange(){
             gameState.eeveeWinImageNum = 1;
         }
         $(".winImg").attr("src", `images/victory/eeveelutions/eevee${gameState.eeveeWinImageNum}.png`);
+
         gameState.eeveeWinImageNum++;
     } else if (gameState.difficulty === "challenge") {
         if (gameState.pikaWinImageNum > 3) {
@@ -592,7 +599,9 @@ function winModalChange(){
 }
 function winMusicChange(){
     if (gameState.difficulty === "easy"){
-        eeveeSound.play();
+        if ($(".winImg").attr("src") === "images/victory/eeveelutions/eevee1.png"){
+            eeveeSound.play();
+        }
         winSound.play();
     } else if ($(".winImg").attr("src") === "images/victory/image2.png"){
         pokemonCrySound.src = "sounds/oshawott.mp3";
