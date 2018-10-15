@@ -229,6 +229,7 @@ button:hover{
     height: 11vw;
     width: 9vw;
     margin: 0 2vw 0 0;
+    user-select: none;
 }
 .cardBottom img, .cardTop img{
     height: 90%;
