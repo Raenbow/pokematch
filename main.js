@@ -9,6 +9,7 @@ $(document).ready(initializeGame);
 
 var gameState = {
     difficulty: "regular",
+    settingsMenu: "closed",
     cardArray: [],
     cardArrayTops: [],
     imageArray: [],
@@ -129,12 +130,14 @@ function settingsMenuOpen(){
     $(".settingsDisplay").css("display","flex");
     $(".settingsButton").css("display", "none");
     $(".statsButton").css("display", "unset");
+    gameState.settingsMenu = "open";
 }
 function statsMenuOpen(){
     $(".screenMiddle").css("display", "flex");
     $(".settingsDisplay").css("display","none");
     $(".settingsButton").css("display", "unset");
     $(".statsButton").css("display", "none");
+    gameState.settingsMenu = "closed";
 }
 
 //-------------------------------------------------------------------
@@ -512,6 +515,10 @@ function shuffle(){
     }
 }
 function cardClicks(){
+    if (gameState.settingsMenu === "open"){
+        statsMenuOpen();
+    }
+
     if ($(this).find('.cardTop img').css("opacity") === "1"){
         if (gameState.firstCardClicked === null){
             gameState.firstCardClicked = $(this).find('.cardBottom img').attr('src');

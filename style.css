@@ -229,6 +229,7 @@ button:hover{
     height: 11vw;
     width: 9vw;
     margin: 0 2vw 0 0;
+    user-select: none;
 }
 .cardBottom img, .cardTop img{
     height: 90%;
@@ -277,10 +278,10 @@ button:hover{
     90% { transform: translate(.5px, 1px) rotate(0deg); }
     100% { transform: translate(.5px, -1px) rotate(-.5deg); }
 }
-/* .card:hover {
+.card:hover {
     animation: shake .5s;
-    animation-iteration-count: infinite;
-} */
+    animation-iteration-count: 1;
+}
 
 /* --------------------------------(POP-UP WIN MODAL)--------------------------------- */
 .winModal{
