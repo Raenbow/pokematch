@@ -238,6 +238,7 @@ function difficultySwitch_Challenge(){
         increaseGamesPlayed();
         resetStats();
         winModalChange();
+        $(".gameBoardContainer").addClass("noPortrait");
     }
 }
 function increaseGamesPlayed(){
