@@ -278,7 +278,7 @@ button:hover{
     90% { transform: translate(.5px, 1px) rotate(0deg); }
     100% { transform: translate(.5px, -1px) rotate(-.5deg); }
 }
-.card:hover {
+.cardTop img:hover {
     animation: shake .5s;
     animation-iteration-count: 1;
 }
