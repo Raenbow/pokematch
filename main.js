@@ -193,6 +193,7 @@ function difficultySwitch_Easy(){
         increaseGamesPlayed();
         resetStats();
         winModalChange();
+        $(".gameBoardContainer").removeClass("noPortrait");
     }
 }
 function difficultySwitch_Reg(){
@@ -208,6 +209,7 @@ function difficultySwitch_Reg(){
         increaseGamesPlayed();
         resetStats();
         winModalChange();
+        $(".gameBoardContainer").removeClass("noPortrait");
     }
 }
 function difficultySwitch_Hard(){
@@ -223,6 +225,7 @@ function difficultySwitch_Hard(){
         increaseGamesPlayed();
         resetStats();
         winModalChange();
+        $(".gameBoardContainer").removeClass("noPortrait");
     }
 }
 function difficultySwitch_Challenge(){
