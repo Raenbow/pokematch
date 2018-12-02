@@ -524,8 +524,13 @@ button:hover{
         background: url("images/switch2landscape.png");
         background-repeat: no-repeat;
         background-size: contain;
-        background-color: white;
+        /* background-color: white; */
         top: 0%;
+    }
+    .gameBoardContainer.noPortrait>*{
+        transition: 0;
+        opacity: 0;
+        pointer-events: none;
     }
     .gameBoardContainer.faded{
         transition: 300ms;
