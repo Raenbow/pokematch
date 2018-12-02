@@ -512,6 +512,26 @@ button:hover{
         width: 100%;
         padding-bottom: 18vh;
     }
+    /* CONTINUE HERE *//* CONTINUE HERE *//* CONTINUE HERE *//* CONTINUE HERE */
+    /* CONTINUE HERE *//* CONTINUE HERE *//* CONTINUE HERE *//* CONTINUE HERE */
+    /* CONTINUE HERE *//* CONTINUE HERE *//* CONTINUE HERE *//* CONTINUE HERE */
+    /* CONTINUE HERE *//* CONTINUE HERE *//* CONTINUE HERE *//* CONTINUE HERE */
+    .gameBoardContainer.noPortrait::after{
+        content: '';
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        background: url("images/switch2landscape.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        /* background-color: white; */
+        top: 0%;
+    }
+    .gameBoardContainer.noPortrait>*{
+        transition: 0;
+        opacity: 0;
+        pointer-events: none;
+    }
     .gameBoardContainer.faded{
         transition: 300ms;
         opacity: 0;
