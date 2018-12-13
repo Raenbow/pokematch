@@ -519,18 +519,20 @@ button:hover{
     .gameBoardContainer.noPortrait::after{
         content: '';
         height: 100%;
-        width: 100%;
+        width: 90%;
         position: absolute;
         background: url("images/switch2landscape.png");
         background-repeat: no-repeat;
         background-size: contain;
-        /* background-color: white; */
-        top: 0%;
+        background-position-y: center;
     }
     .gameBoardContainer.noPortrait>*{
         transition: 0;
         opacity: 0;
         pointer-events: none;
+    }
+    .gameBoardContainer.noPortrait~.mewBox .mew {
+        display: none;
     }
     .gameBoardContainer.faded{
         transition: 300ms;
