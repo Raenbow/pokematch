@@ -802,6 +802,7 @@ and (orientation: portrait) {
         pointer-events: auto;
         flex-direction: column;
         margin-left: 15%;
+        padding: 0;
     }
     .gameBoardContainer.faded{
         transition: 300ms;
