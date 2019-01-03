@@ -405,7 +405,7 @@ button:hover{
     .pokedexOpenButton{
         color: rgba(255,255,255, .4);
         position: fixed;
-        font-size: 2em;
+        font-size: 10vw;
         height: 9vh;
         width: 25vw;
         bottom: 84.5vw;
