@@ -77,6 +77,7 @@ function initializeGame(){
     $(window).on("resize", resizeTransitionStop);
     renderGameBoard();
     shuffle();
+    cardSizeSwitch();
     attachClickHandler();
     mewBlink();
     mewImageChange();
@@ -225,7 +226,7 @@ function difficultySwitch_Hard(){
         increaseGamesPlayed();
         resetStats();
         winModalChange();
-        $(".gameBoardContainer").removeClass("noPortrait");
+        $(".gameBoardContainer").addClass("noPortrait");
     }
 }
 function difficultySwitch_Challenge(){
