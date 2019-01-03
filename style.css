@@ -543,9 +543,13 @@ button:hover{
     .gameBoard{
         margin-left: 2%;
     }
-    .card {
-        height: 21vw;
-        width: 16vw;
+    .card.easySize{
+        height: 23vw;
+        width: 19vw;
+    }
+    .card.regSize{
+        height: 17vw;
+        width: 13vw;
     }
 
     /* ------------------------(WIN MODAL)------------------------ */
