@@ -248,11 +248,11 @@ button:hover{
     width: 10vw;
     margin: 0 3vw 0 0;
 }
-/* card.regSize{
+.card.regSize{
     height: 11vw;
     width: 9vw;
     margin: 0 2vw 0 0;
-} */
+}
 .card.hardSize{
     height: 9vw;
     width: 7vw;
@@ -512,10 +512,6 @@ button:hover{
         width: 100%;
         padding-bottom: 18vh;
     }
-    /* CONTINUE HERE *//* CONTINUE HERE *//* CONTINUE HERE *//* CONTINUE HERE */
-    /* CONTINUE HERE *//* CONTINUE HERE *//* CONTINUE HERE *//* CONTINUE HERE */
-    /* CONTINUE HERE *//* CONTINUE HERE *//* CONTINUE HERE *//* CONTINUE HERE */
-    /* CONTINUE HERE *//* CONTINUE HERE *//* CONTINUE HERE *//* CONTINUE HERE */
     .gameBoardContainer.noPortrait::after{
         content: '';
         height: 100%;

@@ -77,6 +77,7 @@ function initializeGame(){
     $(window).on("resize", resizeTransitionStop);
     renderGameBoard();
     shuffle();
+    cardSizeSwitch();
     attachClickHandler();
     mewBlink();
     mewImageChange();
