@@ -696,7 +696,7 @@ and (orientation: portrait) {
         display: unset;
         color: rgba(255,255,255, .3);
         position: fixed;
-        font-size: 2em;
+        font-size: 10vh;
         left: 3vh;
         top: -9vh;
     }
@@ -723,13 +723,13 @@ and (orientation: portrait) {
         flex-direction: column;
         align-items: center;
         width: 55vw;
-        height: 69vh;
+        height: 73vh;
         right: 45vh;
         top: 9vh;
     }
     .pokedexDisplay h3,
     .pokedexDisplay p{
-        font-size: 3vw;
+        font-size: 2.75vw;
     }
     .screenTop{
         display: flex;
@@ -737,7 +737,7 @@ and (orientation: portrait) {
         align-items: center;
     }
     .screenTop > img{
-        width: 35%;
+        width: 30%;
         height: 100%;
         object-fit: contain;
     }
@@ -750,7 +750,7 @@ and (orientation: portrait) {
     }
     .screenMiddle{
         width: 90%;
-        padding-top: 11%;
+        padding-top: 4%;
         text-align: center;
         letter-spacing: 3px;
     }
@@ -765,7 +765,7 @@ and (orientation: portrait) {
         padding: 0% 2% 0% 5%;
     }
     .diffStar {
-        font-size: 4.85vw;
+        font-size: 3.85vw;
     }
     .screenBottom{
         display: flex;
@@ -844,16 +844,22 @@ and (orientation: portrait) {
     .pokedexDisplay{
         right: 52vh;
     }
+    .screenTop{
+        padding: 0;
+    }
     .gameTitle{
-        font-size: 4vw;
+        font-size: 3.5vw;
+    }
+    .settingsDisplay > div{
+        padding: .5%;
     }
     .resetButton{
-        top: 7vh;
-        left: -111vh;
+        top: 9vh;
+        left: -110vh;
     }
     .soundToggleButton{
-        top: 7vh;
-        right: 56vh;
+        top: 9vh;
+        right: 57vh;
     }
 
 }
