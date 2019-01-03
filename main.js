@@ -226,7 +226,7 @@ function difficultySwitch_Hard(){
         increaseGamesPlayed();
         resetStats();
         winModalChange();
-        $(".gameBoardContainer").removeClass("noPortrait");
+        $(".gameBoardContainer").addClass("noPortrait");
     }
 }
 function difficultySwitch_Challenge(){
