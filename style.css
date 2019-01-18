@@ -163,7 +163,7 @@ button:hover{
     justify-content: space-between;
     width: 90%;
     padding-top: 5%;
-    position: absolute;
+    /* position: absolute; */
     bottom: 1vw;
 }
 .settingsButton{
