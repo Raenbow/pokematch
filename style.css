@@ -244,14 +244,16 @@ button:hover{
     border: 3px solid white;
 }
 .card.easySize{
-    height: 12vw;
-    width: 10vw;
-    margin: 0 3vw 0 0;
+    /* height: 12vw;
+    width: 10vw; */
+    height: 11vw;
+    width: 9vw;
+    margin: .5vw 3vw 0 0;
 }
 .card.regSize{
     height: 11vw;
     width: 9vw;
-    margin: 0 2vw 0 0;
+    margin: .5vw 2vw 0 0;
 }
 .card.hardSize{
     height: 9vw;
