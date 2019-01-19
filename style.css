@@ -22,9 +22,9 @@ body{
     color: cadetblue;
     font-size: 0;
 }
-/* body>* {
-    font-size: 1rem;
-} */
+body>* {
+    font-size: initial;
+}
 button,
 button :focus{
     background: transparent;
@@ -206,6 +206,7 @@ button:hover{
 
 .gameBoardContainer{
     display: flex;
+    font-size: 0;
     /* display: none; */
     align-items: center;
     justify-content: center;
