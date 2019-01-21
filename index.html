@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <meta charset="utf8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Pokemon Match Adventure!</title>
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+            <link rel="stylesheet" href="style.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="main.js"></script>
+    </head>
+    <body>
+
+        <div class="pokedex">
+
+            <div class="pokedexImgContainer">
+                <button class="pokedexOpenButton" type="button">
+                    <i class="fas fa-angle-up"></i>
+                </button>
+                <img class="pokedexImgWhole" src="./images/pokedex.png" alt="pokedex">
+            </div>
+
+            <div class="pokedexDisplay">
+
+                <div class="screenTop">
+                        <img src="./images/logo1.png" alt="">
+                    <h1 class="gameTitle">
+                        Match Adventure
+                    </h1>
+                </div> <!-- pokedex screenTop End -->
+
+                <div class="screenMiddle">
+                    <div class="gamesPlayed">
+                        <h3 class="label">
+                            Games Played:
+                        </h3>
+                        <p class="value">
+                            0
+                        </p>
+                    </div>
+                    <div class="attempts">
+                        <h3 class="label">
+                            Match Attempts:
+                        </h3>
+                        <p class="value">
+                            0
+                        </p>
+                    </div>
+                    <div class="accuracy">
+                        <h3 class="label">
+                            Accuracy:
+                        </h3>
+                        <p class="value">
+                            0%
+                        </p>
+                    </div>
+                </div> <!-- pokedex screenMiddle End -->
+                <div class="settingsDisplay">
+                    <div class="easyDiv">
+                        <button class="easy difficultyButton" type="button">
+                            <h3 class="label">
+                                Eevee
+                            </h3>
+                        </button>
+                        <button class="easy diffStar difficultyButton" type="button">
+                            <i class="far fa-star"></i>
+                        </button>
+                    </div>
+                    <div class="regDiv">
+                        <button class="reg difficultyButton" type="button">
+                            <h3 class="label">
+                                Regular
+                            </h3>
+                        </button>
+                        <button class="reg diffStar difficultyButton" type="button">
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </button>
+                    </div>
+                    <div class="hardDiv">
+                        <button class="hard difficultyButton" type="button">
+                            <h3 class="label">
+                                Hard
+                            </h3>
+                        </button>
+                        <button class="hard diffStar difficultyButton" type="button">
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </button>
+                    </div>
+                    <div class="challengeDiv">
+                        <button class="challenge difficultyButton" type="button">
+                            <h3 class="label">
+                                Challenge
+                            </h3>
+                        </button>
+                        <button class="challenge diffStar difficultyButton" type="button">
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </button>
+                    </div>
+                </div><!-- pokedex settingsDisplay End -->
+
+                <div class="screenBottom">
+                    <button class="resetButton" type="reset">
+                        <img src="./images/resetbutton.png" alt="Reset Button">
+                    </button>
+                    <button class="settingsButton" type="button">
+                        <h3 class="label">
+                            Settings
+                        </h3>
+                    </button>
+                    <button class="statsButton" type="button">
+                        <h3 class="label">
+                            Stats Menu
+                        </h3>
+                    </button>
+                    <button class="soundToggleButton soundoff" type="button">
+                        <img class="soundToggleIcon" src="./images/soundoff.png" alt="Sound Toggle">
+                    </button>
+                </div> <!-- pokedex screenBottom End -->
+            
+            </div> <!-- pokedexScreen End -->
+        </div> <!-- pokedex End -->
+
+        <div class="gameBoardContainer">
+
+            <img class="headerLogo" src="./images/logo1.png" alt="">
+            <div class="gameBoard">
+
+            </div> <!-- gameBoard End -->
+        </div>
+
+        <div class='winModal'>
+            <div class="winBox">
+                <div class="winText">Way to go!</div>
+                <img src="" class='winImg'>
+            </div>
+        </div> <!-- winModal End -->
+
+        <div class='mewBox'>
+            <div class='mew'></div>
+        </div>
+
+    </body>
+</html>
