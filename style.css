@@ -7,6 +7,9 @@
     font-family: "pokemonHollow";
     src: url("fonts/pokemonHollow.ttf");
 }
+html {
+    height: 100%;
+}
 body{
     background-image: url("images/background.jpg");
     background-repeat: no-repeat;
@@ -16,7 +19,7 @@ body{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     margin: 0;
     font-family: "pokemonSolid";
     color: cadetblue;
