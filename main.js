@@ -74,7 +74,9 @@ eeveeSound.src = "sounds/eevee.mp3";
 //-------------------------------------------------------------------------------------------------------
 
 function initializeGame(){
-    $(window).on("resize", resizeTransitionStop);
+    var $window = $(window);
+    $window.on("resize", resizeSetDocumentHeight);
+    $window.on("resize", resizeTransitionStop);
     renderGameBoard();
     shuffle();
     cardSizeSwitch();
@@ -98,6 +100,9 @@ function attachClickHandler(){
     $(".reg").on("click", difficultySwitch_Reg);
     $(".hard").on("click", difficultySwitch_Hard);
     $(".challenge").on("click", difficultySwitch_Challenge);
+}
+function resizeSetDocumentHeight(){
+    $('html').height(window.innerHeight);
 }
 function resizeTransitionStop(){
     $(".pokedex").css("transition-property", "none");
@@ -492,7 +497,7 @@ function createImageArray(){
         var pokemonNum = null;
 
         while (challengeImageArray.length < 25){
-            pokemonNum = Math.floor(Math.random() * 151) + 1;
+            pokemonNum = Math.floor(Math.random() * 83) + 1 + 68;
 
             if (!pokemonNumCheck.includes(pokemonNum)){
                 pokemonNumCheck.push(pokemonNum);
